@@ -1,0 +1,44 @@
+<svg viewBox="0 0 700 370" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+    <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  </defs>
+
+  <text x="25" y="30" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Program Configuration Functional Flow</text>
+  <rect x="35" y="120" width="115" height="82" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="35" y="120" width="115" height="22" rx="2" fill="#162B52"/>
+  <text x="92.5" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PRODUCT_DEF</text>
+  <text x="42" y="157" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">product type</text>
+  <text x="42" y="169" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">instrument</text>
+  <rect x="190" y="120" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="190" y="120" width="125" height="22" rx="2" fill="#0B7285"/>
+  <text x="252.5" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">GENERAL_STEP</text>
+  <text x="197" y="157" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">program info</text>
+  <text x="197" y="169" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">anchor + parties</text>
+  <rect x="355" y="120" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="355" y="120" width="125" height="22" rx="2" fill="#C9962A"/>
+  <text x="417.5" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">FEE_STEP</text>
+  <text x="362" y="157" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">fee items</text>
+  <text x="362" y="169" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">flat fee JSON</text>
+  <rect x="520" y="120" width="135" height="82" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="520" y="120" width="135" height="22" rx="2" fill="#0B7285"/>
+  <text x="587.5" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">CASHFLOW_STEP</text>
+  <text x="527" y="157" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">disbursement</text>
+  <text x="527" y="169" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">repayment rules</text>
+  <rect x="285" y="260" width="150" height="82" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="285" y="260" width="150" height="22" rx="2" fill="#162B52"/>
+  <text x="360.0" y="275" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PROGRAM_DRAFT</text>
+  <text x="292" y="297" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">mapped entities</text>
+  <text x="292" y="309" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">copy excludes flows</text>
+  <line x1="150" y1="161" x2="189" y2="161" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+  <line x1="315" y1="161" x2="354" y2="161" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+  <line x1="480" y1="161" x2="519" y2="161" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+  <path d="M 252,202 L 252,240 L 360,240 L 360,259" fill="none" stroke="#0B7285" stroke-width="1.5" marker-end="url(#arrow_green)"/>
+  <path d="M 417,202 L 417,240 L 360,240" fill="none" stroke="#C9962A" stroke-width="1.5" marker-end="url(#arrow_gold)"/>
+  <path d="M 587,202 L 587,240 L 435,240 L 435,259" fill="none" stroke="#0B7285" stroke-width="1.5" marker-end="url(#arrow_green)"/>
+
+</svg>

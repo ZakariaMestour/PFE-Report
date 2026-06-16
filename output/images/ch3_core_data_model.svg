@@ -1,0 +1,71 @@
+<svg viewBox="0 0 780 395" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+    <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  </defs>
+
+  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">SCF Core Data Model</text>
+  <rect x="305" y="45" width="145" height="86" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="305" y="45" width="145" height="22" rx="2" fill="#162B52"/>
+  <text x="377.5" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">BASE_ENTITY</text>
+  <text x="312" y="82" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">id / version</text>
+  <text x="312" y="94" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">createdBy / date</text>
+  <text x="312" y="106" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">approvalStatus</text>
+  <text x="312" y="118" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">pendingAction</text>
+  <rect x="35" y="175" width="135" height="86" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="35" y="175" width="135" height="22" rx="2" fill="#0B7285"/>
+  <text x="102.5" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">COUNTERPARTY</text>
+  <text x="42" y="212" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">companyName</text>
+  <text x="42" y="224" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">taxId / regNo</text>
+  <text x="42" y="236" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">role + status</text>
+  <rect x="35" y="300" width="135" height="74" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="35" y="300" width="135" height="22" rx="2" fill="#162B52"/>
+  <text x="102.5" y="315" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">BANK_ACCOUNT</text>
+  <text x="42" y="337" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">accountNumber</text>
+  <text x="42" y="349" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">IBAN / SWIFT</text>
+  <rect x="205" y="300" width="135" height="74" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="205" y="300" width="135" height="22" rx="2" fill="#162B52"/>
+  <text x="272.5" y="315" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">DOCUMENT</text>
+  <text x="212" y="337" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">filePath</text>
+  <text x="212" y="349" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">bucketName</text>
+  <rect x="305" y="175" width="145" height="86" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="305" y="175" width="145" height="22" rx="2" fill="#0B7285"/>
+  <text x="377.5" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PROGRAM</text>
+  <text x="312" y="212" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">reference</text>
+  <text x="312" y="224" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">productType</text>
+  <text x="312" y="236" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">limits + dates</text>
+  <rect x="585" y="175" width="135" height="86" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="585" y="175" width="135" height="22" rx="2" fill="#0B7285"/>
+  <text x="652.5" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">ANCHOR</text>
+  <text x="592" y="212" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">anchorName</text>
+  <text x="592" y="224" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">anchorCode</text>
+  <text x="592" y="236" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">anchorRole</text>
+  <rect x="475" y="300" width="135" height="74" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="475" y="300" width="135" height="22" rx="2" fill="#C9962A"/>
+  <text x="542.5" y="315" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">FEE_CATALOGUE</text>
+  <text x="482" y="337" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">feeItems JSON</text>
+  <text x="482" y="349" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">flatFeeConfig</text>
+  <rect x="635" y="300" width="115" height="74" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="635" y="300" width="115" height="22" rx="2" fill="#C9962A"/>
+  <text x="692.5" y="315" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">CASHFLOW</text>
+  <text x="642" y="337" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">invoiceNumber</text>
+  <text x="642" y="349" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">validation</text>
+  <rect x="475" y="60" width="135" height="74" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="475" y="60" width="135" height="22" rx="2" fill="#162B52"/>
+  <text x="542.5" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PRODUCT_DEF</text>
+  <text x="482" y="97" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">productCode</text>
+  <text x="482" y="109" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">instrument</text>
+  <line x1="377" y1="131" x2="377" y2="174" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 2" marker-end="url(#arrow_gray)"/>
+  <line x1="170" y1="218" x2="304" y2="218" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="450" y1="218" x2="584" y2="218" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="542" y1="134" x2="378" y2="174" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 2" marker-end="url(#arrow_gray)"/>
+  <line x1="102" y1="261" x2="102" y2="299" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="150" y1="261" x2="240" y2="299" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="395" y1="261" x2="542" y2="299" stroke="#C9962A" stroke-width="1.4" marker-end="url(#arrow_gold)"/>
+  <line x1="430" y1="261" x2="692" y2="299" stroke="#C9962A" stroke-width="1.4" marker-end="url(#arrow_gold)"/>
+
+</svg>
