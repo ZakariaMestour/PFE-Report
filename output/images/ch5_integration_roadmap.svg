@@ -1,0 +1,44 @@
+<svg viewBox="0 0 740 345" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+    <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+    <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  </defs>
+
+  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Disbursement Module Integration Roadmap</text>
+  <rect x="35" y="135" width="130" height="88" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="35" y="135" width="130" height="22" rx="2" fill="#0B7285"/>
+  <text x="100.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">REFINEMENT</text>
+  <text x="42" y="172" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">PO sessions</text>
+  <text x="42" y="184" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">business rules</text>
+  <text x="42" y="196" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">diagram review</text>
+  <rect x="215" y="135" width="130" height="88" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="215" y="135" width="130" height="22" rx="2" fill="#C9962A"/>
+  <text x="280.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">ISOLATED_DESIGN</text>
+  <text x="222" y="172" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">target module</text>
+  <text x="222" y="184" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">flow + model</text>
+  <text x="222" y="196" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">no native merge yet</text>
+  <rect x="395" y="135" width="130" height="88" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="395" y="135" width="130" height="22" rx="2" fill="#0B7285"/>
+  <text x="460.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PROTOTYPE</text>
+  <text x="402" y="172" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">wizard panes</text>
+  <text x="402" y="184" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">typed service</text>
+  <text x="402" y="196" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">screenshots later</text>
+  <rect x="575" y="135" width="130" height="88" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.4"/>
+  <rect x="575" y="135" width="130" height="22" rx="2" fill="#166534"/>
+  <text x="640.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">NATIVE_INJECTION</text>
+  <text x="582" y="172" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">future sprint</text>
+  <text x="582" y="184" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">backend contract</text>
+  <text x="582" y="196" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#166534" font-weight="600">approval lifecycle</text>
+  <line x1="165" y1="179" x2="214" y2="179" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="345" y1="179" x2="394" y2="179" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="525" y1="179" x2="574" y2="179" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <rect x="215" y="260" width="310" height="52" rx="2" fill="#F0EDE8" stroke="#C9962A" stroke-width="1"/>
+  <text x="370" y="278" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#C9962A" font-weight="600">current report boundary</text>
+  <text x="230" y="296" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B1D3A">The chapter documents design, intended contracts, and visible UI flow.</text>
+
+</svg>

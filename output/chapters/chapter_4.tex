@@ -34,6 +34,8 @@ Figure~\ref{fig:ch4_navigation_role_flow} shows how routing, authentication, and
 
 The \texttt{AppSidebar} filters menu items according to the business view. Bank users see the broadest set of modules, including master setup, transaction inquiry, document inquiry, invoice management, early payment, and finance disbursement. Anchor users see a narrower set focused on their own operational activities, such as invoice upload, manual invoice entry, transaction inquiry, and early payment. Counterparty users receive an even more focused view, centered on their own invoices, transactions, and payment requests.
 
+[Insert screenshot of the SCF dashboard with role-based sidebar]
+
 \subsection{\texttt{Index.tsx} and Module Selection}
 \label{subsec:index_module_selection}
 
@@ -49,6 +51,8 @@ The design is pragmatic. It avoids turning every module switch into a full route
 
 \texttt{SCFMasterSetup} acts as a container for several administrative and configuration modules. Its tabs include product suite, program configuration, counterparty onboarding, foundational data, and control centre features. Access to these tabs is role-gated, which prevents users outside the bank view from reaching administrative functions that do not belong to their business position.
 
+[Insert screenshot of the Master Setup tabs]
+
 \subsection{Product Suite and Program Configuration}
 \label{subsec:product_program_ui}
 
@@ -56,10 +60,14 @@ The product suite exposes product definition management through \texttt{SCFProdu
 
 Program configuration is handled by \texttt{SCFProgramConfiguration} and \texttt{ProgramFormDialog}. The dialog is structured as a multi-step configuration process: \texttt{GeneralPartyPane}, \texttt{FeeCataloguePane}, and \texttt{DisbursementRepaymentPane}. The \texttt{useProgramForm} hook centralizes the form state and helps keep the wizard logic outside individual panes.
 
+[Insert screenshot of the Program Configuration wizard]
+
 \subsection{Counterparty Onboarding and Foundational Data}
 \label{subsec:counterparty_foundational_ui}
 
 \texttt{SCFCounterPartyOnboarding} provides table-based management of counterparties, inline creation and editing, document upload, maker/checker actions, bulk creation, and CSV export. The component is connected to backend operations through \texttt{scfCounterPartyService}.
+
+[Insert screenshot of Counterparty Onboarding table and actions]
 
 Foundational data screens such as \texttt{CityMaster}, \texttt{CountryMaster}, \texttt{CurrencyMaster}, and \texttt{StateMaster} provide CRUD interfaces for reference values. These screens may appear less complex than program configuration, but they support the integrity of the wider system. A program or counterparty form depends on stable reference data.
 
@@ -84,6 +92,8 @@ Invoice upload is orchestrated by \texttt{InvoiceUploadForm}. The component coor
 \end{figure}
 
 The Excel path uses \texttt{ExcelInvoiceUploader} for spreadsheet files. The scanned path uses \texttt{ScannedInvoiceUploader} for images or PDF files that may require OCR processing. Once uploaded, rows are displayed in \texttt{InvoiceUploadTable}, with validation status and row-level issues. \texttt{ValidationSummaryCard} then aggregates the result, while \texttt{DisbursementStatusCard} gives an eligibility-oriented view.
+
+[Insert screenshot of Invoice Upload validation table]
 
 \subsection{Manual Invoice Form}
 \label{subsec:manual_invoice_form}
@@ -115,6 +125,8 @@ The finance disbursement flow is implemented as a six-step wizard inside \texttt
 \end{figure}
 
 The first pane selects the program and product context. The invoice pane loads eligible invoices and allows the user to select which invoices will be financed. The finance details pane captures terms and presents fee breakdown information. Accounting entries are displayed as debit and credit lines. The repayment pane configures schedule-related details. The final pane reviews the full request before submission.
+
+[Insert screenshot of Finance Disbursement wizard]
 
 \section{Document Inquiry and Specification Documents}
 \label{sec:document_inquiry_specification}

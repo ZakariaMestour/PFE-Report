@@ -1,0 +1,74 @@
+<svg viewBox="0 0 740 535" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+    <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+    <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  </defs>
+
+  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">UML Sequence Diagram - Target Disbursement Submission</text>
+  <rect x="3" y="48" width="84" height="20" rx="2" fill="#F0EDE8" stroke="#0B1D3A" stroke-width="1"/>
+  <text x="45" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="600">BankOfficer</text>
+  <line x1="45" y1="68" x2="45" y2="505" stroke="#D4D0C8" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <rect x="133" y="48" width="84" height="20" rx="2" fill="#F0EDE8" stroke="#0B1D3A" stroke-width="1"/>
+  <text x="175" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="600">DisbModal</text>
+  <line x1="175" y1="68" x2="175" y2="505" stroke="#D4D0C8" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <rect x="263" y="48" width="84" height="20" rx="2" fill="#F0EDE8" stroke="#0B1D3A" stroke-width="1"/>
+  <text x="305" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="600">FinanceSvc</text>
+  <line x1="305" y1="68" x2="305" y2="505" stroke="#D4D0C8" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <rect x="393" y="48" width="84" height="20" rx="2" fill="#F0EDE8" stroke="#0B1D3A" stroke-width="1"/>
+  <text x="435" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="600">Gateway</text>
+  <line x1="435" y1="68" x2="435" y2="505" stroke="#D4D0C8" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <rect x="523" y="48" width="84" height="20" rx="2" fill="#F0EDE8" stroke="#0B1D3A" stroke-width="1"/>
+  <text x="565" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="600">SCFService</text>
+  <line x1="565" y1="68" x2="565" y2="505" stroke="#D4D0C8" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <rect x="653" y="48" width="84" height="20" rx="2" fill="#F0EDE8" stroke="#0B1D3A" stroke-width="1"/>
+  <text x="695" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="600">Database</text>
+  <line x1="695" y1="68" x2="695" y2="505" stroke="#D4D0C8" stroke-width="0.8" stroke-dasharray="4 3"/>
+  <rect x="172" y="90" width="6" height="390" fill="#F7F4EF" stroke="#6B7280" stroke-width="0.8"/>
+  <rect x="302" y="117" width="6" height="360" fill="#F7F4EF" stroke="#6B7280" stroke-width="0.8"/>
+  <rect x="432" y="142" width="6" height="335" fill="#F7F4EF" stroke="#6B7280" stroke-width="0.8"/>
+  <rect x="562" y="167" width="6" height="285" fill="#F7F4EF" stroke="#6B7280" stroke-width="0.8"/>
+  <rect x="692" y="192" width="6" height="230" fill="#F7F4EF" stroke="#6B7280" stroke-width="0.8"/>
+  <line x1="45" y1="93" x2="174" y2="93" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
+  <text x="110.0" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B7285">open wizard</text>
+  <line x1="175" y1="118" x2="304" y2="118" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
+  <text x="240.0" y="113" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B7285">load eligible invoices</text>
+  <line x1="305" y1="143" x2="434" y2="143" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+  <text x="370.0" y="138" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B1D3A">GET /finance context</text>
+  <line x1="435" y1="168" x2="564" y2="168" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+  <text x="500.0" y="163" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B1D3A">route /scf</text>
+  <line x1="565" y1="193" x2="694" y2="193" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+  <text x="630.0" y="188" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B1D3A">read program + invoices</text>
+  <line x1="695" y1="218" x2="566" y2="218" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="630.0" y="213" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">eligibility data</text>
+  <line x1="565" y1="243" x2="436" y2="243" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="500.0" y="238" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">context response</text>
+  <line x1="435" y1="268" x2="306" y2="268" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="370.0" y="263" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">typed response</text>
+  <line x1="305" y1="293" x2="176" y2="293" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="240.0" y="288" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">invoice list</text>
+  <line x1="175" y1="323" x2="304" y2="323" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
+  <text x="240.0" y="318" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B7285">createDisbursement()</text>
+  <line x1="305" y1="348" x2="434" y2="348" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+  <text x="370.0" y="343" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B1D3A">POST /finance/disbursements</text>
+  <line x1="435" y1="373" x2="564" y2="373" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+  <text x="500.0" y="368" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B1D3A">submit request</text>
+  <line x1="565" y1="398" x2="694" y2="398" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+  <text x="630.0" y="393" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#0B1D3A">persist draft</text>
+  <line x1="695" y1="423" x2="566" y2="423" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="630.0" y="418" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">draft id</text>
+  <line x1="565" y1="448" x2="436" y2="448" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="500.0" y="443" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">201 DRAFT</text>
+  <line x1="435" y1="473" x2="306" y2="473" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="370.0" y="468" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">created response</text>
+  <line x1="305" y1="498" x2="176" y2="498" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+  <text x="240.0" y="493" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.3" fill="#C9962A">display success</text>
+
+  <rect x="252" y="362" width="106" height="20" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1"/>
+  <text x="305" y="376" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#0B7285" font-weight="600">typed payload</text>
+
+</svg>

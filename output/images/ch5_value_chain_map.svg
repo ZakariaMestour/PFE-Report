@@ -1,0 +1,62 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+    <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+    <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  </defs>
+
+  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Disbursement Module in the SCF Value Chain</text>
+  <rect x="35" y="92" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="35" y="92" width="125" height="22" rx="2" fill="#162B52"/>
+  <text x="97.5" y="107" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PROGRAM</text>
+  <text x="42" y="129" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">anchor + CP</text>
+  <text x="42" y="141" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">limits/rules</text>
+  <rect x="35" y="218" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="35" y="218" width="125" height="22" rx="2" fill="#0B7285"/>
+  <text x="97.5" y="233" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">INVOICES</text>
+  <text x="42" y="255" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">validated rows</text>
+  <text x="42" y="267" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">eligible amount</text>
+  <rect x="235" y="62" width="130" height="82" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="235" y="62" width="130" height="22" rx="2" fill="#C9962A"/>
+  <text x="300.0" y="77" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">FEE_CATALOGUE</text>
+  <text x="242" y="99" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">rates + flats</text>
+  <text x="242" y="111" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">charge basis</text>
+  <rect x="235" y="248" width="130" height="82" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="235" y="248" width="130" height="22" rx="2" fill="#162B52"/>
+  <text x="300.0" y="263" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PRODUCT</text>
+  <text x="242" y="285" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">SCF family</text>
+  <text x="242" y="297" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">instrument</text>
+  <rect x="435" y="155" width="145" height="95" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="435" y="155" width="145" height="22" rx="2" fill="#0B7285"/>
+  <text x="507.5" y="170" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">DISBURSEMENT</text>
+  <text x="442" y="192" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">select finance</text>
+  <text x="442" y="204" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">calculate terms</text>
+  <text x="442" y="216" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">prepare request</text>
+  <rect x="640" y="60" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <rect x="640" y="60" width="125" height="22" rx="2" fill="#162B52"/>
+  <text x="702.5" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">ACCOUNTING</text>
+  <text x="647" y="97" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">debit/credit</text>
+  <text x="647" y="109" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">read-only lines</text>
+  <rect x="640" y="180" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.4"/>
+  <rect x="640" y="180" width="125" height="22" rx="2" fill="#166534"/>
+  <text x="702.5" y="195" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">REPAYMENT</text>
+  <text x="647" y="217" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">schedule</text>
+  <text x="647" y="229" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#166534" font-weight="600">due dates</text>
+  <rect x="640" y="300" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="640" y="300" width="125" height="22" rx="2" fill="#C9962A"/>
+  <text x="702.5" y="315" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">APPROVAL</text>
+  <text x="647" y="337" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">maker/checker</text>
+  <text x="647" y="349" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">DRAFT -> PENDING</text>
+  <line x1="160" y1="133" x2="434" y2="178" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="160" y1="259" x2="434" y2="203" stroke="#0B7285" stroke-width="1.4" marker-end="url(#arrow_teal)"/>
+  <line x1="365" y1="103" x2="434" y2="180" stroke="#C9962A" stroke-width="1.4" marker-end="url(#arrow_gold)"/>
+  <line x1="365" y1="289" x2="434" y2="225" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="580" y1="178" x2="639" y2="101" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="580" y1="203" x2="639" y2="221" stroke="#166534" stroke-width="1.4" marker-end="url(#arrow_green)"/>
+  <line x1="580" y1="225" x2="639" y2="341" stroke="#C9962A" stroke-width="1.4" marker-end="url(#arrow_gold)"/>
+
+</svg>

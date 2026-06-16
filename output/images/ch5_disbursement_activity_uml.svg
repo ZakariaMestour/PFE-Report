@@ -1,0 +1,46 @@
+<svg viewBox="0 0 760 590" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+    <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+    <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  </defs>
+
+  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">UML Activity Diagram - Disbursement Request</text>
+  <circle cx="385" cy="55" r="8" fill="#0B1D3A"/>
+  <rect x="295" y="83" width="180" height="34" rx="17" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <text x="385" y="104" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B7285" font-weight="600">Select program and product</text>
+  <rect x="295" y="145" width="180" height="34" rx="17" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <text x="385" y="166" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B7285" font-weight="600">Load eligible invoices</text>
+  <rect x="295" y="207" width="180" height="34" rx="17" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <text x="385" y="228" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B7285" font-weight="600">Enter finance terms</text>
+  <polygon points="385,270 455,305 385,340 315,305" fill="#F0EDE8" stroke="#C9962A" stroke-width="1.4"/>
+  <text x="385" y="302" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0B1D3A" font-weight="600">Valid</text>
+  <text x="385" y="314" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0B1D3A" font-weight="600">request?</text>
+  <rect x="520" y="288" width="165" height="34" rx="17" fill="#F7F4EF" stroke="#B91C1C" stroke-width="1.4"/>
+  <text x="602.5" y="309" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#B91C1C" font-weight="600">Show validation errors</text>
+  <rect x="295" y="368" width="180" height="34" rx="17" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
+  <text x="385" y="389" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B1D3A" font-weight="600">Generate accounting entries</text>
+  <rect x="295" y="430" width="180" height="34" rx="17" fill="#F7F4EF" stroke="#166534" stroke-width="1.4"/>
+  <text x="385" y="451" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#166534" font-weight="600">Build repayment schedule</text>
+  <rect x="295" y="492" width="180" height="34" rx="17" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <text x="385" y="513" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#C9962A" font-weight="600">Submit for approval</text>
+  <circle cx="385" cy="562" r="9" fill="white" stroke="#0B1D3A" stroke-width="1.8"/>
+  <circle cx="385" cy="562" r="5" fill="#0B1D3A"/>
+  <line x1="385" y1="63" x2="385" y2="82" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="385" y1="117" x2="385" y2="144" stroke="#0B7285" stroke-width="1.4" marker-end="url(#arrow_teal)"/>
+  <line x1="385" y1="179" x2="385" y2="206" stroke="#0B7285" stroke-width="1.4" marker-end="url(#arrow_teal)"/>
+  <line x1="385" y1="241" x2="385" y2="269" stroke="#0B7285" stroke-width="1.4" marker-end="url(#arrow_teal)"/>
+  <line x1="455" y1="305" x2="519" y2="305" stroke="#B91C1C" stroke-width="1.4" marker-end="url(#arrow_red)"/>
+  <text x="487" y="300" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#B91C1C">[no]</text>
+  <path d="M 602,288 L 602,252 L 480,252 L 480,224 L 476,224" fill="none" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_red)"/>
+  <line x1="385" y1="340" x2="385" y2="367" stroke="#166534" stroke-width="1.4" marker-end="url(#arrow_green)"/>
+  <text x="406" y="356" font-family="JetBrains Mono, monospace" font-size="7" fill="#166534">[yes]</text>
+  <line x1="385" y1="402" x2="385" y2="429" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="385" y1="464" x2="385" y2="491" stroke="#166534" stroke-width="1.4" marker-end="url(#arrow_green)"/>
+  <line x1="385" y1="526" x2="385" y2="552" stroke="#C9962A" stroke-width="1.4" marker-end="url(#arrow_gold)"/>
+
+</svg>
