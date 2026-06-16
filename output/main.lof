@@ -1,0 +1,27 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Supply Chain Finance ecosystem}}{8}{figure.1.1}%
+\contentsline {figure}{\numberline {1.2}{\ignorespaces Daily development and validation workflow}}{11}{figure.1.2}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Internship timeline and parallel Disbursement Module refinement}}{14}{figure.1.3}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Global microservices architecture of the SCF platform}}{16}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Gateway routing and filter chain}}{19}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Authentication and role resolution flow}}{21}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Document storage and conversion flow}}{23}{figure.2.4}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces SCF core data model}}{27}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Maker/checker governance lifecycle}}{30}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Program configuration functional flow}}{33}{figure.3.3}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Frontend routing and role-based navigation}}{37}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Invoice upload component flow}}{40}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Finance disbursement six-step wizard}}{41}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Frontend services layer}}{43}{figure.4.4}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Disbursement Module position inside the SCF value chain}}{46}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Roadmap from refinement work to native platform integration}}{47}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces UML activity diagram for the target disbursement request flow}}{53}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces UML sequence diagram for target disbursement submission}}{54}{figure.5.4}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Two contribution streams during the internship}}{59}{figure.6.1}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Main skills acquired during the internship}}{63}{figure.6.2}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Recommendations for future platform development}}{65}{figure.6.3}%

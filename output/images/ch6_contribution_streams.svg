@@ -1,0 +1,52 @@
+<svg viewBox="0 0 760 370" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  </defs>
+
+  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Internship Contribution Streams</text>
+  <rect x="30" y="62" width="700" height="118" rx="2" fill="#F0EDE8" stroke="#D4D0C8" stroke-width="1"/>
+  <rect x="30" y="218" width="700" height="118" rx="2" fill="#F7F4EF" stroke="#D4D0C8" stroke-width="1"/>
+  <text x="48" y="88" font-family="JetBrains Mono, monospace" font-size="9" fill="#0B1D3A" font-weight="700">PLATFORM DELIVERY</text>
+  <text x="48" y="244" font-family="JetBrains Mono, monospace" font-size="9" fill="#0B7285" font-weight="700">PFE MODULE PREPARATION</text>
+  <rect x="190" y="88" width="110" height="64" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="190" y="88" width="110" height="22" rx="2" fill="#0B7285"/>
+  <text x="245.0" y="103" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">JIRA</text>
+  <text x="197" y="125" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">ticket scope</text>
+  <text x="197" y="137" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">sprint work</text>
+  <rect x="345" y="88" width="110" height="64" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="345" y="88" width="110" height="22" rx="2" fill="#C9962A"/>
+  <text x="400.0" y="103" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">BITBUCKET</text>
+  <text x="352" y="125" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">branch + PR</text>
+  <text x="352" y="137" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">review</text>
+  <rect x="500" y="88" width="110" height="64" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.4"/>
+  <rect x="500" y="88" width="110" height="22" rx="2" fill="#166534"/>
+  <text x="555.0" y="103" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">TESTER</text>
+  <text x="507" y="125" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">validation</text>
+  <text x="507" y="137" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#166534" font-weight="600">feedback</text>
+  <rect x="190" y="244" width="110" height="64" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
+  <rect x="190" y="244" width="110" height="22" rx="2" fill="#0B7285"/>
+  <text x="245.0" y="259" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">REFINEMENT</text>
+  <text x="197" y="281" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">PO concepts</text>
+  <text x="197" y="293" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">rules</text>
+  <rect x="345" y="244" width="110" height="64" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
+  <rect x="345" y="244" width="110" height="22" rx="2" fill="#C9962A"/>
+  <text x="400.0" y="259" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">DIAGRAMS</text>
+  <text x="352" y="281" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">flows</text>
+  <text x="352" y="293" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">corrections</text>
+  <rect x="500" y="244" width="110" height="64" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.4"/>
+  <rect x="500" y="244" width="110" height="22" rx="2" fill="#166534"/>
+  <text x="555.0" y="259" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">TARGET_DESIGN</text>
+  <text x="507" y="281" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">module shape</text>
+  <text x="507" y="293" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#166534" font-weight="600">future merge</text>
+  <line x1="300" y1="120" x2="344" y2="120" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="455" y1="120" x2="499" y2="120" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
+  <line x1="300" y1="276" x2="344" y2="276" stroke="#0B7285" stroke-width="1.4" marker-end="url(#arrow_teal)"/>
+  <line x1="455" y1="276" x2="499" y2="276" stroke="#0B7285" stroke-width="1.4" marker-end="url(#arrow_teal)"/>
+  <path d="M 555,152 L 555,196 L 245,196 L 245,243" fill="none" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_gold)"/>
+  <text x="375" y="191" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#C9962A">platform exposure fed the PFE analysis</text>
+
+</svg>

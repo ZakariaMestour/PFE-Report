@@ -27,6 +27,7 @@ These are candidates for real platform screenshots to insert later.
 - Chapter V: `[Insert screenshot of Disbursement API Swagger endpoints]`
 - Chapter V: `[Insert backend controller, service, mapper, repository, and migration details once finalized]`
 - Chapter VI: `[Insert screenshot or export of Jira sprint/ticket summary if available]`
+- Chapter VI: `[Insert quantitative summary: number of Jira tickets, pull requests, bug fixes, modules touched, and lines of code if available]`
 
 ## Diagram Review Queue
 
@@ -52,6 +53,7 @@ The Disbursement Module chapter will likely need placeholders unless more implem
 ## Final Polish Tasks
 
 - Replace all `[Insert ...]` placeholders with screenshots, figures, or validated project details.
+- Verify Chapter VI quantitative evidence in Jira and Bitbucket: 12 SCF-service tickets, 8 FDL tickets, backend plus front-end parts, and reported pull request count `19 + 12 + 8 + 1 = 40`.
 - Decide which generated diagrams remain conceptual and which must be formal UML.
 - Re-run LaTeX compilation once a TeX engine is installed or available in PATH.
 - Check figure numbering, table numbering, and cross-references after compilation.

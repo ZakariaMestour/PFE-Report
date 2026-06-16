@@ -1,0 +1,209 @@
+\chapter{Evaluation and Reflection}
+\label{chap:evaluation_reflection}
+
+\section{Introduction}
+\label{sec:ch6_introduction}
+
+This final chapter looks back at the internship from an evaluation angle. The previous chapters explained the platform, the architecture, the domain model, the frontend flows, and the Disbursement Module. Here, the focus changes slightly. The question is no longer only what the system does, but what was learned by working inside it: how the contributions were organized, what was difficult, which skills were strengthened, and what can be improved in future development.
+
+The internship took place in a real delivery environment. Tasks were not academic exercises detached from production habits. They were assigned through Jira, implemented in a shared codebase, pushed to Bitbucket, reviewed by the technical lead, and then verified by testing. At the same time, the Disbursement Module required a more exploratory rhythm, with weekly Product Owner discussions and diagrams used as a way to refine the expected business flow.
+
+\section{Contributions Summary}
+\label{sec:ch6_contributions_summary}
+
+\subsection{Sprint-by-Sprint Overview}
+\label{subsec:ch6_sprint_overview}
+
+The internship began with two weeks of remote onboarding focused on business logic, Java, and Spring Boot. After this integration period, work continued on site inside the Supply Chain Finance Platform Team. The team was already in Sprint 2 when the internship work began and was entering Sprint 8 when the available notes were prepared. This means that the contribution period covered several active delivery cycles rather than a single isolated assignment.
+
+[Insert screenshot or export of Jira sprint/ticket summary if available]
+
+\begin{table}[H]
+    \centering
+    \caption{Internship timeline and contribution focus}
+    \label{tab:ch6_sprint_overview}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.22\textwidth} Y}
+        \standardtablehead{\textbf{Period} & \textbf{Main focus}}
+        Weeks 1--2 & Remote onboarding, business training, Java and Spring Boot refresh, understanding Adria standards. \\
+        Sprint 2 onward & Integration into the SCF team, Jira-based tasks, code review workflow, and platform familiarization. \\
+        Middle sprints & Contributions across frontend and backend modules, with regular exposure to SCF entities and user flows. \\
+        Sprint gaps and Mondays & Parallel work on the Disbursement Module through Product Owner refinement and diagram validation. \\
+        Entering Sprint 8 & Consolidation of platform understanding and preparation of the academic module for future integration. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+Figure~\ref{fig:ch6_contribution_streams} separates the two streams that shaped the internship. The first stream is delivery inside the platform team. The second is preparation of the PFE module. They were not disconnected. Daily platform work gave the Disbursement Module a realistic frame, while the academic module forced a deeper reading of SCF rules.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch6_contribution_streams.png}
+    \caption{Two contribution streams during the internship}
+    \label{fig:ch6_contribution_streams}
+\end{figure}
+
+\subsection{Classification of Contributions}
+\label{subsec:ch6_contribution_classification}
+
+The work can be grouped into four categories: user-facing features, technical tasks, bug fixes, and integration or validation tasks. The exact ticket count must be completed from Jira before final submission, but the contribution categories are already clear from the workflow.
+
+\begin{table}[H]
+    \centering
+    \caption{Contribution categories}
+    \label{tab:ch6_contribution_categories}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.25\textwidth} Y}
+        \standardtablehead{\textbf{Category} & \textbf{Examples in the internship context}}
+        User stories implemented & Work on SCF platform modules such as program configuration, counterparty onboarding, invoice handling, transaction inquiry, or finance-related screens. \\
+        Technical tasks delivered & Service integration, typed frontend services, form behavior, endpoint alignment, and code organization following platform conventions. \\
+        Bug fixes resolved & Corrections requested during review, tester feedback, validation behavior, display issues, and small inconsistencies discovered during sprint work. \\
+        Integration tasks completed & Pull request preparation, review adjustments, coordination with existing gateway, security, and service patterns. \\
+        Academic design work & Disbursement Module analysis, functional diagrams, target flow preparation, and Product Owner refinement. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+[Insert quantitative summary: number of Jira tickets, pull requests, bug fixes, modules touched, and lines of code if available]
+
+\subsection{Quantitative Summary}
+\label{subsec:ch6_quantitative_summary}
+
+Quantitative indicators should be used carefully. A line count alone says little about quality. A small correction in a validation rule may matter more than a large UI change. Still, ticket counts, pull requests, and modules touched help make the contribution visible to the reader.
+
+The current tracking summary records 12 tickets related to the SCF service and 8 tickets related to the Foundation Data Library. Each ticket generally included a backend part and a front-end part. The pull request total was reported as \texttt{19 + 12 + 8 + 1}, which gives 40 pull requests to verify against Bitbucket before the final submission.
+
+\begin{table}[H]
+    \centering
+    \caption{Quantitative indicators to complete before final submission}
+    \label{tab:ch6_quantitative_indicators}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.30\textwidth} Y}
+        \standardtablehead{\textbf{Indicator} & \textbf{To be completed}}
+        Jira tickets completed & 20 tickets reported: 12 on the SCF service and 8 on the Foundation Data Library. \\
+        Pull requests submitted & 40 pull requests reported, based on the internal count. \\
+        Bug fixes validated & [Insert number or examples] \\
+        Frontend modules touched & Each reported ticket included a front-end part; final module names should be checked from Jira. \\
+        Backend modules touched & SCF service and Foundation Data Library, with final class/module names to confirm from Jira or Bitbucket. \\
+        Disbursement refinement sessions & [Insert number of Product Owner sessions if available] \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+\section{Critical Evaluation}
+\label{sec:ch6_critical_evaluation}
+
+\subsection{What Went Well}
+\label{subsec:ch6_what_went_well}
+
+The first positive element was integration into a real Agile rhythm. Jira tickets gave concrete objectives. Pull requests created a learning loop because every contribution could receive comments from the technical lead. Tester validation added another layer of discipline: a feature was not considered finished simply because the code compiled or the interface looked correct.
+
+The second positive element was exposure to the full platform. The internship did not stay limited to a single screen. It touched the backend model, frontend components, authentication, role-based navigation, gateway routing, document handling, invoice flows, and SCF business vocabulary. This helped connect code decisions to banking meaning.
+
+The Disbursement Module also benefited from the team's working context. Weekly refinement sessions with the Product Owner made the academic subject less abstract. Instead of inventing a module from scratch, the work followed business explanations, diagram reviews, corrections, and platform constraints.
+
+\subsection{Difficulties Faced and How They Were Handled}
+\label{subsec:ch6_difficulties}
+
+Several difficulties appeared during the internship. Some were technical, others were organizational or domain-related. The most demanding part was not one isolated technology, but the combination of banking rules, existing architecture, security constraints, and sprint delivery pressure.
+
+\begin{table}[H]
+    \centering
+    \caption{Main difficulties and responses}
+    \label{tab:ch6_difficulties}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.28\textwidth} Y Y}
+        \standardtablehead{\textbf{Difficulty} & \textbf{Impact} & \textbf{Response}}
+        Banking vocabulary & SCF concepts were dense at the beginning, especially program, product, cashflow, disbursement, repayment, and maker/checker terms. & Repeated reading of existing modules, refinement discussions, and diagrams helped stabilize the vocabulary. \\
+        Existing architecture & The platform used several services, shared conventions, and pre-configured Adria standards. & Work started from existing patterns before adding or modifying code. \\
+        Maker/checker logic & Governance rules affect visibility, status transitions, and approval behavior. & The domain model and existing approval flows were studied before designing the Disbursement Module. \\
+        Role-based frontend behavior & Screens and actions change depending on bank, anchor, or counterparty roles. & Keycloak role extraction and business view helpers were used as reference points. \\
+        Parallel PFE work & The Disbursement Module had to progress before native integration was reached. & The module was treated as target design, with explicit placeholders for final backend details. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+\subsection{Limitations of the Current Work}
+\label{subsec:ch6_limitations}
+
+The main limitation is the timing of the Disbursement Module. Since the platform had not yet reached the sprint planned for native integration, the module could not be presented as a fully merged backend feature with final database migrations, Swagger contract, and end-to-end test evidence. This does not remove its value, but it changes the nature of the result. The chapter on the module must be read as a combination of validated design, visible frontend flow, and future integration preparation.
+
+Another limitation is the lack of final quantitative evidence in the current report draft. Ticket numbers, pull request references, tester validation screenshots, and final platform screenshots must be inserted before submission. These elements will make the evaluation stronger because they connect the written report to concrete delivery artifacts.
+
+\section{Skills Acquired}
+\label{sec:ch6_skills_acquired}
+
+\subsection{Technical Skills}
+\label{subsec:ch6_technical_skills}
+
+The internship strengthened several technical skills at once. On the backend side, the work required understanding Spring Boot, layered service structure, JPA entities, validation logic, OAuth2 resource server behavior, and service-to-service organization. On the frontend side, it developed practice with React, TypeScript, React Router, React Query, typed service layers, form decomposition, and reusable hooks.
+
+The infrastructure dimension was also present. Docker Compose, gateway routing, Keycloak, MinIO, Gotenberg, Eureka, and Config Server were part of the platform environment. Even when not every service was modified directly, understanding their role helped make better development decisions.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch6_skills_map.png}
+    \caption{Main skills acquired during the internship}
+    \label{fig:ch6_skills_map}
+\end{figure}
+
+\subsection{Professional and Soft Skills}
+\label{subsec:ch6_professional_skills}
+
+The professional learning was just as important as the technical side. Working with Jira changed how tasks were understood: a ticket is not only an instruction, but a contract of visibility between developer, reviewer, tester, and team. Pull requests encouraged clearer code and better explanations. Review comments taught precision. Tester feedback taught patience.
+
+Communication with the Product Owner also improved the ability to translate business speech into diagrams and system behavior. This is not automatic. A business rule may sound simple during a meeting, but it often hides conditions, exceptions, statuses, and actor responsibilities. Drawing the flow made these hidden parts visible.
+
+\begin{table}[H]
+    \centering
+    \caption{Skills acquired and reinforced}
+    \label{tab:ch6_skills_acquired}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.25\textwidth} Y}
+        \standardtablehead{\textbf{Skill area} & \textbf{Learning outcome}}
+        Backend development & Better understanding of Spring Boot services, JPA entities, validation, and governance-oriented design. \\
+        Frontend development & Stronger practice with React, TypeScript, form flows, hooks, services, and role-based UI behavior. \\
+        Security awareness & Clearer view of OAuth2, Keycloak roles, JWT validation, and protected gateway calls. \\
+        Banking domain & Practical understanding of SCF actors, programs, products, invoices, fees, disbursement, and repayment. \\
+        Collaboration & Experience with Jira, Bitbucket pull requests, technical lead review, tester validation, and Product Owner refinement. \\
+        Technical writing & Ability to transform code, diagrams, and business discussions into an academic report structure. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+\section{Recommendations for Future Development}
+\label{sec:ch6_recommendations}
+
+\subsection{Integration of the Disbursement Module}
+\label{subsec:ch6_disbursement_integration}
+
+The first recommendation is to continue the native integration of the Disbursement Module into the main SCF platform. The final backend contract should confirm the entity model, controller endpoints, validation rules, approval lifecycle, and transaction inquiry linkage. Once this is done, the frontend wizard can be connected to real backend responses instead of remaining partly target-oriented.
+
+\subsection{Asynchronous Processing}
+\label{subsec:ch6_async_processing}
+
+Some SCF operations may benefit from asynchronous processing. Invoice validation, document conversion, audit publication, notification delivery, and potentially disbursement status updates are examples where a message broker can improve decoupling. Kafka or RabbitMQ should be considered when the platform needs event-driven behavior, retry handling, or delayed processing.
+
+\subsection{Mobile Access for Counterparties}
+\label{subsec:ch6_mobile_access}
+
+Counterparty users may need simpler access to invoice status, early payment requests, document notifications, and disbursement tracking. A mobile application or responsive mobile-first portal could improve the experience for SMEs and operational users who do not work all day inside a desktop banking interface.
+
+\subsection{Advanced Reporting and Analytics}
+\label{subsec:ch6_reporting_analytics}
+
+The platform could also evolve toward richer reporting. Banks need visibility over financed amounts, overdue repayments, program utilization, counterparty exposure, product performance, and approval bottlenecks. Dashboards should not only display totals, but help users notice risk and operational delay.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch6_future_roadmap.png}
+    \caption{Recommendations for future platform development}
+    \label{fig:ch6_future_roadmap}
+\end{figure}
+
+\section{Conclusion}
+\label{sec:ch6_conclusion}
+
+This chapter evaluated the internship work by looking at contributions, difficulties, acquired skills, limitations, and future recommendations. The experience combined software delivery inside an Agile team with a forward-looking academic project. That combination was demanding, but it was also useful. Daily tickets gave practical discipline. The Disbursement Module gave direction. The platform context gave meaning to both.
+
+The report can now move to the general conclusion, where the full internship journey is closed and the main outcomes are connected back to the objectives stated at the beginning.
