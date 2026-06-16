@@ -1,0 +1,214 @@
+\chapter{System Architecture and Technical Stack}
+\label{chap:system_architecture}
+
+\section{Introduction}
+\label{sec:ch2_introduction}
+
+The previous chapter placed the internship inside its professional and business environment. This chapter moves one level deeper. It studies the technical structure that supports the Supply Chain Finance platform: the services, communication paths, security mechanisms, storage choices, and frontend architecture that allow the business modules to operate as a coherent banking system.
+
+The platform is not a monolithic application hidden behind a single screen. It is a distributed system assembled from several Spring services, a React frontend, a gateway, infrastructure components, identity management, object storage, and development standards already used inside Adria. This architecture gives the project its engineering character. Each user action crosses several boundaries before it becomes a persisted business operation: the browser, the authentication layer, the gateway, the target backend service, and often a database, an object store, or a document conversion service.
+
+\section{Overall Architecture: Microservices on Adria Standard}
+\label{sec:overall_architecture}
+
+\subsection{The Adria Standard}
+\label{subsec:adria_standard}
+
+When a new product starts at Adria, the team does not begin from an empty technical ground. The project follows what the team calls the Adria standard: a set of pre-configured services, Spring Cloud patterns, environment conventions, and infrastructure habits that allow new banking products to inherit a common operational base. During the internship, this point mattered because the Supply Chain Finance platform was built inside an already structured technical ecosystem.
+
+The correction provided in the project context narrows the interpretation of this standard. Some components, especially the audit service, are part of a wider company initiative and remain outside the direct scope of the intern. They still influence the environment, but they should not be presented as work personally designed during the internship. The relevant observation is more precise: the SCF platform relies on reusable Adria services and conventions, which help teams avoid rebuilding discovery, configuration, gateway behavior, and environment profiles for every product.
+
+\subsection{Microservices Architecture Overview}
+\label{subsec:microservices_overview}
+
+The main services identified in the context are the core SCF service, the gateway, the foundation data library, the properties service, the registry service, the configuration service, the audit API, and the React frontend. Around them sit technical infrastructure services such as PostgreSQL, MinIO, Keycloak, RabbitMQ, ClamAV, and Gotenberg. Figure~\ref{fig:ch2_global_architecture} gives a compact view of this structure.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch2_global_architecture.png}
+    \caption{Global microservices architecture of the SCF platform}
+    \label{fig:ch2_global_architecture}
+\end{figure}
+
+The diagram shows a deliberate separation of concerns. The frontend is responsible for user interaction and role-adapted navigation. The gateway protects and routes external requests. The SCF service contains the main business logic related to counterparty onboarding, products, programs, invoices, cashflows, and documents. The foundation data library provides shared reference data. The properties service manages runtime configuration values. Infrastructure components complete the picture: service discovery, centralized configuration, identity management, relational persistence, object storage, and document conversion.
+
+\subsection{Monorepo Organization: Back-end and Front-end Structure}
+\label{subsec:monorepo_structure}
+
+The available context describes a project organized around several backend services and a frontend service named \texttt{trade-ui-service}. On the backend side, service boundaries follow functional and technical responsibilities. For example, \texttt{adria-scf-service} owns the SCF business modules, while \texttt{foundation-data-library-service} handles reference data. Shared entity libraries such as \texttt{adria-scf-entities} and \texttt{foundation-data-library-entities} provide reusable JPA models without acting as runtime services.
+
+On the frontend side, the React application is organized around pages, feature modules, services, hooks, and typed models. Components such as \texttt{SCFMasterSetup}, \texttt{SCFCounterPartyOnboarding}, \texttt{ProgramFormDialog}, \texttt{InvoiceUploadForm}, and \texttt{FinanceDisbursementModal} express business features at the interface level. Service files then map user actions to backend endpoints through a shared Axios client.
+
+\subsection{Service Communication and Inter-service Protocols}
+\label{subsec:service_communication}
+
+External requests enter through the gateway. The configured route prefixes are \texttt{/scf/**}, \texttt{/fdl/**}, and \texttt{/properties/**}. The gateway then forwards requests to downstream services using load-balanced service identifiers such as \texttt{lb://adria-scf-service}. Service discovery is provided by Eureka, while centralized configuration is handled through the Config Server.
+
+This routing pattern keeps the frontend from knowing the internal location of each service. The browser calls stable gateway paths; the gateway handles resolution, security filters, fallback behavior, and routing. In a banking platform, that boundary is useful because it concentrates cross-cutting controls at the edge rather than scattering them across every screen.
+
+\section{Backend Services Deep Dive}
+\label{sec:backend_deep_dive}
+
+\subsection{\texttt{adria-scf-service}: Core Business Logic}
+\label{subsec:scf_service}
+
+The \texttt{adria-scf-service} is the center of the domain. It exposes the business operations linked to counterparty onboarding, product definitions, program configuration, invoice or cashflow management, and document metadata. It is implemented with Spring Boot in a blocking servlet model, using JPA/Hibernate for persistence and PostgreSQL as its relational database.
+
+Its internal logic is organized around banking entities and workflows. A counterparty may be created, updated, submitted for approval, approved, rejected, exported, or enriched with documents. A program can be configured with anchors, counterparties, finance limits, fees, disbursement methods, and repayment rules. Cashflows are attached to programs and validated through rules such as duplicate invoice detection, date range consistency, and positive amount checks.
+
+\subsection{\texttt{adria-scf-entities}: Shared JPA Entity Library}
+\label{subsec:scf_entities}
+
+The \texttt{adria-scf-entities} module contains the shared JPA entity model consumed by the SCF service. It does not act as a running service. Its purpose is structural: it centralizes entity definitions, enumerations, relationships, and common persistence fields. This separation helps keep the domain model reusable while leaving runtime behavior to the service layer.
+
+The entities inherit common fields through \texttt{BaseEntity}: technical identity, audit metadata, optimistic locking, approval status, pending action, maker and checker information, and checker comments. This common base is not just a convenience. It encodes the governance model directly into the persistence layer.
+
+\subsection{\texttt{adria-gateway2-service}: API Gateway}
+\label{subsec:gateway_service}
+
+The gateway is the first backend component reached by external calls. Its responsibilities include routing, JWT validation, antivirus scanning, brute-force protection, maintenance mode, request logging, correlation identifiers, and circuit-breaker fallback behavior. Figure~\ref{fig:ch2_gateway_filter_chain} presents the main request path.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch2_gateway_filter_chain.png}
+    \caption{Gateway routing and filter chain}
+    \label{fig:ch2_gateway_filter_chain}
+\end{figure}
+
+The route configuration maps \texttt{/scf/**} to \texttt{adria-scf-service}, \texttt{/fdl/**} to the foundation data library, and \texttt{/properties/**} to the properties service. The \texttt{lb://} prefix indicates that service resolution is delegated to Eureka. When a downstream service is unavailable, fallback behavior returns a structured error rather than exposing a raw failure to the client.
+
+\subsection{Foundation Data Library}
+\label{subsec:fdl_service}
+
+The foundation data library provides reference and master data used by the platform. Its scope includes countries, cities, states, currencies, bank directories, and transaction reference generation. These records may look secondary compared with financing workflows, yet they are part of the platform's operational grammar. A program needs currencies. A counterparty needs structured location and bank information. A transaction needs a generated reference that follows a configured format.
+
+The FDL service also follows maker/checker governance for several reference data operations. This consistency matters: banking data governance should not apply only to large business objects while ignoring the reference values that those objects depend on.
+
+\subsection{Properties, Registry, Configuration, and Audit Services}
+\label{subsec:platform_services}
+
+The properties service manages runtime key-value parameters grouped by module. Examples from the context include fee-related settings, validation parameters, gateway maintenance flags, and audit configuration. The registry service is based on Netflix Eureka and allows services to register themselves for discovery. The configuration service centralizes external configuration, loaded by microservices at startup.
+
+The audit service is identified as a cross-cutting module dealing with traceability, event capture, persistence strategies, retention, export, and integrity verification. The project correction states that this service is handled by another team and is outside the intern's direct scope. It is still useful to mention because it reflects the broader architecture in which SCF evolves, but the report should avoid attributing its design to the internship work.
+
+\section{Frontend Architecture}
+\label{sec:frontend_architecture}
+
+\subsection{Technology Stack}
+\label{subsec:frontend_stack}
+
+The frontend is implemented as a React 18 single-page application built with Vite and TypeScript. It uses React Router v6 for navigation, React Query for server-state management, Axios for HTTP communication, and a component system based on shadcn/ui and Radix UI. The use of TypeScript is especially valuable in a platform with many domain models: invoices, programs, counterparties, disbursements, fees, accounting entries, and transaction statuses all benefit from explicit types.
+
+\subsection{Routing Strategy and Role-Based Views}
+\label{subsec:routing_role_views}
+
+The application routes include \texttt{/auth}, the main protected route \texttt{/}, and \texttt{/specification-document}. The protected pages are wrapped in an authentication guard. If the user is not authenticated, the guard redirects to the authentication page. If the user is authenticated, the application decodes the token, extracts roles, and determines the business view.
+
+The role resolution logic maps Keycloak roles to one of three views: \texttt{BANK}, \texttt{ANCHOR}, or \texttt{COUNTERPARTY}. This decision shapes the visible sidebar items, dashboard cards, and available actions. A bank user can access administration and master setup features. An anchor user focuses on invoice upload, transaction inquiry, and early payment. A counterparty user sees only the flows relevant to its own financing position.
+
+\subsection{Services Layer}
+\label{subsec:frontend_services_layer}
+
+The frontend services layer wraps the shared Axios client. Endpoint prefixes mirror the gateway routes: \texttt{/scf/} for SCF business operations and \texttt{/fdl/} for reference data. For example, \texttt{scfCounterPartyService} maps to \texttt{/scf/counterparties}, \texttt{scfProgramConfigService} maps to \texttt{/scf/programs}, and \texttt{cityMasterService} maps to \texttt{/fdl/cities}.
+
+This layer gives the interface a typed boundary. Components do not need to construct raw URLs everywhere. They call service functions that express intent: create a counterparty, submit a program, upload invoices, request early payment, or fetch transaction inquiry rows.
+
+\section{Security Architecture}
+\label{sec:security_architecture}
+
+\subsection{Identity and Access Management with Keycloak}
+\label{subsec:keycloak_iam}
+
+Authentication is based on Keycloak. The frontend uses a PKCE-based OpenID Connect flow. The browser redirects the user to Keycloak, receives an authorization code after authentication, exchanges it for tokens, stores the access and refresh tokens in session storage, and then decodes the JWT to extract user information and roles.
+
+Figure~\ref{fig:ch2_auth_role_flow} summarizes this path from login to backend authorization.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch2_auth_role_flow.png}
+    \caption{Authentication and role resolution flow}
+    \label{fig:ch2_auth_role_flow}
+\end{figure}
+
+\subsection{JWT Validation in the Backend}
+\label{subsec:jwt_backend_validation}
+
+Backend services are protected as OAuth2 resource servers. JWT validation relies on the Keycloak issuer and JWKS endpoint. The custom authentication converter extracts roles from \texttt{realm\_access.roles} and \texttt{resource\_access.<clientId>.roles}, prefixes them with \texttt{ROLE\_}, and exposes them as Spring Security authorities.
+
+This mechanism connects identity to authorization. It allows controller methods to enforce rules such as access by bank administrators, makers, or checkers. It also supports the frontend's role-adapted behavior by using the same token as the source of truth for the user's business view.
+
+\subsection{Maker/Checker Governance}
+\label{subsec:maker_checker_architecture}
+
+The maker/checker principle is one of the strongest banking patterns in the platform. A user who creates or modifies a sensitive record cannot approve the same change. Technically, this is enforced through approval statuses, pending actions, maker and checker metadata, and repository specifications that exclude a maker's own pending records from the checker queue.
+
+The mechanism is completed by rollback support. Before an update, the original entity state is serialized into the \texttt{originalData} field. If the checker rejects the change, the system can restore the previous state. This design makes approval more than a status flag; it becomes a controlled transition with traceable intent and recoverable state.
+
+\section{Data Storage Architecture}
+\label{sec:data_storage_architecture}
+
+\subsection{Relational Persistence with PostgreSQL}
+\label{subsec:postgresql}
+
+PostgreSQL is used as the main relational database for business services. The SCF service persists entities such as counterparties, bank accounts, documents, product definitions, program configurations, program anchors, program counterparties, fee catalogues, and cashflows. The foundation data library uses PostgreSQL as well for reference data and transaction reference generation.
+
+Relational persistence is well suited here because many platform concepts have strong identity and relationship requirements. A program is linked to anchors and counterparties. A counterparty owns bank accounts and documents. A cashflow belongs to a program. These relationships must be queryable, validated, and protected by transactional behavior.
+
+\subsection{Object Storage and Document Conversion}
+\label{subsec:object_storage_conversion}
+
+Documents are stored through a port/adapter pattern. The \texttt{ObjectStoragePort} defines operations such as upload, download, delete, presigned URL generation, bucket existence check, and bucket creation. The MinIO adapter implements these operations with the MinIO Java SDK. The SCF service stores document metadata in PostgreSQL while the binary content lives in MinIO.
+
+Gotenberg handles document conversion, especially office-document-to-PDF conversion through LibreOffice endpoints. Figure~\ref{fig:ch2_storage_document_flow} shows the upload and conversion flow.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch2_storage_document_flow.png}
+    \caption{Document storage and conversion flow}
+    \label{fig:ch2_storage_document_flow}
+\end{figure}
+
+This separation is clean. PostgreSQL keeps structured metadata that can be searched and governed; MinIO stores file bytes; Gotenberg performs conversion work that should not be embedded directly in the core business service.
+
+\section{Infrastructure and Deployment}
+\label{sec:infrastructure_deployment}
+
+\subsection{Docker Compose Stack}
+\label{subsec:docker_compose}
+
+The development environment is provisioned through Docker Compose. The context lists PostgreSQL, MinIO, Keycloak, RabbitMQ, ClamAV, Gotenberg, Eureka, Config Server, the gateway, the SCF service, the foundation data library, the properties service, and the audit service. These services communicate over a Docker bridge network.
+
+\begin{table}[H]
+    \centering
+    \caption{Main infrastructure services used by the platform}
+    \label{tab:ch2_infrastructure_services}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.26\textwidth} Y C{0.18\textwidth}}
+        \standardtablehead{\textbf{Service} & \textbf{Role} & \textbf{Port}}
+        PostgreSQL & Relational persistence for business and reference data & 5432 \\
+        MinIO & Object storage for documents and uploaded files & 9000/9001 \\
+        Keycloak & Identity and access management & 8080 \\
+        RabbitMQ & Messaging infrastructure used by audit-related flows & 5672/15672 \\
+        ClamAV & Antivirus scanning for uploaded multipart files & 3310 \\
+        Gotenberg & Document conversion to PDF or image formats & 3000 \\
+        Eureka & Service discovery registry & 8761 \\
+        Config Server & Centralized external configuration & 8888 \\
+        Gateway & Request routing, filtering, and security edge & 8085 \\
+        SCF service & Core Supply Chain Finance business service & 8082 \\
+        Foundation data library & Reference data and transaction references & 8083 \\
+        Properties service & Runtime properties and feature values & 8084 \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+\subsection{Environment-Specific Configuration}
+\label{subsec:environment_config}
+
+The platform uses environment-specific configuration layers. Microservices load embedded configuration, then retrieve overrides from the Config Server, and may also receive final values from environment variables. This structure makes the same codebase adaptable to different deployment contexts. It also matches the Adria standard discussed earlier: a new product should inherit enough structure to remain coherent with other products, while still allowing environment-level adaptation.
+
+\section{Conclusion}
+\label{sec:ch2_conclusion}
+
+This chapter presented the technical architecture of the Supply Chain Finance platform. The system is organized around a React frontend, a Spring Cloud gateway, business and reference-data services, centralized configuration, service discovery, Keycloak-based security, relational storage, object storage, and document conversion. The architecture is not accidental; it reflects the needs of a banking platform where traceability, controlled access, modularity, and operational configuration matter as much as feature delivery.
+
+The next chapter narrows the focus from architecture to domain implementation. It studies the SCF data model, maker/checker governance, counterparty onboarding, product definition, program configuration, invoice upload, and transaction inquiry modules.

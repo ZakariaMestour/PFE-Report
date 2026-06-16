@@ -1,0 +1,63 @@
+<svg viewBox="0 0 760 395" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+  <defs>
+    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  </defs>
+
+  <text x="25" y="30" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Global Microservices Architecture</text>
+  <rect x="25" y="175" width="110" height="82" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
+  <rect x="25" y="175" width="110" height="22" rx="2" fill="#0B7285"/>
+  <text x="80.0" y="190" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">REACT_UI</text>
+  <text x="33" y="213" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">Vite + TypeScript</text>
+  <text x="33" y="226" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">role-based views</text>
+  <rect x="185" y="165" width="125" height="100" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.5"/>
+  <rect x="185" y="165" width="125" height="22" rx="2" fill="#162B52"/>
+  <text x="247.5" y="180" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">GATEWAY</text>
+  <text x="193" y="203" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">JWT validation</text>
+  <text x="193" y="216" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">filters + routing</text>
+  <text x="193" y="229" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">circuit breakers</text>
+  <rect x="370" y="55" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
+  <rect x="370" y="55" width="125" height="22" rx="2" fill="#0B7285"/>
+  <text x="432.5" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">SCF_SERVICE</text>
+  <text x="378" y="93" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">programs</text>
+  <text x="378" y="106" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">counterparties</text>
+  <text x="378" y="119" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">cashflows/docs</text>
+  <rect x="370" y="170" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
+  <rect x="370" y="170" width="125" height="22" rx="2" fill="#0B7285"/>
+  <text x="432.5" y="185" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">FDL_SERVICE</text>
+  <text x="378" y="208" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">countries/cities</text>
+  <text x="378" y="221" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">currencies</text>
+  <text x="378" y="234" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">references</text>
+  <rect x="370" y="285" width="125" height="82" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
+  <rect x="370" y="285" width="125" height="22" rx="2" fill="#0B7285"/>
+  <text x="432.5" y="300" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">PROPERTIES</text>
+  <text x="378" y="323" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">runtime values</text>
+  <text x="378" y="336" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">feature toggles</text>
+  <rect x="585" y="55" width="140" height="82" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.5"/>
+  <rect x="585" y="55" width="140" height="22" rx="2" fill="#C9962A"/>
+  <text x="655.0" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">PLATFORM_STD</text>
+  <text x="593" y="93" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">Eureka registry</text>
+  <text x="593" y="106" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">Config server</text>
+  <rect x="585" y="170" width="140" height="82" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.5"/>
+  <rect x="585" y="170" width="140" height="22" rx="2" fill="#166534"/>
+  <text x="655.0" y="185" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">SECURITY</text>
+  <text x="593" y="208" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">Keycloak realm</text>
+  <text x="593" y="221" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#166534" font-weight="600">JWT + roles</text>
+  <rect x="585" y="285" width="140" height="82" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.5"/>
+  <rect x="585" y="285" width="140" height="22" rx="2" fill="#162B52"/>
+  <text x="655.0" y="300" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">STORAGE</text>
+  <text x="593" y="323" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">PostgreSQL</text>
+  <text x="593" y="336" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">MinIO + Gotenberg</text>
+  <line x1="135" y1="216" x2="184" y2="216" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+  <line x1="310" y1="196" x2="369" y2="96" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+  <line x1="310" y1="216" x2="369" y2="216" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+  <line x1="310" y1="236" x2="369" y2="326" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+  <path d="M 495,66 L 540,66 L 540,96 L 584,96" fill="none" stroke="#C9962A" stroke-width="1.5" marker-end="url(#arrow_gold)"/>
+  <path d="M 247,165 L 247,42 L 584,42 L 584,90" fill="none" stroke="#166534" stroke-width="1.2" stroke-dasharray="5 2" marker-end="url(#arrow_green)"/>
+  <path d="M 495,211 L 535,211 L 535,211 L 584,211" fill="none" stroke="#166534" stroke-width="1.5" marker-end="url(#arrow_green)"/>
+  <path d="M 495,326 L 535,326 L 535,326 L 584,326" fill="none" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
+
+</svg>
