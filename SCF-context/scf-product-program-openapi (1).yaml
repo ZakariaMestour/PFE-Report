@@ -1,0 +1,1406 @@
+openapi: 3.0.3
+info:
+  title: SCF Product & Program API
+  description: |
+    REST API for Supply Chain Finance (SCF) Product and Program entities.
+    Use this API for product and program related operations
+    when backing the SCF module with a Java Spring Boot service.
+  version: 1.0.0
+  contact:
+    name: SCF Module
+
+servers:
+  - url: http://localhost:9080/scf
+    description: Development environment (localhost)
+
+tags:
+  - name: Product Definitions
+    description: SCF product definitions (replaces Supabase rest/v1/scf_product_definitions)
+  - name: Program Configurations
+    description: SCF program configurations (replaces Supabase rest/v1/scf_program_configurations)
+  - name: Counter Parties
+    description: Counter party master table
+  - name: Anchors
+    description: Anchor master table (basic information)
+
+paths:
+  # --- Product Definitions (Supabase scf_product_definitions) ---
+  /product-definitions:
+    get:
+      tags: [Product Definitions]
+      summary: List or search product definitions
+      description: |
+        List product definitions with optional filters and ordering.
+        By default, the list is ordered by `is_conventional` descending, then by `created_at` descending.By default, effective_date is current local date from entity and is_active is true by default from entity
+      operationId: listProductDefinitions
+      parameters:
+        - name: order
+          in: query
+          description: Optional comma-separated order clauses; each is `field.asc` or `field.desc`. Overrides default order (is_conventional.desc, created_at.desc).
+          schema: { type: string }
+        - name: product_code
+          in: query
+          description: Filter by product code (exact match)
+          schema: { type: string }
+        - name: is_active
+          in: query
+          description: Filter by active flag
+          schema: { type: boolean }
+        - name: is_conventional
+          in: query
+          description: Filter by conventional financing flag
+          schema: { type: boolean }
+        - name: status
+          in: query
+          description: Filter by definition status (e.g. DRAFT, ACTIVE)
+          schema: { $ref: '#/components/schemas/ProductDefinitionStatus' }
+        - name: page
+          in: query
+          description: Zero-based page index (0, 1, 2, ...).
+          schema: { type: integer, minimum: 0, default: 0 }
+        - name: size
+          in: query
+          description: Number of items per page.
+          schema: { type: integer, minimum: 1, maximum: 1000, default: 20 }
+      responses:
+        '200':
+          description: Paginated list of product definitions
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PageOfProductDefinitions' }
+    post:
+      tags: [Product Definitions]
+      summary: Create product definition
+      operationId: createProductDefinition
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfProductDefinitionCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfProductDefinitionResponse' }
+        '400':
+          description: Validation error
+
+  /product-definitions/{id}:
+    get:
+      tags: [Product Definitions]
+      summary: Get product definition by id
+      operationId: getProductDefinition
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Product definition
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfProductDefinitionResponse' }
+        '404':
+          description: Not found
+    put:
+      tags: [Product Definitions]
+      summary: Update product definition
+      operationId: updateProductDefinition
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfProductDefinitionUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfProductDefinitionResponse' }
+        '404':
+          description: Not found
+    patch:
+      tags: [Product Definitions]
+      summary: Partially update product definition (e.g. is_active)
+      operationId: patchProductDefinition
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfProductDefinitionPatch' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfProductDefinitionResponse' }
+        '404':
+          description: Not found
+    delete:
+      tags: [Product Definitions]
+      summary: Delete product definition
+      operationId: deleteProductDefinition
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not found
+
+  # --- Program Configurations (Supabase scf_program_configurations) ---
+  /program-configurations:
+    get:
+      tags: [Program Configurations]
+      summary: List or search program configurations
+      description: |
+        List program configurations with optional filters and ordering.
+        By default, the list is ordered by `created_at` descending.
+        Supports query patterns like rest/v1/scf_program_configurations?order=created_at.desc
+      operationId: listProgramConfigurations
+      parameters:
+        - name: order
+          in: query
+          description: "Optional comma-separated order clauses; each is field.asc or field.desc. Overrides default order (created_at.desc). Example: order=created_at.desc"
+          schema: { type: string }
+        - name: program_id
+          in: query
+          description: Filter by program id (exact match)
+          schema: { type: string }
+        - name: product_code
+          in: query
+          description: Filter by product code (exact match)
+          schema: { type: string }
+        - name: status
+          in: query
+          description: Filter by program status (e.g. DRAFT, ACTIVE, SUSPENDED, CLOSED)
+          schema: { $ref: '#/components/schemas/ProgramStatus' }
+        - name: anchor_id
+          in: query
+          description: Filter by anchor (UUID of anchor master linked via program_anchor)
+          schema: { type: string, format: uuid }
+        - name: search
+          in: query
+          description: Case-insensitive search on program id and program name.
+          schema: { type: string }
+        - name: page
+          in: query
+          description: Zero-based page index (0, 1, 2, ...).
+          schema: { type: integer, minimum: 0, default: 0 }
+        - name: size
+          in: query
+          description: Number of items per page.
+          schema: { type: integer, minimum: 1, maximum: 1000, default: 20 }
+      responses:
+        '200':
+          description: Paginated list of program configurations
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PageOfProgramConfigurations' }
+    post:
+      tags: [Program Configurations]
+      summary: Create program configuration (Step 1 – General)
+      description: |
+        Creates a program definition in DRAFT status.
+        Returns programId for use in subsequent steps (cashflow, fee-catalogue).
+      operationId: createProgramConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProgramGeneralRequest' }
+      responses:
+        '201':
+          description: Created; ProgramDefinition in DRAFT; returns programId for next steps
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProgramCreatedResponse' }
+        '400':
+          description: Validation error
+
+  /program-configurations/{programId}/cashflow:
+    patch:
+      tags: [Program Configurations]
+      summary: Update cashflow (Step 2 – Disbursement + Repayment)
+      description: Updates disbursement and repayment settings for a draft program configuration.
+      operationId: patchProgramConfigurationCashflow
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProgramCashflowRequest' }
+      responses:
+        '200':
+          description: Updated cashflow section for the program
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProgramCashflowResponse' }
+        '400':
+          description: Validation error
+        '404':
+          description: Program not found
+        '409':
+          description: Program not in DRAFT (cannot edit cashflow)
+
+  /program-configurations/{programId}/general:
+    patch:
+      tags: [Program Configurations]
+      summary: Update general information (Step 1 – Draft update)
+      description: |
+        Updates Step 1 general information for an existing draft program configuration.
+        Use POST /program-configurations when no draft exists yet; use this endpoint when programId already exists.
+      operationId: patchProgramConfigurationGeneral
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProgramGeneralRequest' }
+      responses:
+        '200':
+          description: Updated general information section for the program
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfProgramConfigurationResponse' }
+        '400':
+          description: Validation error
+        '404':
+          description: Program not found
+        '409':
+          description: Program not in DRAFT (cannot edit general information)
+
+  /program-configurations/{programId}/fee-catalogue:
+    patch:
+      tags: [Program Configurations]
+      summary: Update fee catalogue (Step 3)
+      description: Updates fee catalogue and related fee/insurance settings for a draft program configuration.
+      operationId: patchProgramConfigurationFeeCatalogue
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ProgramFeeCatalogueRequest' }
+      responses:
+        '200':
+          description: Updated fee catalogue section for the program
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProgramFeeCatalogueResponse' }
+        '400':
+          description: Validation error
+        '404':
+          description: Program not found
+        '409':
+          description: Program not in DRAFT (cannot edit fee catalogue)
+
+  /program-configurations/{programId}/submit:
+    post:
+      tags: [Program Configurations]
+      summary: Submit program (Final step)
+      description: |
+        Submits a draft program after completing all required wizard steps.
+        Changes program status from DRAFT to SUBMITTED.
+      operationId: submitProgramConfiguration
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Program submitted successfully
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProgramSubmittedResponse' }
+        '400':
+          description: Validation error or missing required steps
+        '404':
+          description: Program not found
+        '409':
+          description: Program cannot be submitted in current state
+
+  /program-configurations/{programId}/copy:
+    post:
+      tags: [Program Configurations]
+      summary: Copy existing program configuration
+      description: |
+        Creates a new draft program configuration by copying an existing program.
+        Returns the new programId (copied resource id).
+      operationId: copyProgramConfiguration
+      parameters:
+        - name: programId
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '201':
+          description: Program copied successfully
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProgramCopiedResponse' }
+        '400':
+          description: Validation error
+        '404':
+          description: Program not found
+        '409':
+          description: Program cannot be copied in current state
+
+  /program-configurations/{id}:
+    get:
+      tags: [Program Configurations]
+      summary: Get program configuration by id
+      operationId: getProgramConfiguration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Program configuration
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfProgramConfigurationResponse' }
+        '404':
+          description: Not found
+    put:
+      tags: [Program Configurations]
+      summary: Update program configuration
+      operationId: updateProgramConfiguration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfProgramConfigurationUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfProgramConfigurationResponse' }
+        '404':
+          description: Not found
+    delete:
+      tags: [Program Configurations]
+      summary: Delete program configuration
+      operationId: deleteProgramConfiguration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not found
+
+  # --- Counter Parties (master - basic info) ---
+  /counter-parties:
+    get:
+      tags: [Counter Parties]
+      summary: List counter parties
+      operationId: listCounterParties
+      parameters:
+        - name: counter_party_id
+          in: query
+          description: Filter by system counter party id (exact match)
+          schema: { type: string }
+        - name: legal_name
+          in: query
+          description: Filter by legal name (exact or partial match)
+          schema: { type: string }
+        - name: trade_name
+          in: query
+          description: Filter by trade name (exact or partial match)
+          schema: { type: string }
+        - name: counter_party_type
+          in: query
+          description: Filter by counter party type (Supplier / Buyer / Dealer / Distributor)
+          schema: { type: string }
+        - name: status
+          in: query
+          description: Filter by operational status
+          schema:
+            type: string
+            enum: [ACTIVE, INACTIVE]
+        - name: approval_status
+          in: query
+          description: Filter by governance status
+          schema: { $ref: '#/components/schemas/CounterPartyApprovalStatus' }
+        - name: page
+          in: query
+          schema: { type: integer, minimum: 0, default: 0 }
+        - name: size
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 1000, default: 20 }
+      responses:
+        '200':
+          description: Paginated list of counter parties
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PageOfCounterParties' }
+    post:
+      tags: [Counter Parties]
+      summary: Create counter party
+      operationId: createCounterParty
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfCounterPartyCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfCounterPartyResponse' }
+        '400':
+          description: Validation error
+  /counter-parties/{id}:
+    get:
+      tags: [Counter Parties]
+      summary: Get counter party by id
+      operationId: getCounterParty
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Counter party
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfCounterPartyResponse' }
+        '404':
+          description: Not found
+    put:
+      tags: [Counter Parties]
+      summary: Update counter party
+      operationId: updateCounterParty
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfCounterPartyUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfCounterPartyResponse' }
+        '404':
+          description: Not found
+    delete:
+      tags: [Counter Parties]
+      summary: Delete counter party
+      operationId: deleteCounterParty
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not found
+        '409':
+          description: Conflict (in use by a program)
+
+  # --- Anchors (master - basic info) ---
+  /anchors:
+    get:
+      tags: [Anchors]
+      summary: List anchors (master)
+      operationId: listAnchors
+      parameters:
+        - name: anchor_id
+          in: query
+          description: Filter by business anchor id (exact match)
+          schema: { type: string }
+        - name: anchor_name
+          in: query
+          description: Filter by anchor name (exact or partial match)
+          schema: { type: string }
+        - name: page
+          in: query
+          description: Zero-based page index (0, 1, 2, ...).
+          schema: { type: integer, minimum: 0, default: 0 }
+        - name: size
+          in: query
+          description: Number of items per page.
+          schema: { type: integer, minimum: 1, maximum: 1000, default: 20 }
+      responses:
+        '200':
+          description: Paginated list of anchors
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/PageOfAnchors' }
+    post:
+      tags: [Anchors]
+      summary: Create anchor
+      operationId: createAnchor
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfAnchorCreate' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfAnchorResponse' }
+        '400':
+          description: Validation error
+
+  /anchors/{id}:
+    get:
+      tags: [Anchors]
+      summary: Get anchor by id
+      operationId: getAnchor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '200':
+          description: Anchor
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfAnchorResponse' }
+        '404':
+          description: Not found
+    put:
+      tags: [Anchors]
+      summary: Update anchor
+      operationId: updateAnchor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ScfAnchorUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ScfAnchorResponse' }
+        '404':
+          description: Not found
+    delete:
+      tags: [Anchors]
+      summary: Delete anchor
+      operationId: deleteAnchor
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        '204':
+          description: Deleted
+        '404':
+          description: Not found
+        '409':
+          description: Conflict (e.g. anchor in use by a program)
+
+components:
+  schemas:
+    ProgramStatus:
+      type: string
+      enum: [DRAFT, SUBMITTED, ACTIVE, SUSPENDED, CLOSED]
+      description: Program lifecycle status (SUBMITTED after submit, then ACTIVE when fully activated)
+    ProductType:
+      type: string
+      enum: [INVOICE_DISCOUNTING, REVERSE_FACTORING, DYNAMIC_DISCOUNTING, PURCHASE_ORDER_FINANCE]
+      description: SCF product type
+    ProductDefinitionStatus:
+      type: string
+      enum: [DRAFT, ACTIVE, SUSPENDED, CLOSED]
+      description: Product definition lifecycle status
+    AnchorRole:
+      type: string
+      enum: [SELLER_SUPPLIER, BUYER, MANUFACTURER, DISTRIBUTOR]
+      description: Anchor role - Seller/Supplier, Buyer, Manufacturer, or Distributor
+    CounterPartyRole:
+      type: string
+      enum: [BUYER, SUPPLIER, VENDOR, DEALER]
+      description: Counter party role - Buyer, Supplier, Vendor, or Dealer
+    BorrowerRole:
+      type: string
+      enum: [SELLER_SUPPLIER, BUYER, MANUFACTURER, DISTRIBUTOR, BOTH]
+      description: Borrower role - Seller/Supplier, Buyer, Manufacturer, Distributor, or Both
+    CounterPartyApprovalStatus:
+      type: string
+      enum: [PENDING, APPROVED, REJECTED]
+      description: Governance status for counter party records
+    CounterPartyPendingAction:
+      type: string
+      enum: [NEW, MODIFIED, DELETED]
+      description: Pending governance action while approval_status is PENDING
+
+    # --- Pagination (Spring Page/Pageable style) ---
+    Page:
+      type: object
+      description: Spring-style paginated response
+      required: [ content, totalElements, totalPages, size, number, first, last ]
+      properties:
+        content:
+          type: array
+          description: Array of items in this page
+          items: {}
+        totalElements:
+          type: integer
+          minimum: 0
+          description: Total number of elements across all pages
+        totalPages:
+          type: integer
+          minimum: 0
+          description: Total number of pages
+        size:
+          type: integer
+          minimum: 1
+          description: Number of items per page
+        number:
+          type: integer
+          minimum: 0
+          description: Zero-based page index (current page number)
+        first:
+          type: boolean
+          description: Whether this is the first page
+        last:
+          type: boolean
+          description: Whether this is the last page
+        numberOfElements:
+          type: integer
+          minimum: 0
+          description: Number of items in this page (may be less than size on last page)
+    PageOfProductDefinitions:
+      allOf:
+        - $ref: '#/components/schemas/Page'
+        - type: object
+          properties:
+            content:
+              type: array
+              items: { $ref: '#/components/schemas/ScfProductDefinitionResponse' }
+    PageOfProgramConfigurations:
+      allOf:
+        - $ref: '#/components/schemas/Page'
+        - type: object
+          properties:
+            content:
+              type: array
+              items: { $ref: '#/components/schemas/ScfProgramConfigurationResponse' }
+    PageOfAnchors:
+      allOf:
+        - $ref: '#/components/schemas/Page'
+        - type: object
+          properties:
+            content:
+              type: array
+              items: { $ref: '#/components/schemas/ScfAnchorResponse' }
+    PageOfCounterParties:
+      allOf:
+        - $ref: '#/components/schemas/Page'
+        - type: object
+          properties:
+            content:
+              type: array
+              items: { $ref: '#/components/schemas/ScfCounterPartyResponse' }
+
+    # --- Product Definition (Supabase scf_product_definitions) ---
+    ScfProductDefinitionResponse:
+      type: object
+      description: Product definition (mirrors scf_product_definitions)
+      properties:
+        id: { type: string, format: uuid }
+        product_code: { type: string, maxLength: 64 }
+        product_name: { type: string, maxLength: 256 }
+        product_description: { type: string, maxLength: 2000 }
+        anchor_role: { $ref: '#/components/schemas/AnchorRole' }
+        borrower_role: { $ref: '#/components/schemas/BorrowerRole' }
+        counter_party_role: { $ref: '#/components/schemas/CounterPartyRole' }
+        authorization_required: { type: boolean }
+        underlying_instrument: { $ref: '#/components/schemas/ProductType' }
+        product_centric: { type: string, maxLength: 64 }
+        effective_date: { type: string, format: date }
+        expiry_date: { type: string, format: date }
+        is_active: { type: boolean }
+        status: { $ref: '#/components/schemas/ProductDefinitionStatus' }
+        is_conventional:
+          type: boolean
+          description: Whether the product follows conventional financing. Defaults to false when not provided on create.
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ScfProductDefinitionCreate:
+      type: object
+      required: [product_code, product_name]
+      properties:
+        product_code: { type: string, maxLength: 64 }
+        product_name: { type: string, maxLength: 256 }
+        product_description: { type: string }
+        anchor_role: { $ref: '#/components/schemas/AnchorRole' }
+        borrower_role: { $ref: '#/components/schemas/BorrowerRole' }
+        counter_party_role: { $ref: '#/components/schemas/CounterPartyRole' }
+        authorization_required: { type: boolean }
+        underlying_instrument: { $ref: '#/components/schemas/ProductType' }
+        product_centric: { type: string }
+        effective_date: { type: string, format: date }
+        expiry_date: { type: string, format: date }
+        is_active: { type: boolean, default: true }
+        is_conventional:
+          type: boolean
+          default: false
+          description: Whether the product follows conventional financing. Defaults to false when not provided.
+    ScfProductDefinitionUpdate:
+      type: object
+      properties:
+        product_name: { type: string }
+        product_description: { type: string }
+        anchor_role: { $ref: '#/components/schemas/AnchorRole' }
+        borrower_role: { $ref: '#/components/schemas/BorrowerRole' }
+        counter_party_role: { $ref: '#/components/schemas/CounterPartyRole' }
+        authorization_required: { type: boolean }
+        underlying_instrument: { $ref: '#/components/schemas/ProductType' }
+        product_centric: { type: string }
+        effective_date: { type: string, format: date }
+        expiry_date: { type: string, format: date }
+        is_active: { type: boolean }
+        is_conventional: { type: boolean }
+    ScfProductDefinitionPatch:
+      type: object
+      description: Partial update for product definition (e.g. toggle is_active)
+      properties:
+        is_active: { type: boolean }
+
+    # --- Program Configuration (scf_program_configurations) ---
+    ScfProgramConfigurationResponse:
+      type: object
+      description: Program configuration; cashflow and fee catalogue are in separate tables (nested when loaded)
+      properties:
+        id: { type: string, format: uuid }
+        program_id: { type: string }
+        program_name: { type: string }
+        program_description: { type: string }
+        program_currency: { type: string }
+        status: { type: string }
+        product_code: { type: string }
+        product_name: { type: string }
+        program_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+        debit_account_number: { type: string }
+        effective_date: { type: string, format: date }
+        expiry_date: { type: string, format: date }
+        program_anchor:
+          $ref: '#/components/schemas/ScfProgramAnchorResponse'
+          description: One anchor per program (optional); populated when loading program
+        counter_parties:
+          type: array
+          description: List of counter parties on this program; populated when loading program
+          items: { $ref: '#/components/schemas/ScfProgramCounterPartyResponse' }
+        cashflow:
+          $ref: '#/components/schemas/ScfProgramCashflowResponse'
+          description: Disbursement and repayment (Step 2); populated when loading program
+        fee_catalogue_details:
+          $ref: '#/components/schemas/ScfProgramFeeCatalogueResponse'
+          description: Fee catalogue and insurance (Step 3); populated when loading program
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ScfProgramConfigurationCreate:
+      type: object
+      required: [program_id, program_name, product_code, program_limit, available_limit]
+      properties:
+        program_id: { type: string }
+        program_name: { type: string }
+        program_description: { type: string }
+        program_currency: { type: string, default: USD }
+        status: { type: string, default: active }
+        product_code: { type: string }
+        product_name: { type: string }
+        program_limit: { type: number }
+        available_limit: { type: number }
+        debit_account_number: { type: string }
+        program_anchor:
+          $ref: '#/components/schemas/ScfProgramAnchorCreate'
+          description: Optional; single anchor to link to the program
+        counter_parties:
+          type: array
+          description: Optional; counter parties to link to the program
+          items: { $ref: '#/components/schemas/ScfProgramCounterPartyCreate' }
+        disbursement_account: { type: string }
+        repayment_account: { type: string }
+        effective_date: { type: string, format: date }
+        expiry_date: { type: string, format: date }
+        assignment_enabled: { type: boolean }
+        auto_disbursement: { type: boolean }
+        auto_repayment: { type: boolean }
+        dynamic_discounting_enabled: { type: boolean }
+        early_payment_discount_enabled: { type: boolean }
+        factoring_enabled: { type: boolean }
+        insurance_required: { type: boolean }
+        multiple_disbursement: { type: boolean }
+        part_payment_allowed: { type: boolean }
+        pre_payment_allowed: { type: boolean }
+        recourse_enabled: { type: boolean }
+        unaccepted_invoice_finance_enabled: { type: boolean }
+        finance_tenor: { type: integer }
+        grace_days: { type: integer }
+        margin_percentage: { type: number }
+        finance_percentage: { type: number }
+        max_tenor: { type: integer }
+        min_tenor: { type: integer }
+    ScfProgramConfigurationUpdate:
+      type: object
+      description: Partial update; only provided fields are updated
+      properties:
+        program_anchor:
+          $ref: '#/components/schemas/ScfProgramAnchorCreate'
+          description: Optional; set or replace the program anchor
+        counter_parties:
+          type: array
+          description: Optional; set or replace the list of counter parties on the program
+          items: { $ref: '#/components/schemas/ScfProgramCounterPartyCreate' }
+      additionalProperties: true
+
+    # --- Multi-step program configuration (Step 1–3 + Submit) ---
+    ProgramCreatedResponse:
+      type: object
+      description: Response after creating a program (Step 1); use programId for subsequent steps
+      required: [programId, id]
+      properties:
+        programId:
+          type: string
+          description: Program identifier for PATCH cashflow and PATCH fee-catalogue
+        id:
+          type: string
+          format: uuid
+          description: Same as programId (resource id of the program configuration)
+
+    ProgramSubmittedResponse:
+      type: object
+      description: Response after submitting a draft program
+      required: [programId, status]
+      properties:
+        programId:
+          type: string
+          format: uuid
+        status:
+          $ref: '#/components/schemas/ProgramStatus'
+        message:
+          type: string
+          example: Program submitted successfully
+
+    ProgramCopiedResponse:
+      type: object
+      description: Response after copying a program configuration
+      required: [sourceProgramId, programId, status]
+      properties:
+        sourceProgramId:
+          type: string
+          format: uuid
+          description: Program identifier that was copied
+        programId:
+          type: string
+          format: uuid
+          description: New copied program identifier
+        status:
+          $ref: '#/components/schemas/ProgramStatus'
+        message:
+          type: string
+          example: Program copied successfully
+
+    ProgramGeneralRequest:
+      type: object
+      description: Step 1 – General program data; backend creates ProgramDefinition (DRAFT)
+      required: [program_name, effective_date, expiry_date]
+      properties:
+        program_id: { type: string, description: Business program identifier }
+        program_name: { type: string }
+        program_description: { type: string }
+        program_currency: { type: string, default: USD }
+        product_code: { type: string }
+        product_name: { type: string }
+        program_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+        effective_date: { type: string, format: date }
+        expiry_date: { type: string, format: date }
+        early_payment_discount_enabled: { type: boolean }
+        default_discount_percentage: { type: number, format: double }
+        dynamic_discounting_enabled: { type: boolean }
+        override_limit_restrictions: { type: boolean }
+        override_tenor_calculation: { type: boolean }
+        debit_account_number: { type: string }
+        borrower_selection: { type: string }
+        finance_percentage: { type: number, format: double }
+        max_tenor: { type: integer }
+        max_tenor_days: { type: integer, minimum: 0, maximum: 9999 }
+        max_tenor_months: { type: integer, minimum: 0, maximum: 11 }
+        max_tenor_total_days: { type: integer }
+        max_tenor_unit: { type: string }
+        max_tenor_years: { type: integer, minimum: 0, maximum: 100 }
+        min_tenor: { type: integer }
+        min_tenor_days: { type: integer, minimum: 0, maximum: 9999 }
+        min_tenor_months: { type: integer, minimum: 0, maximum: 11 }
+        min_tenor_total_days: { type: integer }
+        min_tenor_unit: { type: string }
+        min_tenor_years: { type: integer, minimum: 0, maximum: 100 }
+        margin_percentage: { type: number, format: double }
+        grace_days: { type: integer, minimum: 0 }
+        stale_period: { type: integer, minimum: 0 }
+        assignment_enabled: { type: boolean }
+        assignment_percentage: { type: number, format: double }
+        unaccepted_invoice_finance_enabled: { type: boolean }
+        unaccepted_invoice_percentage: { type: number, format: double }
+        recourse_enabled: { type: boolean }
+        recourse_percentage: { type: number, format: double }
+        factoring_enabled: { type: boolean }
+        factoring_delivery_model: { type: string }
+        factoring_disclosure: { type: string }
+        factoring_geography: { type: string }
+        factoring_recourse_type: { type: string }
+        factoring_risk_bearer: { type: string }
+        program_anchor:
+          $ref: '#/components/schemas/ScfProgramAnchorCreate'
+          description: Optional; single anchor to link to the program (Step 1)
+        counter_parties:
+          type: array
+          description: Optional; counter parties to link to the program (Step 1)
+          items: { $ref: '#/components/schemas/ScfProgramCounterPartyCreate' }
+
+    ProgramCashflowRequest:
+      type: object
+      description: Step 2 – Disbursement and repayment settings
+      properties:
+        disbursement_account: { type: string }
+        repayment_account: { type: string }
+        auto_disbursement: { type: boolean }
+        auto_repayment: { type: boolean }
+        factoring_enabled: { type: boolean }
+        multiple_disbursement: { type: boolean }
+        part_payment_allowed: { type: boolean }
+        pre_payment_allowed: { type: boolean }
+        finance_tenor: { type: integer }
+        max_disbursements_allowed: { type: integer }
+        disbursement_conditions: { type: string }
+        disbursement_mode: { type: string }
+        holiday_treatment: { type: string }
+        repayment_by: { type: string }
+        repayment_mode: { type: string }
+        appropriation_sequence: { type: string }
+        appropriation_sequence_after_due: { type: string }
+        appropriation_sequence_before_due: { type: string }
+
+    ProgramCashflowResponse:
+      type: object
+      description: Cashflow update response payload.
+      properties:
+        program_id: { type: string }
+        disbursement_account: { type: string }
+        repayment_account: { type: string }
+        disbursement_conditions: { type: string }
+        disbursement_mode: { type: string }
+        holiday_treatment: { type: string }
+        repayment_by: { type: string }
+        repayment_mode: { type: string }
+        appropriation_sequence: { type: string }
+        appropriation_sequence_after_due: { type: string }
+        appropriation_sequence_before_due: { type: string }
+        auto_disbursement: { type: boolean }
+        auto_repayment: { type: boolean }
+        factoring_enabled: { type: boolean }
+        multiple_disbursement: { type: boolean }
+        part_payment_allowed: { type: boolean }
+        pre_payment_allowed: { type: boolean }
+        finance_tenor: { type: integer }
+        max_disbursements_allowed: { type: integer }
+
+    ProgramFeeCatalogueRequest:
+      type: object
+      description: Step 3 – Fee catalogue and related fee/insurance settings
+      properties:
+        fee_catalogue:
+          type: array
+          description: List of fee catalogue rows (0..many)
+          items: { $ref: '#/components/schemas/ProgramFeeItem' }
+        flat_fee_config:
+          $ref: '#/components/schemas/FlatFeeConfig'
+          description: Optional flat fee configuration at program level
+        insurance_required: { type: boolean }
+        insurance_policies: { type: string }
+
+    ProgramFeeCatalogueResponse:
+      type: object
+      description: Fee catalogue update response payload.
+      properties:
+        program_id: { type: string }
+        fee_catalogue:
+          type: array
+          description: List of fee catalogue rows (0..many)
+          items: { $ref: '#/components/schemas/ProgramFeeItem' }
+        flat_fee_config:
+          $ref: '#/components/schemas/FlatFeeConfig'
+          description: Optional flat fee configuration at program level
+        insurance_required: { type: boolean }
+        insurance_policies: { type: string }
+
+    ProgramFeeItem:
+      type: object
+      properties:
+        fee_type: { type: string }
+        calculation_basis: { type: string }
+        rate: { type: number, format: double }
+        amount: { type: number, format: double }
+        min_amount: { type: number, format: double }
+        max_amount: { type: number, format: double }
+        frequency: { type: string }
+
+    FlatFeeConfig:
+      type: object
+      properties:
+        setup_fee: { type: number, format: double }
+        annual_maintenance_fee: { type: number, format: double }
+        prepayment_fee: { type: number, format: double }
+        cancellation_fee: { type: number, format: double }
+
+    # --- Program Cashflow (scf_program_cashflows) ---
+    ScfProgramCashflowResponse:
+      type: object
+      description: Disbursement and repayment configuration for a program (Step 2)
+      properties:
+        id: { type: string, format: uuid }
+        program_configuration_id: { type: string, format: uuid }
+        disbursement_account: { type: string }
+        repayment_account: { type: string }
+        assignment_enabled: { type: boolean }
+        auto_disbursement: { type: boolean }
+        auto_repayment: { type: boolean }
+        dynamic_discounting_enabled: { type: boolean }
+        early_payment_discount_enabled: { type: boolean }
+        factoring_enabled: { type: boolean }
+        multiple_disbursement: { type: boolean }
+        part_payment_allowed: { type: boolean }
+        pre_payment_allowed: { type: boolean }
+        recourse_enabled: { type: boolean }
+        unaccepted_invoice_finance_enabled: { type: boolean }
+        override_limit_restrictions: { type: boolean }
+        override_tenor_calculation: { type: boolean }
+        assignment_percentage: { type: number }
+        default_discount_percentage: { type: number }
+        finance_percentage: { type: number }
+        finance_tenor: { type: integer }
+        grace_days: { type: integer }
+        margin_percentage: { type: number }
+        max_disbursements_allowed: { type: integer }
+        max_tenor: { type: integer }
+        max_tenor_days: { type: integer }
+        max_tenor_months: { type: integer }
+        max_tenor_total_days: { type: integer }
+        max_tenor_unit: { type: string }
+        max_tenor_years: { type: integer }
+        min_tenor: { type: integer }
+        min_tenor_days: { type: integer }
+        min_tenor_months: { type: integer }
+        min_tenor_total_days: { type: integer }
+        min_tenor_unit: { type: string }
+        min_tenor_years: { type: integer }
+        recourse_percentage: { type: number }
+        stale_period: { type: integer }
+        borrower_selection: { type: string }
+        disbursement_conditions: { type: string }
+        disbursement_mode: { type: string }
+        factoring_delivery_model: { type: string }
+        factoring_disclosure: { type: string }
+        factoring_geography: { type: string }
+        factoring_recourse_type: { type: string }
+        factoring_risk_bearer: { type: string }
+        holiday_treatment: { type: string }
+        repayment_by: { type: string }
+        repayment_mode: { type: string }
+        appropriation_sequence: { type: string }
+        appropriation_sequence_after_due: { type: string }
+        appropriation_sequence_before_due: { type: string }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+
+    # --- Program Fee Catalogue (scf_program_fee_catalogues) ---
+    ScfProgramFeeCatalogueResponse:
+      type: object
+      description: Fee catalogue and insurance configuration for a program (Step 3)
+      properties:
+        id: { type: string, format: uuid }
+        program_configuration_id: { type: string, format: uuid }
+        fee_catalogue:
+          type: array
+          description: List of fee catalogue rows (0..many)
+          items:
+            type: object
+            properties:
+              fee_type: { type: string }
+              calculation_basis: { type: string }
+              rate: { type: number, format: double }
+              amount: { type: number, format: double }
+              min_amount: { type: number, format: double }
+              max_amount: { type: number, format: double }
+              frequency: { type: string }
+        flat_fee_config:
+          type: object
+          description: Optional flat fee configuration at program level
+          properties:
+            setup_fee: { type: number, format: double }
+            annual_maintenance_fee: { type: number, format: double }
+            prepayment_fee: { type: number, format: double }
+            cancellation_fee: { type: number, format: double }
+        insurance_required: { type: boolean }
+        insurance_policies: { type: string }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+
+    # --- Program Anchor (one per program) ---
+    ScfProgramAnchorResponse:
+      type: object
+      description: Anchor linked to a program with participant limits
+      properties:
+        id: { type: string, format: uuid }
+        program_configuration_id: { type: string, format: uuid }
+        anchor_id: { type: string, format: uuid, description: Reference to anchor master }
+        anchor:
+          $ref: '#/components/schemas/ScfAnchorResponse'
+          description: Populated when loading with anchor expanded
+        participant_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ScfProgramAnchorCreate:
+      type: object
+      required: [anchor_id, participant_limit, available_limit]
+      description: anchor_id is UUID of existing anchor master
+      properties:
+        anchor_id: { type: string, format: uuid }
+        participant_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+    ScfProgramAnchorUpdate:
+      type: object
+      properties:
+        participant_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+
+    # --- Program Counter Parties (list per program) ---
+    ScfProgramCounterPartyResponse:
+      type: object
+      description: Counter party linked to a program with participant limits
+      properties:
+        id: { type: string, format: uuid }
+        program_configuration_id: { type: string, format: uuid }
+        counter_party_id: { type: string, format: uuid, description: Reference to counter party master }
+        counter_party:
+          $ref: '#/components/schemas/ScfCounterPartyResponse'
+          description: Populated when loading with counter party expanded
+        participant_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ScfProgramCounterPartyCreate:
+      type: object
+      required: [counter_party_id, participant_limit, available_limit]
+      description: counter_party_id is UUID of existing counter party master
+      properties:
+        counter_party_id: { type: string, format: uuid }
+        participant_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+    ScfProgramCounterPartyUpdate:
+      type: object
+      properties:
+        participant_limit: { type: number, format: double }
+        available_limit: { type: number, format: double }
+
+    # --- Counter Party (master) ---
+    ScfCounterPartyResponse:
+      type: object
+      description: Counter party master
+      properties:
+        id: { type: string, format: uuid }
+        counter_party_id: { type: string, description: System-generated NC-prefixed id (assigned on approval) }
+        counter_party_type: { type: string, description: Supplier / Buyer / Dealer / Distributor }
+        legal_name: { type: string }
+        trade_name: { type: string }
+        country: { type: string }
+        registration_number: { type: string }
+        tax_id: { type: string }
+        contact_person: { type: string }
+        email: { type: string, format: email }
+        mobile_number: { type: string }
+        industry: { type: string }
+        business_type: { type: string }
+        annual_turnover: { type: number }
+        expected_exposure: { type: number }
+        bank_name: { type: string }
+        account_number: { type: string }
+        swift_code: { type: string }
+        iban: { type: string }
+        status:
+          type: string
+          enum: [ACTIVE, INACTIVE]
+          default: ACTIVE
+        approval_status:
+          allOf:
+            - $ref: '#/components/schemas/CounterPartyApprovalStatus'
+          default: PENDING
+        pending_action: { $ref: '#/components/schemas/CounterPartyPendingAction' }
+        original_data:
+          type: object
+          description: JSON snapshot of pre-edit data for rejection rollback
+          additionalProperties: true
+        last_action: { type: string, description: CREATION_REJECTED / MODIFICATION_REJECTED / DELETION_REJECTED }
+        rejection_reason: { type: string }
+        created_by: { type: string }
+        modified_by: { type: string }
+        approved_by: { type: string }
+        rejected_by: { type: string }
+        approved_at: { type: string, format: date-time }
+        rejected_at: { type: string, format: date-time }
+        user_id: { type: string }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ScfCounterPartyCreate:
+      type: object
+      required: [user_id]
+      properties:
+        counter_party_type: { type: string }
+        legal_name: { type: string }
+        trade_name: { type: string }
+        country: { type: string }
+        registration_number: { type: string }
+        tax_id: { type: string }
+        contact_person: { type: string }
+        email: { type: string, format: email }
+        mobile_number: { type: string }
+        industry: { type: string }
+        business_type: { type: string }
+        annual_turnover: { type: number }
+        expected_exposure: { type: number }
+        bank_name: { type: string }
+        account_number: { type: string }
+        swift_code: { type: string }
+        iban: { type: string }
+        status:
+          type: string
+          enum: [ACTIVE, INACTIVE]
+          default: ACTIVE
+        approval_status:
+          allOf:
+            - $ref: '#/components/schemas/CounterPartyApprovalStatus'
+          default: PENDING
+        pending_action: { $ref: '#/components/schemas/CounterPartyPendingAction' }
+        original_data:
+          type: object
+          additionalProperties: true
+        last_action: { type: string }
+        rejection_reason: { type: string }
+        created_by: { type: string }
+        modified_by: { type: string }
+        approved_by: { type: string }
+        rejected_by: { type: string }
+        approved_at: { type: string, format: date-time }
+        rejected_at: { type: string, format: date-time }
+        user_id: { type: string }
+    ScfCounterPartyUpdate:
+      type: object
+      properties:
+        counter_party_type: { type: string }
+        legal_name: { type: string }
+        trade_name: { type: string }
+        country: { type: string }
+        registration_number: { type: string }
+        tax_id: { type: string }
+        contact_person: { type: string }
+        email: { type: string, format: email }
+        mobile_number: { type: string }
+        industry: { type: string }
+        business_type: { type: string }
+        annual_turnover: { type: number }
+        expected_exposure: { type: number }
+        bank_name: { type: string }
+        account_number: { type: string }
+        swift_code: { type: string }
+        iban: { type: string }
+        status: { type: string, enum: [ACTIVE, INACTIVE] }
+        approval_status: { $ref: '#/components/schemas/CounterPartyApprovalStatus' }
+        pending_action: { $ref: '#/components/schemas/CounterPartyPendingAction' }
+        original_data:
+          type: object
+          additionalProperties: true
+        last_action: { type: string }
+        rejection_reason: { type: string }
+        created_by: { type: string }
+        modified_by: { type: string }
+        approved_by: { type: string }
+        rejected_by: { type: string }
+        approved_at: { type: string, format: date-time }
+        rejected_at: { type: string, format: date-time }
+        user_id: { type: string }
+
+    # --- Anchors (master - basic info) ---
+    ScfAnchorResponse:
+      type: object
+      description: Anchor master (basic information only)
+      properties:
+        id: { type: string, format: uuid }
+        anchor_id: { type: string, maxLength: 128, description: Business identifier }
+        anchor_name: { type: string, maxLength: 256 }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    ScfAnchorCreate:
+      type: object
+      required: [anchor_name]
+      properties:
+        anchor_id: { type: string, maxLength: 128 }
+        anchor_name: { type: string, maxLength: 256 }
+    ScfAnchorUpdate:
+      type: object
+      properties:
+        anchor_id: { type: string, maxLength: 128 }
+        anchor_name: { type: string, maxLength: 256 }
+

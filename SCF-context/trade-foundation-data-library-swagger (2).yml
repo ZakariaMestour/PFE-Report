@@ -1,0 +1,2290 @@
+openapi: 3.0.3
+info:
+  title: Foundation Data Library (FDL) Service API
+  version: 0.1.0-s7
+  description: |
+    New microservice API contract for Foundation Data Library.
+    Sprint-6 scope covers Bank/SWIFT Directory with maker-checker governance,
+    bulk upload, search/filter, template download, and export.
+    Currency Master adds ISO 4217-aligned currency definitions per entity with the same
+    governance pattern (create/modify approval; no delete workflow in current model).
+    Country, State, and City Master add ISO geographic reference data (3166-1/3166-2)
+    with operational enable/disable, maker-checker approval, bulk upload, and export.
+servers:
+  - url: https://{host}
+    description: Environment-specific host
+    variables:
+      host:
+        default: api.example.com
+  - url: http://localhost:8090
+    description: Local FDL service
+tags:
+  - name: FDL Bank Directory
+  - name: FDL Bank Directory Governance
+  - name: FDL Bank Directory Bulk
+  - name: FDL Transaction Reference Config
+  - name: FDL Transaction Reference Governance
+  - name: FDL Transaction Reference Runtime
+  - name: FDL Currency Master
+  - name: FDL Currency Master Governance
+  - name: FDL Currency Master Bulk
+  - name: FDL Country Master
+  - name: FDL Country Master Governance
+  - name: FDL Country Master Bulk
+  - name: FDL State Master
+  - name: FDL State Master Governance
+  - name: FDL State Master Bulk
+  - name: FDL City Master
+  - name: FDL City Master Governance
+  - name: FDL City Master Bulk
+paths:
+  /api/v1/fdl/bank-directory:
+    get:
+      tags: [FDL Bank Directory]
+      summary: List bank directory records with search and filters
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: swiftCode
+          schema: { type: string }
+        - in: query
+          name: bankName
+          schema: { type: string }
+        - in: query
+          name: countryCode
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: city
+          schema: { type: string }
+        - in: query
+          name: operationalStatus
+          schema: { type: string, enum: [ENABLED, DISABLED, SUSPENDED] }
+        - in: query
+          name: status
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Paginated records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageBankDirectoryRecord"
+    post:
+      tags: [FDL Bank Directory]
+      summary: Create bank record (Maker)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BankDirectoryCreateRequest"
+      responses:
+        "201":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankDirectoryRecord"
+        "400":
+          description: Validation error
+        "409":
+          description: Duplicate swift_code + branch_code
+
+  /api/v1/fdl/bank-directory/{id}:
+    get:
+      tags: [FDL Bank Directory]
+      summary: Get bank record by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankDirectoryRecord"
+        "404":
+          description: Not found
+    put:
+      tags: [FDL Bank Directory]
+      summary: Edit approved bank record (Maker submit for approval)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BankDirectoryUpdateRequest"
+      responses:
+        "200":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BankDirectoryRecord"
+        "400":
+          description: Validation error
+        "404":
+          description: Not found
+        "409":
+          description: Record is not in editable approved state or duplicate key
+    delete:
+      tags: [FDL Bank Directory]
+      summary: Submit delete request (Maker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Delete request submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "404":
+          description: Not found
+
+  /api/v1/fdl/bank-directory/pending:
+    get:
+      tags: [FDL Bank Directory Governance]
+      summary: List pending records for checker queue
+      parameters:
+        - in: query
+          name: action
+          schema: { type: string, enum: [NEW, MODIFY, DELETE] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Pending queue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageBankDirectoryRecord"
+
+  /api/v1/fdl/bank-directory/{id}/approve:
+    post:
+      tags: [FDL Bank Directory Governance]
+      summary: Approve pending bank record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/bank-directory/{id}/reject:
+    post:
+      tags: [FDL Bank Directory Governance]
+      summary: Reject pending bank record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectRequest"
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "400":
+          description: Missing reason
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/bank-directory/bulk-upload:
+    post:
+      tags: [FDL Bank Directory Bulk]
+      summary: Bulk upload bank records (CSV/XLSX)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Bulk ingestion result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkUploadResult"
+        "400":
+          description: Invalid file format or payload
+
+  /api/v1/fdl/bank-directory/template:
+    get:
+      tags: [FDL Bank Directory Bulk]
+      summary: Download template (CSV or XLSX)
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema: { type: string, enum: [csv, xlsx] }
+      responses:
+        "200":
+          description: Template file stream
+          content:
+            text/csv: {}
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: {}
+
+  /api/v1/fdl/bank-directory/export:
+    get:
+      tags: [FDL Bank Directory Bulk]
+      summary: Export filtered records as CSV
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: swiftCode
+          schema: { type: string }
+        - in: query
+          name: bankName
+          schema: { type: string }
+        - in: query
+          name: countryCode
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: city
+          schema: { type: string }
+        - in: query
+          name: operationalStatus
+          schema: { type: string, enum: [ENABLED, DISABLED, SUSPENDED] }
+        - in: query
+          name: status
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+      responses:
+        "200":
+          description: CSV export stream
+          content:
+            text/csv: {}
+
+  /api/v1/fdl/currency-master:
+    get:
+      tags: [FDL Currency Master]
+      summary: List currency master records with search and filters
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: entityName
+          schema: { type: string }
+        - in: query
+          name: currencyName
+          schema: { type: string }
+        - in: query
+          name: alphabeticCode
+          schema: { type: string, minLength: 3, maxLength: 3 }
+        - in: query
+          name: numericCode
+          schema: { type: string, pattern: "^[0-9]{3}$" }
+        - in: query
+          name: countryCode
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: operationalStatus
+          schema: { type: string, enum: [ENABLED, DISABLED, SUSPENDED] }
+        - in: query
+          name: status
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Paginated records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageCurrencyMasterRecord"
+    post:
+      tags: [FDL Currency Master]
+      summary: Create currency record (Maker)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CurrencyMasterCreateRequest"
+      responses:
+        "201":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrencyMasterRecord"
+        "400":
+          description: Validation error
+        "409":
+          description: Duplicate entity_name + alphabetic_code for active/pending row
+
+  /api/v1/fdl/currency-master/pending:
+    get:
+      tags: [FDL Currency Master Governance]
+      summary: List pending currency records for checker queue
+      parameters:
+        - in: query
+          name: action
+          schema: { type: string, enum: [NEW, MODIFIED] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Pending queue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageCurrencyMasterRecord"
+
+  /api/v1/fdl/currency-master/pending/count:
+    get:
+      tags: [FDL Currency Master Governance]
+      summary: Get pending currency record count
+      responses:
+        "200":
+          description: Pending count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+
+  /api/v1/fdl/currency-master/bulk-upload:
+    post:
+      tags: [FDL Currency Master Bulk]
+      summary: Bulk upload currency records (CSV/XLSX)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Bulk ingestion result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkUploadResult"
+        "400":
+          description: Invalid file format or payload
+
+  /api/v1/fdl/currency-master/template:
+    get:
+      tags: [FDL Currency Master Bulk]
+      summary: Download currency bulk template (CSV or XLSX)
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema: { type: string, enum: [csv, xlsx] }
+      responses:
+        "200":
+          description: Template file stream
+          content:
+            text/csv: {}
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: {}
+
+  /api/v1/fdl/currency-master/export:
+    get:
+      tags: [FDL Currency Master Bulk]
+      summary: Export filtered currency records as CSV
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: entityName
+          schema: { type: string }
+        - in: query
+          name: currencyName
+          schema: { type: string }
+        - in: query
+          name: alphabeticCode
+          schema: { type: string }
+        - in: query
+          name: numericCode
+          schema: { type: string }
+        - in: query
+          name: countryCode
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: operationalStatus
+          schema: { type: string, enum: [ENABLED, DISABLED, SUSPENDED] }
+        - in: query
+          name: status
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+      responses:
+        "200":
+          description: CSV export stream
+          content:
+            text/csv: {}
+
+  /api/v1/fdl/currency-master/{id}:
+    get:
+      tags: [FDL Currency Master]
+      summary: Get currency record by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrencyMasterRecord"
+        "404":
+          description: Not found
+    put:
+      tags: [FDL Currency Master]
+      summary: Edit approved currency record (Maker submit for approval)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CurrencyMasterUpdateRequest"
+      responses:
+        "200":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrencyMasterRecord"
+        "400":
+          description: Validation error
+        "404":
+          description: Not found
+        "409":
+          description: Record is not in editable approved state or duplicate key
+
+  /api/v1/fdl/currency-master/{id}/approve:
+    post:
+      tags: [FDL Currency Master Governance]
+      summary: Approve pending currency record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/currency-master/{id}/reject:
+    post:
+      tags: [FDL Currency Master Governance]
+      summary: Reject pending currency record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectRequest"
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "400":
+          description: Missing reason
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/country-master:
+    get:
+      tags: [FDL Country Master]
+      summary: List country master records with search and filters
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: countryName
+          schema: { type: string }
+        - in: query
+          name: countryCodeIso2
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: countryCodeIso3
+          schema: { type: string, minLength: 3, maxLength: 3 }
+        - in: query
+          name: region
+          schema: { type: string }
+        - in: query
+          name: subRegion
+          schema: { type: string }
+        - in: query
+          name: enabled
+          schema: { type: boolean }
+        - in: query
+          name: approvalStatus
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Paginated records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageCountryMasterRecord"
+    post:
+      tags: [FDL Country Master]
+      summary: Create country record (Maker)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CountryMasterCreateRequest"
+      responses:
+        "201":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountryMasterRecord"
+        "400":
+          description: Validation error
+        "409":
+          description: Duplicate country_code_iso2 or country_code_iso3 for active/pending row
+
+  /api/v1/fdl/country-master/pending:
+    get:
+      tags: [FDL Country Master Governance]
+      summary: List pending country records for checker queue
+      parameters:
+        - in: query
+          name: action
+          schema: { type: string, enum: [NEW, MODIFIED] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Pending queue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageCountryMasterRecord"
+
+  /api/v1/fdl/country-master/pending/count:
+    get:
+      tags: [FDL Country Master Governance]
+      summary: Get pending country record count
+      responses:
+        "200":
+          description: Pending count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+
+  /api/v1/fdl/country-master/bulk-upload:
+    post:
+      tags: [FDL Country Master Bulk]
+      summary: Bulk upload country records (CSV/XLSX)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Bulk ingestion result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkUploadResult"
+        "400":
+          description: Invalid file format or payload
+
+  /api/v1/fdl/country-master/template:
+    get:
+      tags: [FDL Country Master Bulk]
+      summary: Download country bulk template (CSV or XLSX)
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema: { type: string, enum: [csv, xlsx] }
+      responses:
+        "200":
+          description: Template file stream
+          content:
+            text/csv: {}
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: {}
+
+  /api/v1/fdl/country-master/export:
+    get:
+      tags: [FDL Country Master Bulk]
+      summary: Export filtered country records as CSV
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: countryName
+          schema: { type: string }
+        - in: query
+          name: countryCodeIso2
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: countryCodeIso3
+          schema: { type: string, minLength: 3, maxLength: 3 }
+        - in: query
+          name: region
+          schema: { type: string }
+        - in: query
+          name: subRegion
+          schema: { type: string }
+        - in: query
+          name: enabled
+          schema: { type: boolean }
+        - in: query
+          name: approvalStatus
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+      responses:
+        "200":
+          description: CSV export stream
+          content:
+            text/csv: {}
+
+  /api/v1/fdl/country-master/{id}:
+    get:
+      tags: [FDL Country Master]
+      summary: Get country record by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountryMasterRecord"
+        "404":
+          description: Not found
+    put:
+      tags: [FDL Country Master]
+      summary: Edit approved country record (Maker submit for approval)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CountryMasterUpdateRequest"
+      responses:
+        "200":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CountryMasterRecord"
+        "400":
+          description: Validation error
+        "404":
+          description: Not found
+        "409":
+          description: Record is not in editable approved state or duplicate key
+
+  /api/v1/fdl/country-master/{id}/approve:
+    post:
+      tags: [FDL Country Master Governance]
+      summary: Approve pending country record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/country-master/{id}/reject:
+    post:
+      tags: [FDL Country Master Governance]
+      summary: Reject pending country record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectRequest"
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "400":
+          description: Missing reason
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/state-master:
+    get:
+      tags: [FDL State Master]
+      summary: List state/province master records with search and filters
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: stateName
+          schema: { type: string }
+        - in: query
+          name: stateCodeIso
+          schema: { type: string, maxLength: 10 }
+        - in: query
+          name: countryCodeIso2
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: enabled
+          schema: { type: boolean }
+        - in: query
+          name: approvalStatus
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Paginated records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageStateMasterRecord"
+    post:
+      tags: [FDL State Master]
+      summary: Create state record (Maker)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StateMasterCreateRequest"
+      responses:
+        "201":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StateMasterRecord"
+        "400":
+          description: Validation error
+        "409":
+          description: Duplicate state_code_iso for active/pending row
+
+  /api/v1/fdl/state-master/pending:
+    get:
+      tags: [FDL State Master Governance]
+      summary: List pending state records for checker queue
+      parameters:
+        - in: query
+          name: action
+          schema: { type: string, enum: [NEW, MODIFIED] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Pending queue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageStateMasterRecord"
+
+  /api/v1/fdl/state-master/pending/count:
+    get:
+      tags: [FDL State Master Governance]
+      summary: Get pending state record count
+      responses:
+        "200":
+          description: Pending count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+
+  /api/v1/fdl/state-master/bulk-upload:
+    post:
+      tags: [FDL State Master Bulk]
+      summary: Bulk upload state records (CSV/XLSX)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Bulk ingestion result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkUploadResult"
+        "400":
+          description: Invalid file format or payload
+
+  /api/v1/fdl/state-master/template:
+    get:
+      tags: [FDL State Master Bulk]
+      summary: Download state bulk template (CSV or XLSX)
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema: { type: string, enum: [csv, xlsx] }
+      responses:
+        "200":
+          description: Template file stream
+          content:
+            text/csv: {}
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: {}
+
+  /api/v1/fdl/state-master/export:
+    get:
+      tags: [FDL State Master Bulk]
+      summary: Export filtered state records as CSV
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: stateName
+          schema: { type: string }
+        - in: query
+          name: stateCodeIso
+          schema: { type: string }
+        - in: query
+          name: countryCodeIso2
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: enabled
+          schema: { type: boolean }
+        - in: query
+          name: approvalStatus
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+      responses:
+        "200":
+          description: CSV export stream
+          content:
+            text/csv: {}
+
+  /api/v1/fdl/state-master/{id}:
+    get:
+      tags: [FDL State Master]
+      summary: Get state record by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StateMasterRecord"
+        "404":
+          description: Not found
+    put:
+      tags: [FDL State Master]
+      summary: Edit approved state record (Maker submit for approval)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StateMasterUpdateRequest"
+      responses:
+        "200":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StateMasterRecord"
+        "400":
+          description: Validation error
+        "404":
+          description: Not found
+        "409":
+          description: Record is not in editable approved state or duplicate key
+
+  /api/v1/fdl/state-master/{id}/approve:
+    post:
+      tags: [FDL State Master Governance]
+      summary: Approve pending state record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/state-master/{id}/reject:
+    post:
+      tags: [FDL State Master Governance]
+      summary: Reject pending state record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectRequest"
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "400":
+          description: Missing reason
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/city-master:
+    get:
+      tags: [FDL City Master]
+      summary: List city master records with search and filters
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: cityName
+          schema: { type: string }
+        - in: query
+          name: cityCode
+          schema: { type: string, maxLength: 10 }
+        - in: query
+          name: stateCodeIso
+          schema: { type: string, maxLength: 10 }
+        - in: query
+          name: countryCodeIso2
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: enabled
+          schema: { type: boolean }
+        - in: query
+          name: approvalStatus
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Paginated records
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageCityMasterRecord"
+    post:
+      tags: [FDL City Master]
+      summary: Create city record (Maker)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CityMasterCreateRequest"
+      responses:
+        "201":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CityMasterRecord"
+        "400":
+          description: Validation error
+        "409":
+          description: Duplicate city_code + state_code_iso for active/pending row
+
+  /api/v1/fdl/city-master/pending:
+    get:
+      tags: [FDL City Master Governance]
+      summary: List pending city records for checker queue
+      parameters:
+        - in: query
+          name: action
+          schema: { type: string, enum: [NEW, MODIFIED] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Pending queue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageCityMasterRecord"
+
+  /api/v1/fdl/city-master/pending/count:
+    get:
+      tags: [FDL City Master Governance]
+      summary: Get pending city record count
+      responses:
+        "200":
+          description: Pending count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+
+  /api/v1/fdl/city-master/bulk-upload:
+    post:
+      tags: [FDL City Master Bulk]
+      summary: Bulk upload city records (CSV/XLSX)
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required: [file]
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Bulk ingestion result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BulkUploadResult"
+        "400":
+          description: Invalid file format or payload
+
+  /api/v1/fdl/city-master/template:
+    get:
+      tags: [FDL City Master Bulk]
+      summary: Download city bulk template (CSV or XLSX)
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema: { type: string, enum: [csv, xlsx] }
+      responses:
+        "200":
+          description: Template file stream
+          content:
+            text/csv: {}
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: {}
+
+  /api/v1/fdl/city-master/export:
+    get:
+      tags: [FDL City Master Bulk]
+      summary: Export filtered city records as CSV
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: cityName
+          schema: { type: string }
+        - in: query
+          name: cityCode
+          schema: { type: string }
+        - in: query
+          name: stateCodeIso
+          schema: { type: string }
+        - in: query
+          name: countryCodeIso2
+          schema: { type: string, minLength: 2, maxLength: 2 }
+        - in: query
+          name: enabled
+          schema: { type: boolean }
+        - in: query
+          name: approvalStatus
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+      responses:
+        "200":
+          description: CSV export stream
+          content:
+            text/csv: {}
+
+  /api/v1/fdl/city-master/{id}:
+    get:
+      tags: [FDL City Master]
+      summary: Get city record by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Record
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CityMasterRecord"
+        "404":
+          description: Not found
+    put:
+      tags: [FDL City Master]
+      summary: Edit approved city record (Maker submit for approval)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CityMasterUpdateRequest"
+      responses:
+        "200":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CityMasterRecord"
+        "400":
+          description: Validation error
+        "404":
+          description: Not found
+        "409":
+          description: Record is not in editable approved state or duplicate key
+
+  /api/v1/fdl/city-master/{id}/approve:
+    post:
+      tags: [FDL City Master Governance]
+      summary: Approve pending city record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/city-master/{id}/reject:
+    post:
+      tags: [FDL City Master Governance]
+      summary: Reject pending city record action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectRequest"
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "400":
+          description: Missing reason
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/transaction-reference-configs:
+    get:
+      tags: [FDL Transaction Reference Config]
+      summary: List TRN configurations with search and pagination
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Paginated TRN configurations
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageTransactionReferenceConfig"
+    post:
+      tags: [FDL Transaction Reference Config]
+      summary: Submit TRN configuration create request (Maker)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionReferenceConfigCreateRequest"
+      responses:
+        "201":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionReferenceConfigRecord"
+        "400":
+          description: Validation error
+        "409":
+          description: Approved active configuration already exists for product
+
+  /api/v1/fdl/transaction-reference-configs/product-options:
+    get:
+      tags: [FDL Transaction Reference Config]
+      summary: List products eligible for new TRN configuration
+      responses:
+        "200":
+          description: Product options
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ProductOption"
+
+  /api/v1/fdl/transaction-reference-configs/{id}:
+    get:
+      tags: [FDL Transaction Reference Config]
+      summary: Get TRN configuration by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: TRN configuration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionReferenceConfigRecord"
+        "404":
+          description: Not found
+    put:
+      tags: [FDL Transaction Reference Config]
+      summary: Submit TRN configuration modify request (Maker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionReferenceConfigUpdateRequest"
+      responses:
+        "200":
+          description: Submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionReferenceConfigRecord"
+        "400":
+          description: Validation error
+        "404":
+          description: Not found
+        "409":
+          description: Invalid state for modify submission
+    delete:
+      tags: [FDL Transaction Reference Config]
+      summary: Submit TRN configuration delete request (Maker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Delete submitted for approval
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "404":
+          description: Not found
+        "409":
+          description: Invalid state for delete submission
+
+  /api/v1/fdl/transaction-reference-configs/pending:
+    get:
+      tags: [FDL Transaction Reference Governance]
+      summary: List pending TRN configurations for checker queue
+      parameters:
+        - in: query
+          name: action
+          schema: { type: string, enum: [NEW, MODIFIED, DELETED] }
+        - in: query
+          name: page
+          schema: { type: integer, default: 0, minimum: 0 }
+        - in: query
+          name: size
+          schema: { type: integer, default: 20, minimum: 1 }
+      responses:
+        "200":
+          description: Pending queue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PageTransactionReferenceConfig"
+
+  /api/v1/fdl/transaction-reference-configs/pending/count:
+    get:
+      tags: [FDL Transaction Reference Governance]
+      summary: Get pending TRN configuration count
+      responses:
+        "200":
+          description: Pending count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+
+  /api/v1/fdl/transaction-reference-configs/{id}/approve:
+    post:
+      tags: [FDL Transaction Reference Governance]
+      summary: Approve pending TRN action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Approved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/transaction-reference-configs/{id}/reject:
+    post:
+      tags: [FDL Transaction Reference Governance]
+      summary: Reject pending TRN action (Checker)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string, format: uuid }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RejectRequest"
+      responses:
+        "200":
+          description: Rejected
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StandardResponse"
+        "400":
+          description: Missing reason
+        "403":
+          description: Forbidden (role or maker-checker violation)
+        "409":
+          description: Invalid pending transition
+
+  /api/v1/fdl/transaction-reference-configs/export:
+    get:
+      tags: [FDL Transaction Reference Config]
+      summary: Export TRN configurations as CSV
+      parameters:
+        - in: query
+          name: search
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { type: string, enum: [PENDING, APPROVED, REJECTED, ALL] }
+      responses:
+        "200":
+          description: CSV export stream
+          content:
+            text/csv: {}
+
+  /api/v1/fdl/transaction-reference/runtime/resolve-config:
+    get:
+      tags: [FDL Transaction Reference Runtime]
+      summary: Resolve effective TRN runtime configuration for product-event
+      parameters:
+        - in: query
+          name: productCode
+          required: true
+          schema: { type: string }
+        - in: query
+          name: eventCode
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Runtime config resolution result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionReferenceRuntimeConfigResponse"
+
+  /api/v1/fdl/transaction-reference/runtime/preview:
+    post:
+      tags: [FDL Transaction Reference Runtime]
+      summary: Build progressive TRN preview and peek sequence
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionReferenceRuntimePreviewRequest"
+      responses:
+        "200":
+          description: Progressive preview result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionReferenceRuntimePreviewResponse"
+        "400":
+          description: Validation error
+
+  /api/v1/fdl/transaction-reference/runtime/finalize:
+    post:
+      tags: [FDL Transaction Reference Runtime]
+      summary: Finalize TRN and atomically reserve next sequence
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TransactionReferenceRuntimeFinalizeRequest"
+      responses:
+        "200":
+          description: Finalized TRN
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TransactionReferenceRuntimeFinalizeResponse"
+        "400":
+          description: Validation error
+        "409":
+          description: Sequence reservation conflict
+
+components:
+  schemas:
+    BankDirectoryCreateRequest:
+      type: object
+      required: [swiftCode, bankName, countryCode, city, addressLine1]
+      properties:
+        swiftCode:
+          type: string
+          pattern: "^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$"
+          maxLength: 11
+        bankName: { type: string, maxLength: 150 }
+        countryCode: { type: string, minLength: 2, maxLength: 2 }
+        city: { type: string, maxLength: 100 }
+        addressLine1: { type: string, maxLength: 150 }
+        addressLine2: { type: string, maxLength: 150, nullable: true }
+        postalCode: { type: string, maxLength: 35, nullable: true }
+        operationalAddressSame: { type: boolean, default: true }
+        opAddressLine1: { type: string, maxLength: 150, nullable: true }
+        opAddressLine2: { type: string, maxLength: 150, nullable: true }
+        opCity: { type: string, maxLength: 100, nullable: true }
+        opCountryCode: { type: string, minLength: 2, maxLength: 2, nullable: true }
+        opPostalCode: { type: string, maxLength: 35, nullable: true }
+        institutionType: { type: string, enum: [FIN, NFIN], default: FIN }
+        operationalStatus: { type: string, enum: [ENABLED, DISABLED, SUSPENDED], default: ENABLED }
+        branchCode: { type: string, maxLength: 3, nullable: true }
+        branchName: { type: string, maxLength: 100, nullable: true }
+        branchAddress: { type: string, maxLength: 150, nullable: true }
+        bankId: { type: string, maxLength: 20, nullable: true }
+        leiNumber: { type: string, maxLength: 20, nullable: true }
+        isCorrespondentBank: { type: boolean, default: false }
+        parentBankSwift:
+          type: string
+          pattern: "^[A-Z]{6}[A-Z0-9]{2}([A-Z0-9]{3})?$"
+          maxLength: 11
+          nullable: true
+        contactNumber: { type: string, maxLength: 15, nullable: true }
+        primaryEmail:
+          type: string
+          format: email
+          maxLength: 254
+          nullable: true
+
+    BankDirectoryUpdateRequest:
+      allOf:
+        - $ref: "#/components/schemas/BankDirectoryCreateRequest"
+
+    BankDirectoryRecord:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        swiftCode: { type: string }
+        bankName: { type: string }
+        countryCode: { type: string }
+        city: { type: string }
+        addressLine1: { type: string }
+        addressLine2: { type: string, nullable: true }
+        postalCode: { type: string, nullable: true }
+        operationalAddressSame: { type: boolean }
+        opAddressLine1: { type: string, nullable: true }
+        opAddressLine2: { type: string, nullable: true }
+        opCity: { type: string, nullable: true }
+        opCountryCode: { type: string, nullable: true }
+        opPostalCode: { type: string, nullable: true }
+        institutionType: { type: string, enum: [FIN, NFIN] }
+        operationalStatus: { type: string, enum: [ENABLED, DISABLED, SUSPENDED] }
+        branchCode: { type: string, nullable: true }
+        branchName: { type: string, nullable: true }
+        branchAddress: { type: string, nullable: true }
+        bankId: { type: string, nullable: true }
+        leiNumber: { type: string, nullable: true }
+        isCorrespondentBank: { type: boolean }
+        parentBankSwift: { type: string, nullable: true }
+        contactNumber: { type: string, nullable: true }
+        primaryEmail: { type: string, nullable: true }
+        status: { type: string, enum: [PENDING, APPROVED, REJECTED] }
+        pendingAction: { type: string, enum: [NEW, MODIFY, DELETE], nullable: true }
+        lastAction: { type: string, nullable: true }
+        rejectionReason: { type: string, nullable: true }
+        approvedBy: { type: string, nullable: true }
+        approvedAt: { type: string, format: date-time, nullable: true }
+        rejectedBy: { type: string, nullable: true }
+        rejectedAt: { type: string, format: date-time, nullable: true }
+        createdBy: { type: string }
+        createdAt: { type: string, format: date-time }
+        modifiedBy: { type: string, nullable: true }
+        modifiedAt: { type: string, format: date-time, nullable: true }
+        isActive: { type: boolean }
+        originalData:
+          type: object
+          nullable: true
+          additionalProperties: true
+
+    PageBankDirectoryRecord:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { $ref: "#/components/schemas/BankDirectoryRecord" }
+        pageable:
+          type: object
+          additionalProperties: true
+        totalElements: { type: integer, format: int64 }
+        totalPages: { type: integer }
+        size: { type: integer }
+        number: { type: integer }
+        first: { type: boolean }
+        last: { type: boolean }
+        empty: { type: boolean }
+
+    BulkUploadResult:
+      type: object
+      properties:
+        totalRowsParsed: { type: integer }
+        validRecords: { type: integer }
+        inserted: { type: integer }
+        errors: { type: integer }
+        errorDetails:
+          type: array
+          items: { type: string }
+
+    CurrencyMasterCreateRequest:
+      type: object
+      required:
+        - entityName
+        - currencyName
+        - alphabeticCode
+        - numericCode
+        - minorUnit
+      properties:
+        entityName: { type: string, maxLength: 150 }
+        currencyName: { type: string, maxLength: 150 }
+        alphabeticCode:
+          type: string
+          pattern: "^[A-Z]{3}$"
+          maxLength: 3
+        numericCode:
+          type: string
+          pattern: "^[0-9]{3}$"
+          maxLength: 3
+        minorUnit:
+          type: integer
+          minimum: 0
+          maximum: 18
+        countryCode:
+          type: string
+          minLength: 2
+          maxLength: 2
+          nullable: true
+        roundingMethod: { type: string, maxLength: 80, nullable: true }
+        roundingPrecision:
+          type: integer
+          minimum: 0
+          maximum: 18
+          nullable: true
+        fxRevalRequired: { type: boolean, default: false }
+        fxRevalFrequency: { type: string, maxLength: 40, nullable: true }
+        fxRevalMethod: { type: string, maxLength: 80, nullable: true }
+        holidayCalendarRef: { type: string, maxLength: 120, nullable: true }
+        settlementCutoff: { type: string, maxLength: 20, nullable: true }
+        settlementTimezone: { type: string, maxLength: 80, nullable: true }
+        settlementIndicator: { type: string, maxLength: 20, nullable: true }
+        operationalStatus:
+          type: string
+          enum: [ENABLED, DISABLED, SUSPENDED]
+          default: ENABLED
+
+    CurrencyMasterUpdateRequest:
+      allOf:
+        - $ref: "#/components/schemas/CurrencyMasterCreateRequest"
+
+    CurrencyMasterRecord:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        entityName: { type: string }
+        currencyName: { type: string }
+        alphabeticCode: { type: string }
+        numericCode: { type: string }
+        minorUnit: { type: integer }
+        countryCode: { type: string, nullable: true }
+        roundingMethod: { type: string, nullable: true }
+        roundingPrecision: { type: integer, nullable: true }
+        fxRevalRequired: { type: boolean }
+        fxRevalFrequency: { type: string, nullable: true }
+        fxRevalMethod: { type: string, nullable: true }
+        holidayCalendarRef: { type: string, nullable: true }
+        settlementCutoff: { type: string, nullable: true }
+        settlementTimezone: { type: string, nullable: true }
+        settlementIndicator: { type: string, nullable: true }
+        operationalStatus: { type: string, enum: [ENABLED, DISABLED, SUSPENDED] }
+        status: { type: string, enum: [PENDING, APPROVED, REJECTED] }
+        pendingAction:
+          type: string
+          enum: [NEW, MODIFIED]
+          nullable: true
+        lastAction:
+          type: string
+          nullable: true
+          description: >
+            When set, one of CREATED, UPDATED, APPROVED, BULK_LOADED, SEEDED,
+            CREATION_REJECTED, MODIFICATION_REJECTED.
+        rejectionReason: { type: string, nullable: true }
+        approvedBy: { type: string, nullable: true }
+        approvedAt: { type: string, format: date-time, nullable: true }
+        rejectedBy: { type: string, nullable: true }
+        rejectedAt: { type: string, format: date-time, nullable: true }
+        createdBy: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+        modifiedBy: { type: string, nullable: true }
+        modifiedAt: { type: string, format: date-time, nullable: true }
+        userId: { type: string, format: uuid }
+        isActive: { type: boolean }
+        originalData:
+          type: object
+          nullable: true
+          additionalProperties: true
+
+    PageCurrencyMasterRecord:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { $ref: "#/components/schemas/CurrencyMasterRecord" }
+        pageable:
+          type: object
+          additionalProperties: true
+        totalElements: { type: integer, format: int64 }
+        totalPages: { type: integer }
+        size: { type: integer }
+        number: { type: integer }
+        first: { type: boolean }
+        last: { type: boolean }
+        empty: { type: boolean }
+
+    GeographicMasterAuditFields:
+      type: object
+      description: Shared maker-checker and audit fields for country, state, and city masters.
+      properties:
+        approvalStatus: { type: string, enum: [PENDING, APPROVED, REJECTED] }
+        pendingAction:
+          type: string
+          enum: [NEW, MODIFIED]
+          nullable: true
+        operationalStatus:
+          type: string
+          enum: [ENABLED, DISABLED]
+          description: Operational enable/disable toggle (maps to DB column status).
+        lastAction:
+          type: string
+          nullable: true
+          description: >
+            When set, one of CREATED, UPDATED, APPROVED, BULK_LOADED, SEEDED,
+            CREATION_REJECTED, MODIFICATION_REJECTED.
+        rejectionReason: { type: string, nullable: true }
+        approvedBy: { type: string, nullable: true }
+        approvedAt: { type: string, format: date-time, nullable: true }
+        rejectedBy: { type: string, nullable: true }
+        rejectedAt: { type: string, format: date-time, nullable: true }
+        createdBy: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time }
+        modifiedBy: { type: string, nullable: true }
+        modifiedAt: { type: string, format: date-time, nullable: true }
+        userId: { type: string, format: uuid }
+        originalData:
+          type: object
+          nullable: true
+          additionalProperties: true
+
+    CountryMasterCreateRequest:
+      type: object
+      required: [countryName, countryCodeIso2, countryCodeIso3]
+      properties:
+        countryName: { type: string, maxLength: 100 }
+        countryCodeIso2:
+          type: string
+          pattern: "^[A-Z]{2}$"
+          maxLength: 2
+        countryCodeIso3:
+          type: string
+          pattern: "^[A-Z]{3}$"
+          maxLength: 3
+        numericCode:
+          type: string
+          pattern: "^[0-9]{1,3}$"
+          maxLength: 3
+          nullable: true
+        phoneCode: { type: string, maxLength: 10, nullable: true }
+        region: { type: string, maxLength: 30, nullable: true }
+        subRegion: { type: string, maxLength: 30, nullable: true }
+        operationalStatus:
+          type: string
+          enum: [ENABLED, DISABLED]
+          default: ENABLED
+
+    CountryMasterUpdateRequest:
+      allOf:
+        - $ref: "#/components/schemas/CountryMasterCreateRequest"
+
+    CountryMasterRecord:
+      allOf:
+        - type: object
+          properties:
+            id: { type: string, format: uuid }
+            countryName: { type: string }
+            countryCodeIso2: { type: string }
+            countryCodeIso3: { type: string }
+            numericCode: { type: string, nullable: true }
+            phoneCode: { type: string, nullable: true }
+            region: { type: string, nullable: true }
+            subRegion: { type: string, nullable: true }
+        - $ref: "#/components/schemas/GeographicMasterAuditFields"
+
+    PageCountryMasterRecord:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { $ref: "#/components/schemas/CountryMasterRecord" }
+        pageable:
+          type: object
+          additionalProperties: true
+        totalElements: { type: integer, format: int64 }
+        totalPages: { type: integer }
+        size: { type: integer }
+        number: { type: integer }
+        first: { type: boolean }
+        last: { type: boolean }
+        empty: { type: boolean }
+
+    StateMasterCreateRequest:
+      type: object
+      required: [stateName, stateCodeIso, countryCodeIso2]
+      properties:
+        stateName: { type: string, maxLength: 100 }
+        stateCodeIso:
+          type: string
+          pattern: "^[A-Z0-9][A-Z0-9-]{0,9}$"
+          maxLength: 10
+        countryCodeIso2:
+          type: string
+          pattern: "^[A-Z]{2}$"
+          maxLength: 2
+          description: Parent country ISO 3166-1 alpha-2 (logical reference to country_master).
+        operationalStatus:
+          type: string
+          enum: [ENABLED, DISABLED]
+          default: ENABLED
+
+    StateMasterUpdateRequest:
+      allOf:
+        - $ref: "#/components/schemas/StateMasterCreateRequest"
+
+    StateMasterRecord:
+      allOf:
+        - type: object
+          properties:
+            id: { type: string, format: uuid }
+            stateName: { type: string }
+            stateCodeIso: { type: string }
+            countryCodeIso2: { type: string }
+        - $ref: "#/components/schemas/GeographicMasterAuditFields"
+
+    PageStateMasterRecord:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { $ref: "#/components/schemas/StateMasterRecord" }
+        pageable:
+          type: object
+          additionalProperties: true
+        totalElements: { type: integer, format: int64 }
+        totalPages: { type: integer }
+        size: { type: integer }
+        number: { type: integer }
+        first: { type: boolean }
+        last: { type: boolean }
+        empty: { type: boolean }
+
+    CityMasterCreateRequest:
+      type: object
+      required: [cityName, cityCode, stateCodeIso, countryCodeIso2]
+      properties:
+        cityName: { type: string, maxLength: 100 }
+        cityCode:
+          type: string
+          pattern: "^[A-Z0-9][A-Z0-9-]{0,9}$"
+          maxLength: 10
+        stateCodeIso:
+          type: string
+          pattern: "^[A-Z0-9][A-Z0-9-]{0,9}$"
+          maxLength: 10
+          description: Parent state ISO 3166-2 code (logical reference to state_master).
+        countryCodeIso2:
+          type: string
+          pattern: "^[A-Z]{2}$"
+          maxLength: 2
+          description: Denormalized parent country ISO2 for query convenience.
+        latitude:
+          type: number
+          format: double
+          minimum: -90
+          maximum: 90
+          nullable: true
+        longitude:
+          type: number
+          format: double
+          minimum: -180
+          maximum: 180
+          nullable: true
+        operationalStatus:
+          type: string
+          enum: [ENABLED, DISABLED]
+          default: ENABLED
+
+    CityMasterUpdateRequest:
+      allOf:
+        - $ref: "#/components/schemas/CityMasterCreateRequest"
+
+    CityMasterRecord:
+      allOf:
+        - type: object
+          properties:
+            id: { type: string, format: uuid }
+            cityName: { type: string }
+            cityCode: { type: string }
+            stateCodeIso: { type: string }
+            countryCodeIso2: { type: string }
+            latitude: { type: number, format: double, nullable: true }
+            longitude: { type: number, format: double, nullable: true }
+        - $ref: "#/components/schemas/GeographicMasterAuditFields"
+
+    PageCityMasterRecord:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { $ref: "#/components/schemas/CityMasterRecord" }
+        pageable:
+          type: object
+          additionalProperties: true
+        totalElements: { type: integer, format: int64 }
+        totalPages: { type: integer }
+        size: { type: integer }
+        number: { type: integer }
+        first: { type: boolean }
+        last: { type: boolean }
+        empty: { type: boolean }
+
+    RejectRequest:
+      type: object
+      required: [reason]
+      properties:
+        reason:
+          type: string
+          minLength: 1
+
+    ProductOption:
+      type: object
+      properties:
+        productCode: { type: string }
+        productName: { type: string }
+
+    TransactionReferenceConfigCreateRequest:
+      type: object
+      required:
+        - productCode
+        - sequenceResetLogic
+        - componentOrder
+      properties:
+        productCode: { type: string, maxLength: 10 }
+        productName: { type: string, maxLength: 100, nullable: true }
+        includeProductCode: { type: boolean, default: false }
+        productCodeLength: { type: integer, minimum: 1, maximum: 3 }
+        includeCurrencyCode: { type: boolean, default: false }
+        currencyCodeLength: { type: integer, minimum: 1, maximum: 3 }
+        includeBankCode: { type: boolean, default: false }
+        bankCodeLength: { type: integer, minimum: 1, maximum: 5 }
+        includeBranchCode: { type: boolean, default: false }
+        branchCodeLength: { type: integer, minimum: 1, maximum: 5 }
+        includeProductType: { type: boolean, default: false }
+        productTypeLength: { type: integer, minimum: 1, maximum: 3 }
+        includePartyRole: { type: boolean, default: false }
+        partyRoleLength: { type: integer, minimum: 1, maximum: 5 }
+        includeYear: { type: boolean, default: false }
+        yearLength: { type: integer, minimum: 1, maximum: 4 }
+        includeCustomChar: { type: boolean, default: false }
+        customCharLength: { type: integer, minimum: 1, maximum: 5 }
+        customCharValue: { type: string, maxLength: 5, nullable: true }
+        sequenceResetLogic:
+          type: string
+          enum: [NONE, YEARLY, PRODUCT_WISE]
+        componentOrder:
+          type: array
+          items:
+            type: string
+            enum: [product_code, currency_code, bank_code, branch_code, product_type, party_role, year, custom_char]
+
+    TransactionReferenceConfigUpdateRequest:
+      allOf:
+        - $ref: "#/components/schemas/TransactionReferenceConfigCreateRequest"
+
+    TransactionReferenceConfigRecord:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        productCode: { type: string }
+        productName: { type: string, nullable: true }
+        includeProductCode: { type: boolean }
+        productCodeLength: { type: integer }
+        includeCurrencyCode: { type: boolean }
+        currencyCodeLength: { type: integer }
+        includeBankCode: { type: boolean }
+        bankCodeLength: { type: integer }
+        includeBranchCode: { type: boolean }
+        branchCodeLength: { type: integer }
+        includeProductType: { type: boolean }
+        productTypeLength: { type: integer }
+        includePartyRole: { type: boolean }
+        partyRoleLength: { type: integer }
+        includeYear: { type: boolean }
+        yearLength: { type: integer }
+        includeCustomChar: { type: boolean }
+        customCharLength: { type: integer }
+        customCharValue: { type: string, nullable: true }
+        totalLength: { type: integer, example: 16 }
+        numericSequenceLength: { type: integer }
+        sequenceResetLogic: { type: string, enum: [NONE, YEARLY, PRODUCT_WISE] }
+        componentOrder:
+          type: array
+          items: { type: string }
+        status: { type: string, enum: [PENDING, APPROVED, REJECTED] }
+        pendingAction: { type: string, enum: [NEW, MODIFIED, DELETED], nullable: true }
+        lastAction: { type: string, nullable: true }
+        rejectionReason: { type: string, nullable: true }
+        approvedBy: { type: string, nullable: true }
+        approvedAt: { type: string, format: date-time, nullable: true }
+        rejectedBy: { type: string, nullable: true }
+        rejectedAt: { type: string, format: date-time, nullable: true }
+        createdBy: { type: string, nullable: true }
+        createdAt: { type: string, format: date-time, nullable: true }
+        modifiedBy: { type: string, nullable: true }
+        modifiedAt: { type: string, format: date-time, nullable: true }
+        originalData:
+          type: object
+          nullable: true
+          additionalProperties: true
+
+    PageTransactionReferenceConfig:
+      type: object
+      properties:
+        content:
+          type: array
+          items: { $ref: "#/components/schemas/TransactionReferenceConfigRecord" }
+        totalElements: { type: integer, format: int64 }
+        totalPages: { type: integer }
+        size: { type: integer }
+        number: { type: integer }
+        first: { type: boolean }
+        last: { type: boolean }
+        empty: { type: boolean }
+
+    TransactionReferenceRuntimeConfigResponse:
+      type: object
+      properties:
+        productCode: { type: string }
+        eventCode: { type: string }
+        isInitialEvent: { type: boolean }
+        config:
+          $ref: "#/components/schemas/TransactionReferenceConfigRecord"
+
+    TransactionReferenceRuntimePreviewRequest:
+      type: object
+      required: [productCode, eventCode]
+      properties:
+        productCode: { type: string }
+        eventCode: { type: string }
+        formData:
+          type: object
+          additionalProperties: true
+
+    TransactionReferenceRuntimePreviewResponse:
+      type: object
+      properties:
+        prefix: { type: string }
+        previewReference: { type: string }
+        nextSequencePreview: { type: integer }
+        isComplete: { type: boolean }
+        numericSequenceLength: { type: integer }
+
+    TransactionReferenceRuntimeFinalizeRequest:
+      type: object
+      required: [productCode, eventCode]
+      properties:
+        productCode: { type: string }
+        eventCode: { type: string }
+        formData:
+          type: object
+          additionalProperties: true
+        idempotencyKey: { type: string, nullable: true }
+
+    TransactionReferenceRuntimeFinalizeResponse:
+      type: object
+      properties:
+        transactionReference: { type: string }
+        reservedSequence: { type: integer }
+        prefix: { type: string }
+
+    StandardResponse:
+      type: object
+      properties:
+        status: { type: string, example: SUCCESS }
+        message: { type: string }
+        codeMessage: { type: string, nullable: true }
+        timestamp: { type: string, format: date-time, nullable: true }
+        data:
+          type: object
+          nullable: true
+          additionalProperties: true
+        error: { type: string, nullable: true }
+
