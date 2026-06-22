@@ -1,0 +1,91 @@
+<svg viewBox="0 0 940 570" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">UML Class Diagram - Disbursement Domain</text>
+<rect x="40" y="60" width="165" height="96" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.2"/>
+<rect x="40" y="60" width="165" height="24" rx="2" fill="#0B1D3A" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="122.5" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">Program</text>
+<line x1="40" y1="84" x2="205" y2="84" stroke="#0B1D3A" stroke-width="0.8"/>
+<text x="48" y="99" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+type: ProgramType</text>
+<text x="48" y="111" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+financePercent: Decimal</text>
+<text x="48" y="123" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+maxDisbursement: int</text>
+<text x="48" y="135" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+maxTenorDays: int</text>
+<text x="48" y="147" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+autoDisbursement: bool</text>
+<rect x="285" y="60" width="165" height="108" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.2"/>
+<rect x="285" y="60" width="165" height="24" rx="2" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="367.5" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">Invoice</text>
+<line x1="285" y1="84" x2="450" y2="84" stroke="#0B7285" stroke-width="0.8"/>
+<text x="293" y="99" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+status: InvoiceStatus</text>
+<text x="293" y="111" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+amountState: AmountState</text>
+<text x="293" y="123" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+amount: Decimal</text>
+<text x="293" y="135" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+issueDate: Date</text>
+<text x="293" y="147" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+dueDate: Date</text>
+<text x="293" y="159" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+tenorDays: int</text>
+<rect x="560" y="60" width="175" height="108" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.2"/>
+<rect x="560" y="60" width="175" height="24" rx="2" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="647.5" y="76" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">Disbursement</text>
+<line x1="560" y1="84" x2="735" y2="84" stroke="#C9962A" stroke-width="0.8"/>
+<text x="568" y="99" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+mode: INDIVIDUAL|CLUBBED</text>
+<text x="568" y="111" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+source: MANUAL|AUTO</text>
+<text x="568" y="123" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+state: DisbState</text>
+<text x="568" y="135" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+amount: Decimal</text>
+<text x="568" y="147" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+paymentRef: String</text>
+<text x="568" y="159" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+failureReason: String</text>
+<rect x="285" y="350" width="165" height="96" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.2"/>
+<rect x="285" y="350" width="165" height="24" rx="2" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="367.5" y="366" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">FinanceRecord</text>
+<line x1="285" y1="374" x2="450" y2="374" stroke="#166534" stroke-width="0.8"/>
+<text x="293" y="389" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+status: FinanceStatus</text>
+<text x="293" y="401" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+scope: INDIVIDUAL|CLUBBED</text>
+<text x="293" y="413" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+principalAmount: Decimal</text>
+<text x="293" y="425" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+maturityDate: Date</text>
+<text x="293" y="437" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+totalDue: Decimal</text>
+<rect x="560" y="350" width="175" height="72" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.2"/>
+<rect x="560" y="350" width="175" height="24" rx="2" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="647.5" y="366" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">FinanceRecordInvoice</text>
+<line x1="560" y1="374" x2="735" y2="374" stroke="#C9962A" stroke-width="0.8"/>
+<text x="568" y="389" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+allocatedAmount: Decimal</text>
+<text x="568" y="401" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+settledAmount: Decimal</text>
+<text x="568" y="413" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+allocationState: String</text>
+<rect x="765" y="350" width="135" height="84" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.2"/>
+<rect x="765" y="350" width="135" height="24" rx="2" fill="#0B1D3A" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="832.5" y="366" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">Transaction</text>
+<line x1="765" y1="374" x2="900" y2="374" stroke="#0B1D3A" stroke-width="0.8"/>
+<text x="773" y="389" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+type: TransactionType</text>
+<text x="773" y="401" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+amount: Decimal</text>
+<text x="773" y="413" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+reference: String</text>
+<text x="773" y="425" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#1A1A1A" font-weight="400">+createdAt: Instant</text>
+<line x1="205" y1="120" x2="284" y2="120" stroke="#0B1D3A" stroke-width="1.2"/>
+<text x="214" y="113" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1</text>
+<text x="258" y="113" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1..*</text>
+<line x1="450" y1="120" x2="559" y2="120" stroke="#0B7285" stroke-width="1.2"/>
+<text x="462" y="113" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1..*</text>
+<text x="535" y="113" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1</text>
+<path d="M 125,160 L 125,255 L 648,255 L 648,170" fill="none" stroke="#C9962A" stroke-width="1.2"/>
+<text x="136" y="190" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1</text>
+<text x="600" y="247" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">0..*</text>
+<path d="M 648,170 L 648,295 L 368,295 L 368,349" fill="none" stroke="#166534" stroke-width="1.2"/>
+<text x="505" y="286" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#166534" font-weight="400">creates if SUCCESS</text>
+<text x="378" y="340" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">0..1</text>
+<line x1="450" y1="415" x2="559" y2="415" stroke="#C9962A" stroke-width="1.2"/>
+<text x="462" y="408" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1</text>
+<text x="530" y="408" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1..*</text>
+<path d="M 648,170 L 648,349" fill="none" stroke="#C9962A" stroke-width="1.2"/>
+<text x="656" y="255" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="400">1 to 0..1</text>
+<path d="M 368,170 L 368,235 L 648,235 L 648,349" fill="none" stroke="#0B7285" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="505" y="226" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#0B7285" font-weight="400">covered invoices</text>
+<path d="M 450,430 L 515,430 L 515,520 L 835,520 L 835,438" fill="none" stroke="#0B1D3A" stroke-width="1.2" stroke-dasharray="5 3"/>
+<path d="M 735,150 L 750,150 L 750,300 L 835,300 L 835,349" fill="none" stroke="#0B1D3A" stroke-width="1.2" stroke-dasharray="5 3"/>
+<path d="M 450,150 L 520,150 L 520,300 L 835,300" fill="none" stroke="#0B1D3A" stroke-width="1.2" stroke-dasharray="5 3"/>
+<text x="715" y="535" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#0B1D3A" font-weight="400">generated ledger entries</text>
+<rect x="40" y="455" width="390" height="62" rx="2" fill="#F0EDE8" stroke="#C9962A" stroke-width="1.0"/>
+<text x="58" y="476" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#C9962A" font-weight="700">Constraint</text>
+<text x="58" y="495" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.0" fill="#0B1D3A" font-weight="400">No separate finance-request class; Disbursement carries mode and source.</text>
+</svg>

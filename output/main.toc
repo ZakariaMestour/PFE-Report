@@ -81,63 +81,63 @@
 \contentsline {section}{\numberline {4.2}Application Architecture and Navigation}{39}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Application Entry Point and Route Structure}{39}{subsection.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}Role-Based Sidebar and View Adaptation}{40}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}\texttt {Index.tsx} and Module Selection}{41}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Master Setup Module}{42}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Tab Structure and Role-Gated Access}{42}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Product Suite and Program Configuration}{43}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Counterparty Onboarding and Foundational Data}{46}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Control Centre}{46}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Invoice Management Flows}{46}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Invoice Upload Flow}{46}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Manual Invoice Form}{48}{subsection.4.4.2}%
-\contentsline {section}{\numberline {4.5}Finance and Early Payment Flows}{49}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Early Payment Request}{49}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Finance Disbursement Wizard}{49}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Document Inquiry and Specification Documents}{50}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Notifications Panel}{50}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Forms Engineering: Patterns and Practices}{51}{section.4.8}%
-\contentsline {subsection}{\numberline {4.8.1}Hooks and Form State}{51}{subsection.4.8.1}%
-\contentsline {subsection}{\numberline {4.8.2}Error Handling and User Feedback}{51}{subsection.4.8.2}%
-\contentsline {section}{\numberline {4.9}API Services Layer}{51}{section.4.9}%
-\contentsline {subsection}{\numberline {4.9.1}Axios Client and Endpoint Mapping}{51}{subsection.4.9.1}%
-\contentsline {subsection}{\numberline {4.9.2}TypeScript Types}{52}{subsection.4.9.2}%
-\contentsline {section}{\numberline {4.10}Conclusion}{53}{section.4.10}%
-\contentsline {chapter}{\numberline {5}Disbursement Module: PFE Project}{54}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{54}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Context and Motivation}{54}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Position in the SCF Value Chain}{54}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Architecture Boundary of the Module}{55}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Access Symmetry}{55}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Requirements and Functional Specification}{56}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Functional Requirements}{56}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Eligibility Rules}{57}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Non-functional Requirements}{58}{subsection.5.3.3}%
-\contentsline {section}{\numberline {5.4}Design}{59}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Domain Model}{59}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Invoice and Disbursement State Machines}{60}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Manual and Automatic Disbursement}{60}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}Payment Gateway Integration}{62}{subsection.5.4.4}%
-\contentsline {section}{\numberline {5.5}Implementation Scope}{63}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Frontend Scope}{63}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Backend Scope}{63}{subsection.5.5.2}%
-\contentsline {section}{\numberline {5.6}Open Questions and Validation}{64}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Conclusion}{65}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Evaluation and Reflection}{66}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{66}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Contributions Summary}{66}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Sprint-by-Sprint Overview}{66}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Classification of Contributions}{68}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Quantitative Summary}{68}{subsection.6.2.3}%
-\contentsline {section}{\numberline {6.3}Critical Evaluation}{69}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}What Went Well}{69}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Difficulties Faced and How They Were Handled}{70}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Limitations of the Current Work}{70}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Skills Acquired}{71}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Technical Skills}{71}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Professional and Soft Skills}{72}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}Recommendations for Future Development}{72}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Integration of the Disbursement Module}{72}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Asynchronous Processing}{73}{subsection.6.5.2}%
-\contentsline {subsection}{\numberline {6.5.3}Mobile Access for Counterparties}{73}{subsection.6.5.3}%
-\contentsline {subsection}{\numberline {6.5.4}Advanced Reporting and Analytics}{73}{subsection.6.5.4}%
-\contentsline {section}{\numberline {6.6}Conclusion}{74}{section.6.6}%
+\contentsline {subsection}{\numberline {4.2.3}\texttt {Index.tsx} and Module Selection}{43}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Master Setup Module}{44}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Tab Structure and Role-Gated Access}{44}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Product Suite and Program Configuration}{45}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Counterparty Onboarding and Foundational Data}{48}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Control Centre}{48}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Invoice Management Flows}{48}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Invoice Upload Flow}{48}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Manual Invoice Form}{50}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Finance and Early Payment Flows}{51}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Early Payment Request}{51}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Finance Disbursement Wizard}{51}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Document Inquiry and Specification Documents}{52}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Notifications Panel}{52}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Forms Engineering: Patterns and Practices}{53}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Hooks and Form State}{53}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Error Handling and User Feedback}{53}{subsection.4.8.2}%
+\contentsline {section}{\numberline {4.9}API Services Layer}{53}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Axios Client and Endpoint Mapping}{53}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}TypeScript Types}{54}{subsection.4.9.2}%
+\contentsline {section}{\numberline {4.10}Conclusion}{55}{section.4.10}%
+\contentsline {chapter}{\numberline {5}Disbursement Module: PFE Project}{56}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction}{56}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Context and Motivation}{56}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Position in the SCF Value Chain}{56}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Architecture Boundary of the Module}{57}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Access Symmetry}{57}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Requirements and Functional Specification}{58}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Functional Requirements}{58}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Eligibility Rules}{60}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Non-functional Requirements}{61}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Design}{61}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Domain Model}{61}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Invoice and Disbursement State Machines}{63}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Manual and Automatic Disbursement}{64}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Payment Gateway Integration}{66}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}Implementation Scope}{68}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Frontend Scope}{68}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Backend Scope}{68}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.6}Open Questions and Validation}{69}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Conclusion}{70}{section.5.7}%
+\contentsline {chapter}{\numberline {6}Evaluation and Reflection}{71}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Introduction}{71}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Contributions Summary}{71}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Sprint-by-Sprint Overview}{71}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Classification of Contributions}{73}{subsection.6.2.2}%
+\contentsline {subsection}{\numberline {6.2.3}Quantitative Summary}{73}{subsection.6.2.3}%
+\contentsline {section}{\numberline {6.3}Critical Evaluation}{74}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}What Went Well}{74}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Difficulties Faced and How They Were Handled}{75}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Limitations of the Current Work}{75}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Skills Acquired}{76}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Technical Skills}{76}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Professional and Soft Skills}{77}{subsection.6.4.2}%
+\contentsline {section}{\numberline {6.5}Recommendations for Future Development}{77}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Integration of the Disbursement Module}{77}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Asynchronous Processing}{78}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}Mobile Access for Counterparties}{78}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}Advanced Reporting and Analytics}{78}{subsection.6.5.4}%
+\contentsline {section}{\numberline {6.6}Conclusion}{79}{section.6.6}%

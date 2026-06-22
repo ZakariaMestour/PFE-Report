@@ -1,0 +1,39 @@
+<svg viewBox="0 0 840 400" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">UML State Machine - Disbursement Lifecycle</text>
+<circle cx="70" cy="185" r="8" fill="#0B1D3A"/>
+<rect x="140" y="171" width="115" height="28" rx="14" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="197.5" y="189" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">INITIATED</text>
+<rect x="340" y="171" width="205" height="28" rx="14" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="442.5" y="189" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">PENDING_CONFIRMATION</text>
+<rect x="660" y="95" width="105" height="28" rx="14" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="712.5" y="113" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">SUCCESS</text>
+<rect x="660" y="245" width="105" height="28" rx="14" fill="#B91C1C" stroke="#B91C1C" stroke-width="1.0"/>
+<text x="712.5" y="263" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">FAILED</text>
+<circle cx="795" cy="109" r="8" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.4"/>
+<circle cx="795" cy="109" r="4" fill="#0B1D3A"/>
+<circle cx="795" cy="259" r="8" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.4"/>
+<circle cx="795" cy="259" r="4" fill="#0B1D3A"/>
+<line x1="78" y1="185" x2="139" y2="185" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="255" y1="185" x2="339" y2="185" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<text x="297" y="177" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.6" fill="#0B1D3A" font-weight="400">POST /payments</text>
+<line x1="545" y1="178" x2="659" y2="109" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<text x="607" y="132" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#166534" font-weight="400">async callback SUCCESS</text>
+<line x1="545" y1="193" x2="659" y2="259" stroke="#B91C1C" stroke-width="1.2" marker-end="url(#arrow_red)"/>
+<text x="610" y="244" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#B91C1C" font-weight="400">async callback FAILED</text>
+<path d="M 198,199 L 198,259 L 659,259" fill="none" stroke="#B91C1C" stroke-width="1.2" marker-end="url(#arrow_red)"/>
+<text x="395" y="251" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#B91C1C" font-weight="400">sync 422 rejection</text>
+<line x1="765" y1="109" x2="786" y2="109" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<line x1="765" y1="259" x2="786" y2="259" stroke="#B91C1C" stroke-width="1.2" marker-end="url(#arrow_red)"/>
+<rect x="90" y="305" width="520" height="54" rx="2" fill="#F0EDE8" stroke="#D4D0C8" stroke-width="1.0"/>
+<text x="106" y="326" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#166534" font-weight="700">Success effects</text>
+<text x="106" y="345" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#0B1D3A" font-weight="400">Create FinanceRecord, create FINANCE_DISBURSEMENT transaction, publish disbursement.success, set invoice FINANCED.</text>
+</svg>

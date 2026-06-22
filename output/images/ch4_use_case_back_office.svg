@@ -1,0 +1,56 @@
+<svg viewBox="0 0 820 470" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Use Case Diagram - Back Office</text>
+<circle cx="80" cy="145" r="8" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="80" y1="153" x2="80" y2="183" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="62" y1="165" x2="98" y2="165" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="80" y1="183" x2="64" y2="205" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="80" y1="183" x2="96" y2="205" stroke="#0B7285" stroke-width="1.2"/>
+<text x="80" y="223" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B7285" font-weight="700">Bank</text>
+<text x="80" y="234" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B7285" font-weight="700">Maker</text>
+<circle cx="80" cy="310" r="8" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
+<line x1="80" y1="318" x2="80" y2="348" stroke="#166534" stroke-width="1.2"/>
+<line x1="62" y1="330" x2="98" y2="330" stroke="#166534" stroke-width="1.2"/>
+<line x1="80" y1="348" x2="64" y2="370" stroke="#166534" stroke-width="1.2"/>
+<line x1="80" y1="348" x2="96" y2="370" stroke="#166534" stroke-width="1.2"/>
+<text x="80" y="388" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#166534" font-weight="700">Bank</text>
+<text x="80" y="399" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#166534" font-weight="700">Checker</text>
+<rect x="180" y="55" width="580" height="360" rx="2" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
+<text x="470" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B1D3A" font-weight="700">SCF Back Office Boundary</text>
+<ellipse cx="330.0" cy="130.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="330" y="125" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Create / edit</text>
+<text x="330" y="136" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">product</text>
+<ellipse cx="565.0" cy="130.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="565" y="125" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Configure</text>
+<text x="565" y="136" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">program</text>
+<ellipse cx="330.0" cy="220.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="330" y="215" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Onboard</text>
+<text x="330" y="226" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">counterparty</text>
+<ellipse cx="565.0" cy="220.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#C9962A" stroke-width="1.2"/>
+<text x="565" y="215" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Submit</text>
+<text x="565" y="226" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">pending change</text>
+<ellipse cx="330.0" cy="320.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
+<text x="330" y="315" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Review pending</text>
+<text x="330" y="326" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">operation</text>
+<ellipse cx="565.0" cy="320.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
+<text x="565" y="315" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Approve or</text>
+<text x="565" y="326" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">reject</text>
+<line x1="100" y1="185" x2="255" y2="130" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="100" y1="185" x2="255" y2="220" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="100" y1="185" x2="490" y2="130" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="100" y1="185" x2="490" y2="220" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="100" y1="350" x2="255" y2="320" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="100" y1="350" x2="490" y2="320" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="405" y1="220" x2="490" y2="220" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_gold)"/>
+<text x="448" y="211" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.4" fill="#C9962A" font-weight="400">&lt;&lt;include&gt;&gt;</text>
+<line x1="405" y1="320" x2="490" y2="320" stroke="#166534" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_green)"/>
+<text x="448" y="311" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.4" fill="#166534" font-weight="400">&lt;&lt;include&gt;&gt;</text>
+</svg>

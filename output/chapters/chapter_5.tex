@@ -73,7 +73,12 @@ The core requirement is to create and execute a disbursement when a financing re
     \standardtableend
 \end{table}
 
-[Insert formal UML use case diagram for the Disbursement Module]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_disbursement_use_case.png}
+    \caption{Use case diagram of the Disbursement Module}
+    \label{fig:ch5_disbursement_use_case}
+\end{figure}
 
 \subsection{Eligibility Rules}
 \label{subsec:ch5_eligibility_rules}
@@ -152,7 +157,12 @@ The confirmed business layer contains five distinct entities. Mixing them would 
     \standardtableend
 \end{table}
 
-[Insert formal UML class diagram for Disbursement domain with Program, Invoice, Disbursement, FinanceRecord, Transaction, associations, and multiplicities]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_disbursement_class_diagram.png}
+    \caption{Disbursement domain class diagram}
+    \label{fig:ch5_disbursement_class_diagram}
+\end{figure}
 
 The following relationship decisions are confirmed:
 
@@ -184,7 +194,12 @@ The invoice lifecycle uses one main \texttt{status} field. A separate \texttt{in
     \standardtableend
 \end{table}
 
-[Insert formal UML state machine diagram for Disbursement lifecycle: initial, INITIATED, PENDING\_CONFIRMATION, SUCCESS, FAILED, and transition labels]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_disbursement_state_machine.png}
+    \caption{Disbursement lifecycle state machine}
+    \label{fig:ch5_disbursement_state_machine}
+\end{figure}
 
 \subsection{Manual and Automatic Disbursement}
 \label{subsec:ch5_manual_auto_disbursement}
@@ -214,7 +229,12 @@ The Payment Gateway integration follows a two-phase pattern. During the synchron
 
 During the asynchronous phase, the Payment Gateway sends a webhook callback to \texttt{adria-gateway}. The gateway validates the HMAC signature and returns HTTP 200 quickly to avoid external retry storms. It then publishes the callback into Kafka. The \texttt{DisbursementEventConsumer} consumes the event, looks up the disbursement by \texttt{paymentRef}, and applies the final business result.
 
-[Insert corrected UML sequence diagram for manual disbursement with Payment Gateway, 202 Accepted, webhook callback, HMAC validation, Kafka topic \texttt{payment.callback}, and \texttt{DisbursementEventConsumer}]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_disbursement_sequence_uml.png}
+    \caption{Manual disbursement sequence with Payment Gateway callback and Kafka processing}
+    \label{fig:ch5_disbursement_sequence_uml}
+\end{figure}
 
 \begin{table}[H]
     \centering

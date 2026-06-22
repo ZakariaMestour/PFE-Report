@@ -1,33 +1,33 @@
-<svg viewBox="0 0 750 280" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+<svg viewBox="0 0 780 310" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
 
-  <defs>
-    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
-    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
-    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
-    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
-    <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
-  </defs>
-
-  <text x="25" y="30" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Maker/Checker Governance Lifecycle</text>
-  <circle cx="70" cy="155" r="8" fill="#0B1D3A"/>
-  <rect x="120" y="141" width="105" height="28" rx="14" fill="#0B7285"/>
-  <text x="172.5" y="159" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">DRAFT</text>
-  <rect x="290" y="141" width="150" height="28" rx="14" fill="#C9962A"/>
-  <text x="365.0" y="159" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PENDING_APPROVAL</text>
-  <rect x="515" y="80" width="110" height="28" rx="14" fill="#166534"/>
-  <text x="570.0" y="98" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">APPROVED</text>
-  <rect x="515" y="205" width="110" height="28" rx="14" fill="#B91C1C"/>
-  <text x="570.0" y="223" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">REJECTED</text>
-  <circle cx="700" cy="94" r="6" fill="#166534"/>
-  <line x1="78" y1="155" x2="119" y2="155" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-  <line x1="225" y1="155" x2="289" y2="155" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-  <text x="257" y="149" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A">submit</text>
-  <line x1="440" y1="149" x2="514" y2="94" stroke="#166534" stroke-width="1.5" marker-end="url(#arrow_green)"/>
-  <text x="475" y="113" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#166534">checker approves</text>
-  <line x1="440" y1="161" x2="514" y2="219" stroke="#B91C1C" stroke-width="1.5" marker-end="url(#arrow_red)"/>
-  <text x="475" y="197" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#B91C1C">checker rejects</text>
-  <line x1="625" y1="94" x2="693" y2="94" stroke="#166534" stroke-width="1.5" marker-end="url(#arrow_green)"/>
-  <path d="M 515,219 L 235,219 L 235,169" fill="none" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 2" marker-end="url(#arrow_gray)"/>
-  <text x="365" y="213" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#6B7280">restore originalData on update rejection</text>
-
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">UML State Machine - Maker/Checker Governance</text>
+<circle cx="70" cy="152" r="8" fill="#0B1D3A"/>
+<rect x="125" y="138" width="105" height="28" rx="14" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="177.5" y="156" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">DRAFT</text>
+<rect x="295" y="138" width="155" height="28" rx="14" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="372.5" y="156" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">PENDING_APPROVAL</text>
+<rect x="535" y="74" width="110" height="28" rx="14" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="590.0" y="92" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">APPROVED</text>
+<rect x="535" y="202" width="110" height="28" rx="14" fill="#B91C1C" stroke="#B91C1C" stroke-width="1.0"/>
+<text x="590.0" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.0" fill="#FFFFFF" font-weight="700">REJECTED</text>
+<circle cx="705" cy="88" r="8" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.4"/>
+<circle cx="705" cy="88" r="4" fill="#0B1D3A"/>
+<line x1="78" y1="152" x2="124" y2="152" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="230" y1="152" x2="294" y2="152" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<text x="262" y="146" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#0B1D3A" font-weight="400">submit()</text>
+<line x1="450" y1="145" x2="534" y2="88" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<text x="492" y="108" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#166534" font-weight="400">approve()</text>
+<line x1="450" y1="160" x2="534" y2="216" stroke="#B91C1C" stroke-width="1.2" marker-end="url(#arrow_red)"/>
+<text x="492" y="199" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.7" fill="#B91C1C" font-weight="400">reject(comment)</text>
+<line x1="645" y1="88" x2="696" y2="88" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<path d="M 535,216 L 240,216 L 240,166 L 230,166" fill="none" stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_gray)"/>
+<text x="380" y="209" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#6B7280" font-weight="400">restore originalData when update is rejected</text>
 </svg>

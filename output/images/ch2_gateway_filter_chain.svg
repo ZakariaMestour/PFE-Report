@@ -1,59 +1,51 @@
-<svg viewBox="0 0 765 345" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+<svg viewBox="0 0 820 340" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
 
-  <defs>
-    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
-    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
-    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
-    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
-  </defs>
-
-  <text x="25" y="30" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Gateway Routing and Filter Chain</text>
-  <rect x="25" y="150" width="105" height="74" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.5"/>
-  <rect x="25" y="150" width="105" height="22" rx="2" fill="#162B52"/>
-  <text x="77.5" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">REQUEST</text>
-  <text x="33" y="188" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">HTTP/API call</text>
-  <text x="33" y="201" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">multipart/JWT</text>
-  <rect x="165" y="150" width="115" height="74" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.5"/>
-  <rect x="165" y="150" width="115" height="22" rx="2" fill="#166534"/>
-  <text x="222.5" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">SECURITY</text>
-  <text x="173" y="188" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">public paths</text>
-  <text x="173" y="201" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#166534" font-weight="600">JWT validation</text>
-  <rect x="315" y="65" width="115" height="74" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.5"/>
-  <rect x="315" y="65" width="115" height="22" rx="2" fill="#C9962A"/>
-  <text x="372.5" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">FILTERS</text>
-  <text x="323" y="103" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">ClamAV scan</text>
-  <text x="323" y="116" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">bruteforce</text>
-  <rect x="315" y="205" width="115" height="74" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.5"/>
-  <rect x="315" y="205" width="115" height="22" rx="2" fill="#C9962A"/>
-  <text x="372.5" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">OBSERVE</text>
-  <text x="323" y="243" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">maintenance</text>
-  <text x="323" y="256" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">request id</text>
-  <rect x="485" y="60" width="105" height="70" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
-  <rect x="485" y="60" width="105" height="22" rx="2" fill="#0B7285"/>
-  <text x="537.5" y="75" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">/SCF</text>
-  <text x="493" y="98" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">business API</text>
-  <text x="493" y="111" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">port 8082</text>
-  <rect x="485" y="155" width="105" height="70" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
-  <rect x="485" y="155" width="105" height="22" rx="2" fill="#0B7285"/>
-  <text x="537.5" y="170" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">/FDL</text>
-  <text x="493" y="193" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">reference API</text>
-  <text x="493" y="206" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">port 8083</text>
-  <rect x="485" y="250" width="105" height="70" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
-  <rect x="485" y="250" width="105" height="22" rx="2" fill="#0B7285"/>
-  <text x="537.5" y="265" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">/PROPERTIES</text>
-  <text x="493" y="288" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">runtime config</text>
-  <text x="493" y="301" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B7285" font-weight="600">port 8084</text>
-  <rect x="635" y="155" width="105" height="70" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.5"/>
-  <rect x="635" y="155" width="105" height="22" rx="2" fill="#162B52"/>
-  <text x="687.5" y="170" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.5" fill="white" font-weight="600">EUREKA</text>
-  <text x="643" y="193" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">lb:// routing</text>
-  <text x="643" y="206" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#166534" font-weight="600">fallbacks</text>
-  <line x1="130" y1="187" x2="164" y2="187" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-  <line x1="280" y1="187" x2="314" y2="102" stroke="#C9962A" stroke-width="1.5" marker-end="url(#arrow_gold)"/>
-  <line x1="280" y1="187" x2="314" y2="242" stroke="#C9962A" stroke-width="1.5" marker-end="url(#arrow_gold)"/>
-  <path d="M 430,102 L 460,102 L 460,95 L 484,95" fill="none" stroke="#0B7285" stroke-width="1.5" marker-end="url(#arrow_green)"/>
-  <line x1="430" y1="242" x2="484" y2="285" stroke="#0B7285" stroke-width="1.5" marker-end="url(#arrow_green)"/>
-  <line x1="430" y1="187" x2="484" y2="190" stroke="#0B7285" stroke-width="1.5" marker-end="url(#arrow_green)"/>
-  <line x1="590" y1="190" x2="634" y2="190" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Gateway Routing and Filter Chain</text>
+<rect x="45" y="135" width="95" height="58" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.2"/>
+<rect x="45" y="135" width="95" height="22" rx="2" fill="#162B52" stroke="#162B52" stroke-width="1.0"/>
+<text x="92.5" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">REQUEST</text>
+<text x="53" y="173" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">browser/API</text>
+<rect x="175" y="135" width="95" height="58" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.2"/>
+<rect x="175" y="135" width="95" height="22" rx="2" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="222.5" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">AUTH</text>
+<text x="183" y="173" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">JWT / public</text>
+<rect x="305" y="135" width="95" height="58" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.2"/>
+<rect x="305" y="135" width="95" height="22" rx="2" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="352.5" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">SECURITY</text>
+<text x="313" y="173" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">ClamAV, limits</text>
+<rect x="450" y="135" width="95" height="58" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.2"/>
+<rect x="450" y="135" width="95" height="22" rx="2" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="497.5" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">ROUTING</text>
+<text x="458" y="173" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">/scf /fdl</text>
+<rect x="590" y="135" width="95" height="58" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.2"/>
+<rect x="590" y="135" width="95" height="22" rx="2" fill="#162B52" stroke="#162B52" stroke-width="1.0"/>
+<text x="637.5" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">DISCOVERY</text>
+<text x="598" y="173" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">lb:// service</text>
+<rect x="710" y="135" width="95" height="58" rx="2" fill="#F7F4EF" stroke="#B91C1C" stroke-width="1.2"/>
+<rect x="710" y="135" width="95" height="22" rx="2" fill="#B91C1C" stroke="#B91C1C" stroke-width="1.0"/>
+<text x="757.5" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">FALLBACK</text>
+<text x="718" y="173" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">resilience</text>
+<line x1="140" y1="164" x2="174" y2="164" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="270" y1="164" x2="304" y2="164" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="400" y1="164" x2="449" y2="164" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="545" y1="164" x2="589" y2="164" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="685" y1="164" x2="709" y2="164" stroke="#B91C1C" stroke-width="1.2" marker-end="url(#arrow_red)"/>
+<rect x="450" y="48" width="95" height="50" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.2"/>
+<rect x="450" y="48" width="95" height="22" rx="2" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="497.5" y="63" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">HMAC</text>
+<text x="458" y="86" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">webhooks</text>
+<path d="M 497,98 L 497,134" fill="none" stroke="#166534" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_green)"/>
+<rect x="450" y="230" width="95" height="50" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.2"/>
+<rect x="450" y="230" width="95" height="22" rx="2" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="497.5" y="245" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">Logging</text>
+<text x="458" y="268" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">correlation</text>
+<path d="M 497,193 L 497,229" fill="none" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_gold)"/>
 </svg>

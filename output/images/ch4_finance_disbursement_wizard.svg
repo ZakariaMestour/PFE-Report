@@ -1,45 +1,48 @@
-<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+<svg viewBox="0 0 820 285" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
 
-  <defs>
-    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
-    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
-    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
-  </defs>
-  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Finance Disbursement Six-Step Wizard</text>
-  <rect x="35" y="135" width="90" height="78" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
-  <rect x="35" y="135" width="90" height="22" rx="2" fill="#0B7285"/>
-  <text x="80.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">PROGRAM</text>
-  <text x="42" y="172" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">select program</text>
-  <text x="42" y="184" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">wizard pane</text>
-  <rect x="145" y="135" width="90" height="78" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
-  <rect x="145" y="135" width="90" height="22" rx="2" fill="#0B7285"/>
-  <text x="190.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">INVOICES</text>
-  <text x="152" y="172" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">eligible invoices</text>
-  <text x="152" y="184" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">wizard pane</text>
-  <rect x="255" y="135" width="90" height="78" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
-  <rect x="255" y="135" width="90" height="22" rx="2" fill="#0B7285"/>
-  <text x="300.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">FINANCE</text>
-  <text x="262" y="172" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">terms + fees</text>
-  <text x="262" y="184" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">wizard pane</text>
-  <rect x="365" y="135" width="90" height="78" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
-  <rect x="365" y="135" width="90" height="22" rx="2" fill="#C9962A"/>
-  <text x="410.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">ACCOUNTING</text>
-  <text x="372" y="172" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">debit/credit</text>
-  <text x="372" y="184" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">wizard pane</text>
-  <rect x="475" y="135" width="90" height="78" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
-  <rect x="475" y="135" width="90" height="22" rx="2" fill="#0B7285"/>
-  <text x="520.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">REPAYMENT</text>
-  <text x="482" y="172" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">schedule</text>
-  <text x="482" y="184" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">wizard pane</text>
-  <rect x="585" y="135" width="90" height="78" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
-  <rect x="585" y="135" width="90" height="22" rx="2" fill="#C9962A"/>
-  <text x="630.0" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">REVIEW</text>
-  <text x="592" y="172" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">submit</text>
-  <text x="592" y="184" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#C9962A" font-weight="600">wizard pane</text>
-  <line x1="125" y1="174" x2="144" y2="174" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-  <line x1="235" y1="174" x2="254" y2="174" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-  <line x1="345" y1="174" x2="364" y2="174" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-  <line x1="455" y1="174" x2="474" y2="174" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-  <line x1="565" y1="174" x2="584" y2="174" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Finance Disbursement Wizard - Corrected Step Order</text>
+<circle cx="80" cy="100" r="20" fill="#0B7285" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="80" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#FFFFFF" font-weight="700">1</text>
+<rect x="25" y="145" width="110" height="60" rx="2" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="80" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B7285" font-weight="700">Program /</text>
+<text x="80" y="181" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B7285" font-weight="700">Product</text>
+<circle cx="210" cy="100" r="20" fill="#0B7285" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="210" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#FFFFFF" font-weight="700">2</text>
+<rect x="155" y="145" width="110" height="60" rx="2" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="210" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B7285" font-weight="700">Invoice</text>
+<text x="210" y="181" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B7285" font-weight="700">Selection</text>
+<circle cx="340" cy="100" r="20" fill="#0B7285" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="340" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#FFFFFF" font-weight="700">3</text>
+<rect x="285" y="145" width="110" height="60" rx="2" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="340" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B7285" font-weight="700">Finance</text>
+<text x="340" y="181" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B7285" font-weight="700">Details</text>
+<circle cx="470" cy="100" r="20" fill="#166534" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="470" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#FFFFFF" font-weight="700">4</text>
+<rect x="415" y="145" width="110" height="60" rx="2" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
+<text x="470" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#166534" font-weight="700">Repayment</text>
+<text x="470" y="181" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#166534" font-weight="700">Details</text>
+<circle cx="600" cy="100" r="20" fill="#C9962A" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="600" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#FFFFFF" font-weight="700">5</text>
+<rect x="545" y="145" width="110" height="60" rx="2" fill="#FFFFFF" stroke="#C9962A" stroke-width="1.2"/>
+<text x="600" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#C9962A" font-weight="700">Accounting</text>
+<text x="600" y="181" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#C9962A" font-weight="700">Entries</text>
+<circle cx="730" cy="100" r="20" fill="#0B1D3A" stroke="#0B1D3A" stroke-width="1.0"/>
+<text x="730" y="106" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#FFFFFF" font-weight="700">6</text>
+<rect x="675" y="145" width="110" height="60" rx="2" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
+<text x="730" y="168" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B1D3A" font-weight="700">Review /</text>
+<text x="730" y="181" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.4" fill="#0B1D3A" font-weight="700">Submit</text>
+<line x1="100" y1="100" x2="189" y2="100" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="230" y1="100" x2="319" y2="100" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="360" y1="100" x2="449" y2="100" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="490" y1="100" x2="579" y2="100" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="620" y1="100" x2="709" y2="100" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<text x="410" y="238" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B1D3A" font-weight="700">The repayment schedule is prepared before accounting entries and final submission.</text>
 </svg>

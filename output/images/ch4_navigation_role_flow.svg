@@ -1,46 +1,47 @@
-<svg viewBox="0 0 690 330" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+<svg viewBox="0 0 760 360" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
 
-  <defs>
-    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
-    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
-    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
-  </defs>
-
-  <text x="25" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Frontend Routing and Role-Based Navigation</text>
-  <rect x="35" y="145" width="110" height="78" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
-  <rect x="35" y="145" width="110" height="22" rx="2" fill="#0B7285"/>
-  <text x="90.0" y="160" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">APP_TSX</text>
-  <text x="42" y="182" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">providers</text>
-  <text x="42" y="194" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">routes</text>
-  <rect x="185" y="70" width="115" height="78" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.4"/>
-  <rect x="185" y="70" width="115" height="22" rx="2" fill="#166534"/>
-  <text x="242.5" y="85" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">AUTH</text>
-  <text x="192" y="107" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">PKCE callback</text>
-  <text x="192" y="119" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#166534" font-weight="600">token storage</text>
-  <rect x="185" y="220" width="115" height="78" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
-  <rect x="185" y="220" width="115" height="22" rx="2" fill="#162B52"/>
-  <text x="242.5" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">AUTH_GUARD</text>
-  <text x="192" y="257" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">isAuthenticated</text>
-  <text x="192" y="269" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">redirect /auth</text>
-  <rect x="345" y="145" width="115" height="78" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.4"/>
-  <rect x="345" y="145" width="115" height="22" rx="2" fill="#0B7285"/>
-  <text x="402.5" y="160" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">INDEX</text>
-  <text x="352" y="182" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">AppSidebar</text>
-  <text x="352" y="194" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">selectedModule</text>
-  <rect x="505" y="70" width="115" height="78" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.4"/>
-  <rect x="505" y="70" width="115" height="22" rx="2" fill="#C9962A"/>
-  <text x="562.5" y="85" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">BUSINESS_VIEW</text>
-  <text x="512" y="107" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">BANK</text>
-  <text x="512" y="119" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">ANCHOR/CP</text>
-  <rect x="505" y="220" width="145" height="78" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.4"/>
-  <rect x="505" y="220" width="145" height="22" rx="2" fill="#162B52"/>
-  <text x="577.5" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="white" font-weight="600">FEATURE_MODULES</text>
-  <text x="512" y="257" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#6B7280" font-weight="400">dashboard/master</text>
-  <text x="512" y="269" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B7285" font-weight="600">invoice/disburse</text>
-  <line x1="145" y1="164" x2="184" y2="109" stroke="#166534" stroke-width="1.4" marker-end="url(#arrow_green)"/>
-  <line x1="145" y1="204" x2="184" y2="259" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-  <line x1="300" y1="259" x2="344" y2="184" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-  <line x1="460" y1="164" x2="504" y2="109" stroke="#C9962A" stroke-width="1.4" marker-end="url(#arrow_gold)"/>
-  <line x1="460" y1="204" x2="504" y2="259" stroke="#0B1D3A" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
-
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Frontend Routing and Role-Based Navigation</text>
+<rect x="55" y="150" width="120" height="58" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.2"/>
+<rect x="55" y="150" width="120" height="22" rx="2" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="115.0" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">App.tsx</text>
+<text x="63" y="188" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">providers</text>
+<text x="63" y="200" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">routes</text>
+<rect x="230" y="75" width="135" height="58" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.2"/>
+<rect x="230" y="75" width="135" height="22" rx="2" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="297.5" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">KeycloakAuth</text>
+<text x="238" y="113" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">PKCE callback</text>
+<text x="238" y="125" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">tokens</text>
+<rect x="230" y="230" width="135" height="58" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.2"/>
+<rect x="230" y="230" width="135" height="22" rx="2" fill="#162B52" stroke="#162B52" stroke-width="1.0"/>
+<text x="297.5" y="245" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">AuthGuard</text>
+<text x="238" y="268" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">protected route</text>
+<text x="238" y="280" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">redirect</text>
+<rect x="420" y="150" width="120" height="58" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.2"/>
+<rect x="420" y="150" width="120" height="22" rx="2" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="480.0" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">Index.tsx</text>
+<text x="428" y="188" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">sidebar</text>
+<text x="428" y="200" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">selectedModule</text>
+<rect x="595" y="75" width="120" height="58" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.2"/>
+<rect x="595" y="75" width="120" height="22" rx="2" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="655.0" y="90" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">BusinessView</text>
+<text x="603" y="113" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">BANK</text>
+<text x="603" y="125" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">ANCHOR / CP</text>
+<rect x="595" y="230" width="120" height="58" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.2"/>
+<rect x="595" y="230" width="120" height="22" rx="2" fill="#162B52" stroke="#162B52" stroke-width="1.0"/>
+<text x="655.0" y="245" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">Modules</text>
+<text x="603" y="268" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">dashboard</text>
+<text x="603" y="280" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">SCF flows</text>
+<line x1="175" y1="165" x2="229" y2="104" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<line x1="175" y1="193" x2="229" y2="259" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="365" y1="259" x2="419" y2="193" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="540" y1="165" x2="594" y2="104" stroke="#C9962A" stroke-width="1.2" marker-end="url(#arrow_gold)"/>
+<line x1="540" y1="193" x2="594" y2="259" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
 </svg>

@@ -1,55 +1,50 @@
-<svg viewBox="0 0 770 325" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+<svg viewBox="0 0 780 360" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
 
-  <defs>
-    <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/>
-    </marker>
-    <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/>
-    </marker>
-    <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/>
-    </marker>
-    <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
-      <path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/>
-    </marker>
-  </defs>
-
-  <text x="25" y="30" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Daily Development and Validation Workflow</text>
-  <rect x="25" y="120" width="120" height="74" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.5"/>
-  <rect x="25" y="120" width="120" height="22" rx="2" fill="#162B52"/>
-  <text x="85.0" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="white" font-weight="600">JIRA</text>
-  <text x="33" y="158" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280" font-weight="400">ticket assigned</text>
-  <text x="33" y="171" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280" font-weight="400">sprint scope</text>
-  <rect x="175" y="120" width="120" height="74" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
-  <rect x="175" y="120" width="120" height="22" rx="2" fill="#0B7285"/>
-  <text x="235.0" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="white" font-weight="600">DEV</text>
-  <text x="183" y="158" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280" font-weight="400">backend/frontend</text>
-  <text x="183" y="171" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0B7285" font-weight="600">implementation</text>
-  <rect x="325" y="120" width="120" height="74" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
-  <rect x="325" y="120" width="120" height="22" rx="2" fill="#0B7285"/>
-  <text x="385.0" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="white" font-weight="600">BITBUCKET</text>
-  <text x="333" y="158" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280" font-weight="400">branch push</text>
-  <text x="333" y="171" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280" font-weight="400">PR opened</text>
-  <rect x="475" y="120" width="120" height="74" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.5"/>
-  <rect x="475" y="120" width="120" height="22" rx="2" fill="#0B7285"/>
-  <text x="535.0" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="white" font-weight="600">PR_REVIEW</text>
-  <text x="483" y="158" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280" font-weight="400">tech lead</text>
-  <text x="483" y="171" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#0B7285" font-weight="600">approve/request</text>
-  <rect x="625" y="120" width="120" height="74" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.5"/>
-  <rect x="625" y="120" width="120" height="22" rx="2" fill="#162B52"/>
-  <text x="685.0" y="135" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="white" font-weight="600">TESTER</text>
-  <text x="633" y="158" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280" font-weight="400">verification</text>
-  <text x="633" y="171" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#166534" font-weight="600">ticket closure</text>
-  <line x1="145" y1="157" x2="174" y2="157" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-  <line x1="295" y1="157" x2="324" y2="157" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-  <line x1="445" y1="157" x2="474" y2="157" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-  <line x1="595" y1="157" x2="624" y2="157" stroke="#0B1D3A" stroke-width="1.5" marker-end="url(#arrow_navy)"/>
-  <rect x="475" y="245" width="120" height="48" rx="2" fill="#F0EDE8" stroke="#C9962A" stroke-width="1.5"/>
-  <text x="535" y="265" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#C9962A" font-weight="600">MODIFICATION</text>
-  <text x="483" y="281" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#6B7280">comments returned</text>
-  <path d="M 535,245 L 535,195" fill="none" stroke="#C9962A" stroke-width="1.5" marker-end="url(#arrow_gold)"/>
-  <path d="M 475,269 L 235,269 L 235,195" fill="none" stroke="#C9962A" stroke-width="1.5" marker-end="url(#arrow_gold)"/>
-  <text x="355" y="263" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#C9962A">review loop</text>
-
+<defs>
+  <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
+  <marker id="arrow_teal" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B7285"/></marker>
+  <marker id="arrow_gold" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C9962A"/></marker>
+  <marker id="arrow_green" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#166534"/></marker>
+  <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
+  <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
+</defs>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Daily Development and Validation Workflow</text>
+<rect x="30" y="58" width="710" height="68" rx="2" fill="#F0EDE8" stroke="#D4D0C8" stroke-width="1"/>
+<text x="60" y="96" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B1D3A" font-weight="700">Developer</text>
+<rect x="30" y="142" width="710" height="68" rx="2" fill="#F7F4EF" stroke="#D4D0C8" stroke-width="1"/>
+<text x="60" y="180" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B1D3A" font-weight="700">Tech Lead</text>
+<rect x="30" y="226" width="710" height="68" rx="2" fill="#F0EDE8" stroke="#D4D0C8" stroke-width="1"/>
+<text x="60" y="264" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#166534" font-weight="700">Tester</text>
+<rect x="150" y="70" width="110" height="46" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.2"/>
+<rect x="150" y="70" width="110" height="22" rx="2" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="205.0" y="85" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">JIRA</text>
+<text x="158" y="108" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">ticket</text>
+<rect x="310" y="70" width="130" height="46" rx="2" fill="#F7F4EF" stroke="#0B7285" stroke-width="1.2"/>
+<rect x="310" y="70" width="130" height="22" rx="2" fill="#0B7285" stroke="#0B7285" stroke-width="1.0"/>
+<text x="375.0" y="85" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">IMPLEMENT</text>
+<text x="318" y="108" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">backend + UI</text>
+<rect x="500" y="70" width="110" height="46" rx="2" fill="#F7F4EF" stroke="#0B1D3A" stroke-width="1.2"/>
+<rect x="500" y="70" width="110" height="22" rx="2" fill="#162B52" stroke="#162B52" stroke-width="1.0"/>
+<text x="555.0" y="85" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">PUSH</text>
+<text x="508" y="108" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">Bitbucket</text>
+<rect x="310" y="154" width="130" height="46" rx="2" fill="#F7F4EF" stroke="#C9962A" stroke-width="1.2"/>
+<rect x="310" y="154" width="130" height="22" rx="2" fill="#C9962A" stroke="#C9962A" stroke-width="1.0"/>
+<text x="375.0" y="169" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">PR REVIEW</text>
+<text x="318" y="192" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">comments</text>
+<rect x="500" y="154" width="110" height="46" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.2"/>
+<rect x="500" y="154" width="110" height="22" rx="2" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="555.0" y="169" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">MERGE</text>
+<text x="508" y="192" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">approved</text>
+<rect x="500" y="238" width="110" height="46" rx="2" fill="#F7F4EF" stroke="#166534" stroke-width="1.2"/>
+<rect x="500" y="238" width="110" height="22" rx="2" fill="#166534" stroke="#166534" stroke-width="1.0"/>
+<text x="555.0" y="253" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8.2" fill="#FFFFFF" font-weight="700">VERIFY</text>
+<text x="508" y="276" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#6B7280" font-weight="400">QA result</text>
+<line x1="260" y1="93" x2="309" y2="93" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<line x1="440" y1="93" x2="499" y2="93" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<path d="M 555,116 L 555,154" fill="none" stroke="#C9962A" stroke-width="1.2" marker-end="url(#arrow_gold)"/>
+<line x1="440" y1="177" x2="499" y2="177" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<path d="M 365,154 L 365,128 L 365,117" fill="none" stroke="#C9962A" stroke-width="1.2" marker-end="url(#arrow_gold)"/>
+<path d="M 555,200 L 555,238" fill="none" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<path d="M 500,262 L 450,262 L 450,177 L 441,177" fill="none" stroke="#B91C1C" stroke-width="1.0" stroke-dasharray="5 3" marker-end="url(#arrow_red)"/>
+<text x="420" y="252" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#B91C1C" font-weight="400">fix if rejected</text>
 </svg>
