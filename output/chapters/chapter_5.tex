@@ -4,9 +4,9 @@
 \section{Introduction}
 \label{sec:ch5_introduction}
 
-The previous chapters described the platform from the outside inward: business context, technical architecture, backend domain model, and frontend user flows. This chapter focuses on the academic project assigned during the internship: the Disbursement Module. In the SCF chain, this module is the moment where a validated financing intention becomes an operational request. The user no longer configures a product or uploads invoice data only for preparation. The user selects eligible invoices, checks the financing terms, reviews the generated accounting and repayment information, and submits the request into a governed lifecycle.
+The previous chapters described the platform, its technical base, and the main user flows. This chapter focuses on the academic project assigned during the internship: the Disbursement Module. In Supply Chain Finance, disbursement is not just a button that sends money. It is the controlled execution of a financing decision after an invoice becomes eligible, a program rule is applied, and the bank accepts the payment operation.
 
-The module was not developed in isolation from the real platform. It was studied alongside daily sprint work on the Supply Chain Finance platform at Adria. At the same time, the project context imposed a clear boundary: the main platform had not yet reached the sprint milestone where the Disbursement Module would be injected natively into the architecture. The work therefore combined functional analysis, target design, UI-oriented implementation, service-contract preparation, and weekly validation with the Product Owner.
+The Product Owner refinement sessions clarified the module progressively. Some early assumptions were corrected, and the final business vocabulary became sharper: \texttt{Program}, \texttt{Invoice}, \texttt{Disbursement}, \texttt{FinanceRecord}, and \texttt{Transaction} are distinct concepts. A separate \texttt{FinanceRequest} entity was removed from the model. The \texttt{Disbursement} entity itself carries the information needed to represent the financing request, especially its mode and source.
 
 \section{Context and Motivation}
 \label{sec:ch5_context_motivation}
@@ -14,48 +14,37 @@ The module was not developed in isolation from the real platform. It was studied
 \subsection{Position in the SCF Value Chain}
 \label{subsec:ch5_value_chain}
 
-Disbursement appears after several upstream conditions have been prepared. A product must exist. A program must bind the anchor, counterparties, finance limits, currencies, dates, fees, disbursement rules, and repayment rules. Invoices or cashflows must be uploaded, validated, and associated with the program. Only then can the financing request be assembled.
+The platform supports invoice financing between a supplier, a buyer, and a bank. A supplier delivers goods or services and issues an invoice. Instead of waiting until maturity, the supplier may receive money earlier. Depending on the program, the financing can be buyer-anchored or supplier-anchored. In a buyer-anchored program, also known as reverse factoring, the buyer's credit profile drives the financing conditions. In a supplier-anchored program, the supplier's credit quality and the buyer's payment history influence the rate and risk model.
 
-Figure~\ref{fig:ch5_value_chain_map} shows the target position of the module inside the SCF value chain. The Disbursement Module consumes program rules, eligible invoices, product context, and fee configuration. Its outputs are not limited to a simple payment request. They include accounting entries, a repayment schedule, and an approval lifecycle state.
+The Product Owner also confirmed three request types available on a lodged invoice: early payment, request finance, and request payment. Early payment and request payment do not create a bank disbursement. Request finance does. That boundary matters because the Disbursement Module owns the bank payment execution path, while early payment remains a buyer-supplier settlement flow.
 
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_value_chain_map.png}
-    \caption{Disbursement Module position inside the SCF value chain}
-    \label{fig:ch5_value_chain_map}
-\end{figure}
+    \caption{Request types available on a lodged invoice}
+    \label{tab:ch5_request_types}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.22\textwidth} Y C{0.20\textwidth} C{0.22\textwidth}}
+        \standardtablehead{\textbf{Request type} & \textbf{Parties involved} & \textbf{Bank involved} & \textbf{Invoice final state}}
+        Early payment & Buyer and supplier only & No & \texttt{MANUALLY\_PAID} \\
+        Request finance & Supplier and bank, with buyer obligation behind the invoice & Yes & \texttt{FINANCED} \\
+        Request payment & Buyer pays manually & No & \texttt{MANUALLY\_PAID} \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
 
-This position explains why the module is sensitive. A wrong program selection, an ineligible invoice, a mistaken finance percentage, or an incorrect fee basis can affect the bank's exposure and the customer's payment schedule. The interface and backend contract must therefore guide the user step by step instead of asking for an unstructured manual request.
+\subsection{Architecture Boundary of the Module}
+\label{subsec:ch5_architecture_boundary}
 
-\subsection{Why the Module Was Treated as Parallel Work}
-\label{subsec:ch5_parallel_work}
+The new context confirms that the current SCF backend is a single deployable service organized into internal modules. The Disbursement Module therefore belongs inside \texttt{scf-service}, alongside the Program, Invoice, Finance, Repayment, Counterparty, and Transaction-related modules. The platform still uses Spring Cloud infrastructure around this service: \texttt{adria-gateway}, \texttt{adria-config}, and \texttt{adria-registry}. This choice keeps the product ready for future services without forcing the current business model into unnecessary service splitting.
 
-During the internship, the SCF platform was still moving from early sprints toward a broader functional perimeter. The core team had not yet reached the integration sprint planned for the Disbursement Module. For this reason, the academic project was organized as parallel work. It advanced during available sprint gaps, after assigned Jira tickets, and through weekly refinement sessions with the Product Owner.
+The module boundary rule is simple: internal modules do not call each other's repositories directly. Cross-module communication must go through service interfaces. For the Disbursement Module, this means invoice eligibility, program configuration, transaction creation, and finance-record creation must be coordinated through application services rather than direct persistence shortcuts.
 
-This setup shaped the work. The module had to remain realistic enough to match the existing platform, but flexible enough to absorb future backend decisions. The existing codebase already contained useful anchors: \texttt{FinanceDisbursementModal}, its six panes, \texttt{invoiceDisbursementService}, \texttt{financeDisbursementService}, and the TypeScript model \texttt{FinanceDisbursement}. These elements provided a visible target for the user flow, even while the native backend integration still needed a finalized contract.
+\subsection{Access Symmetry}
+\label{subsec:ch5_access_symmetry}
 
-\subsection{Relationship with the Existing Platform}
-\label{subsec:ch5_existing_platform_relation}
+One Product Owner decision changed the initial understanding of the actors: both buyer and seller can initiate the three request types. In buyer-anchored programs, the supplier may not be a bank client and may not have platform access. In that case, the buyer can act on the supplier's behalf. In supplier-anchored programs, the seller can initiate request payment, receive a payment identifier, and communicate it to the buyer outside the platform.
 
-The Disbursement Module depends on the same platform foundations described earlier in this report:
-
-\begin{itemize}
-    \item authentication and role-based access through Keycloak;
-    \item gateway routing through the \texttt{/scf/} prefix;
-    \item program configuration and invoice/cashflow data from the SCF service;
-    \item maker/checker governance for sensitive banking actions;
-    \item typed frontend services built on the shared Axios client;
-    \item transaction inquiry screens used to consult the final operational record.
-\end{itemize}
-
-Figure~\ref{fig:ch5_integration_roadmap} summarizes the integration roadmap. The current academic report captures the design and the visible target flow. The native insertion into the production architecture remains a future sprint activity to be aligned with the final backend contract.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_integration_roadmap.png}
-    \caption{Roadmap from refinement work to native platform integration}
-    \label{fig:ch5_integration_roadmap}
-\end{figure}
+This access symmetry has design consequences. The module cannot be modeled as a supplier-only flow. It must respect the user's role, program type, and invoice state at the same time.
 
 \section{Requirements and Functional Specification}
 \label{sec:ch5_requirements}
@@ -63,252 +52,243 @@ Figure~\ref{fig:ch5_integration_roadmap} summarizes the integration roadmap. The
 \subsection{Functional Requirements}
 \label{subsec:ch5_functional_requirements}
 
-The functional scope was derived from Product Owner discussions, existing platform modules, and the frontend flow already present in the repository. The target user is mainly a bank-side user, because disbursement is an operational banking action that requires control over program context, invoice eligibility, finance terms, accounting consequences, and approval status.
-
-[Insert functional requirements validated by the Product Owner]
+The core requirement is to create and execute a disbursement when a financing request is valid. The user can request financing manually, or the system can create an automatic disbursement when the program is configured for it. In both cases, the same eligibility logic protects the bank from financing an invoice outside program limits.
 
 \begin{table}[H]
     \centering
-    \caption{Target functional requirements for the Disbursement Module}
+    \caption{Functional requirements of the Disbursement Module}
     \label{tab:ch5_functional_requirements}
     \standardtable
-    \begin{tabularx}{\textwidth}{B{0.24\textwidth} Y}
+    \begin{tabularx}{\textwidth}{B{0.27\textwidth} Y}
         \standardtablehead{\textbf{Requirement} & \textbf{Description}}
-        Program and product selection & The user selects the financing program and product context before loading invoices. \\
-        Invoice eligibility loading & The module retrieves invoices that can be considered for financing under the selected program. \\
-        Invoice selection & The user selects one or several eligible invoices to include in the request. \\
-        Finance terms capture & The module captures financing amount, dates, rates, and other terms required by the program rules. \\
-        Fee breakdown display & Fees are derived from the program fee catalogue and displayed before submission. \\
-        Accounting entry generation & Debit and credit entries are prepared and shown to the user for review. \\
-        Repayment schedule preparation & The repayment plan is configured or generated according to program rules. \\
-        Final review and submission & The user reviews the full request and submits it into a controlled lifecycle. \\
+        Manual request finance & Allow a user to select one or more lodged invoices and request financing. \\
+        Individual mode & Create one disbursement per selected invoice. A failure on one invoice does not block the others. \\
+        Clubbed mode & Create one disbursement for a group of selected invoices and one finance record covering them. \\
+        Automatic disbursement & Trigger disbursement automatically when \texttt{program.autoDisbursement = true} and an invoice reaches \texttt{LODGED}. \\
+        Eligibility checks & Run the four confirmed checks before any disbursement is created. \\
+        Payment gateway submission & Submit the payment request to the external Payment Gateway and store the returned \texttt{paymentRef}. \\
+        Async confirmation & Process the Payment Gateway callback through the gateway and Kafka before changing the disbursement state. \\
+        Finance record creation & Create the \texttt{FinanceRecord} only when the disbursement reaches \texttt{SUCCESS}. \\
     \end{tabularx}
     \standardtableend
 \end{table}
+
+[Insert formal UML use case diagram for the Disbursement Module]
+
+\subsection{Eligibility Rules}
+\label{subsec:ch5_eligibility_rules}
+
+The eligibility engine runs four checks in sequence. All of them must pass. These checks are not cosmetic validation. They control the bank's exposure to invoice amount, program portfolio cap, requested amount, and tenor.
+
+\begin{table}[H]
+    \centering
+    \caption{Confirmed eligibility checks}
+    \label{tab:ch5_eligibility_checks}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.14\textwidth} Y B{0.30\textwidth}}
+        \standardtablehead{\textbf{Check} & \textbf{Condition} & \textbf{Rejection code}}
+        C1 & \texttt{remaining\_eligible\_amount > 0} & \texttt{ELIGIBILITY\_QUOTA\_EXHAUSTED} \\
+        C2 & \texttt{program\_disbursement\_count < program.maxDisbursement} & \texttt{PROGRAM\_CAP\_REACHED} \\
+        C3 & \texttt{requestedAmount <= remaining\_eligible\_amount} & \texttt{ELIGIBILITY\_AMOUNT\_EXCEEDED} \\
+        C4 & \texttt{invoice\_tenor <= program.maxTenorDays} & \texttt{TENOR\_EXCEEDED} \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+The second rule was corrected during refinement. \texttt{maxDisbursement} is not a per-invoice counter. It is a program-level cap. Once the cap is reached, every lodged invoice in the program becomes ineligible until the business defines a later release or override mechanism.
+
+\begin{algorithm}[H]
+    \DontPrintSemicolon
+    \Data{Program, invoice, requested amount, existing successful disbursements}
+    \Result{Eligibility decision and rejection code if any}
+    \BlankLine
+    Compute \texttt{financed\_amount\_total} for the invoice\;
+    Compute \texttt{max\_financeable\_amount = invoice.amount * program.financePercent}\;
+    Compute \texttt{remaining\_eligible\_amount}\;
+    Count successful disbursements already created under the program\;
+    \If{\texttt{remaining\_eligible\_amount <= 0}}{
+        Reject with \texttt{ELIGIBILITY\_QUOTA\_EXHAUSTED}\;
+    }
+    \If{\texttt{program\_disbursement\_count >= program.maxDisbursement}}{
+        Reject with \texttt{PROGRAM\_CAP\_REACHED}\;
+    }
+    \If{\texttt{requestedAmount > remaining\_eligible\_amount}}{
+        Reject with \texttt{ELIGIBILITY\_AMOUNT\_EXCEEDED}\;
+    }
+    \If{\texttt{invoice\_tenor > program.maxTenorDays}}{
+        Reject with \texttt{TENOR\_EXCEEDED}\;
+    }
+    Return eligible\;
+    \caption{Disbursement eligibility evaluation}
+    \label{alg:ch5_eligibility}
+\end{algorithm}
 
 \subsection{Non-functional Requirements}
 \label{subsec:ch5_non_functional_requirements}
 
-The module also carries non-functional expectations because it belongs to a banking platform. It must be traceable, secure, consistent, and clear under validation failure. A user should not be able to submit a request based on missing program data or invalid invoice selection. The frontend must show the issue early, while the backend remains the final authority for validation.
-
-\begin{table}[H]
-    \centering
-    \caption{Non-functional expectations}
-    \label{tab:ch5_non_functional_requirements}
-    \standardtable
-    \begin{tabularx}{\textwidth}{B{0.25\textwidth} Y}
-        \standardtablehead{\textbf{Expectation} & \textbf{Meaning for the module}}
-        Security & Access must follow bank roles and authenticated gateway calls. \\
-        Traceability & Submitted requests must be linkable to user, program, invoices, and lifecycle actions. \\
-        Consistency & Finance terms, fees, accounting entries, and repayment schedule must be generated from the same request context. \\
-        Usability & The wizard must reduce cognitive load by separating selection, calculation, review, and submission. \\
-        Validation resilience & The UI should expose validation errors without losing the user's input when correction is possible. \\
-    \end{tabularx}
-    \standardtableend
-\end{table}
-
-\subsection{Actors and Use Cases}
-\label{subsec:ch5_actors_use_cases}
-
-The module's main actors are the bank maker or officer who prepares the disbursement, the bank checker who reviews governed actions, and the platform services that provide program, invoice, fee, and transaction data. Anchor and counterparty users may consult related transactions depending on the platform's final role matrix, but the preparation and validation of disbursement remains bank-centered in the current target.
-
-\begin{table}[H]
-    \centering
-    \caption{Actors involved in the Disbursement Module}
-    \label{tab:ch5_actors}
-    \standardtable
-    \begin{tabularx}{\textwidth}{B{0.25\textwidth} Y}
-        \standardtablehead{\textbf{Actor} & \textbf{Expected interaction}}
-        Bank maker or officer & Prepares the disbursement request, selects invoices, reviews computed details, and submits. \\
-        Bank checker & Reviews pending requests when maker/checker governance applies. \\
-        SCF service & Validates business rules, persists request data, and manages lifecycle transitions. \\
-        Gateway & Routes authenticated requests to the SCF service through the standard \texttt{/scf/} path. \\
-        Transaction inquiry user & Consults the resulting transaction and its related details after processing. \\
-    \end{tabularx}
-    \standardtableend
-\end{table}
+The module also carries non-functional expectations. Security is handled through Keycloak roles and gateway validation. Payment callback integrity is protected through HMAC signature verification. Traceability is handled through transaction records and state changes. Reliability depends on Kafka because the Payment Gateway confirmation arrives asynchronously and must not be lost if the consumer is temporarily unavailable.
 
 \section{Design}
 \label{sec:ch5_design}
 
-\subsection{Module Architecture}
-\label{subsec:ch5_module_architecture}
+\subsection{Domain Model}
+\label{subsec:ch5_domain_model}
 
-The target architecture follows the platform's established pattern. The React interface uses a multi-pane wizard. The wizard calls typed service functions. The service functions use the shared Axios client, which sends authenticated requests through the gateway. The gateway routes \texttt{/scf/} calls to the SCF service. The backend then validates and persists the disbursement request using the program, invoice, fee, accounting, and repayment context.
-
-The existing frontend already reflects this structure through \texttt{FinanceDisbursementModal}. Its panes form a natural module boundary:
-
-\begin{itemize}
-    \item \texttt{ProgramProductSelectionPane}: selects the program and product context;
-    \item \texttt{InvoiceSelectionPane}: loads and selects eligible invoices;
-    \item \texttt{FinanceDetailsPane}: captures financing terms and fee breakdown;
-    \item \texttt{AccountingEntriesPane}: displays debit and credit lines;
-    \item \texttt{RepaymentDetailsPane}: prepares the repayment schedule;
-    \item \texttt{ReviewSubmitPane}: reviews and submits the request.
-\end{itemize}
-
-[Insert screenshot of the Disbursement Module prototype or implemented screen]
-
-\subsection{Data Model}
-\label{subsec:ch5_data_model}
-
-The final backend entity model for the module still needs confirmation once native integration is planned. The available TypeScript model gives a useful target shape: a finance disbursement relates to a program, a product, one or more invoice identifiers, finance terms, fee breakdowns, accounting entries, repayment entries, and approval history.
-
-[Insert Disbursement Module data model once finalized]
+The confirmed business layer contains five distinct entities. Mixing them would produce a wrong model. A \texttt{Program} governs financing rules. An \texttt{Invoice} is the commercial document. A \texttt{Disbursement} is the payment execution record. A \texttt{FinanceRecord} tracks what the buyer owes the bank after successful disbursement. A \texttt{Transaction} is the business ledger entry visible in inquiry screens.
 
 \begin{table}[H]
     \centering
-    \caption{Target data groups for a finance disbursement}
-    \label{tab:ch5_data_groups}
+    \caption{Core entities of the Disbursement Module}
+    \label{tab:ch5_core_entities}
     \standardtable
-    \begin{tabularx}{\textwidth}{B{0.25\textwidth} Y}
-        \standardtablehead{\textbf{Data group} & \textbf{Purpose}}
-        Program and product context & Identifies the financing arrangement under which the request is made. \\
-        Selected invoices & Stores the invoices included in the financing request. \\
-        Finance terms & Captures amount, currency, value dates, rates, and calculation inputs. \\
-        Fee breakdown & Shows charges derived from the program's fee catalogue. \\
-        Accounting entries & Represents the debit and credit lines expected from the request. \\
-        Repayment schedule & Defines repayment dates, amounts, and statuses. \\
-        Approval history & Tracks maker/checker actions, comments, and status evolution. \\
+    \begin{tabularx}{\textwidth}{B{0.22\textwidth} Y}
+        \standardtablehead{\textbf{Entity} & \textbf{Confirmed role}}
+        Program & Central configuration object. Defines program type, finance percentage, maximum disbursement cap, tenor limit, and automatic disbursement flag. \\
+        Invoice & Commercial document that becomes financeable when it reaches \texttt{LODGED} and passes eligibility checks. \\
+        Disbursement & Payment execution record. Carries \texttt{mode}, \texttt{source}, \texttt{state}, \texttt{amount}, \texttt{paymentRef}, and failure reason. \\
+        FinanceRecord & Bank repayment tracker created only after a successful disbursement. It is the handoff artifact to the repayment module. \\
+        Transaction & Business ledger entry used by dashboards and transaction inquiry. It records invoice, disbursement, repayment, and early payment movements. \\
     \end{tabularx}
     \standardtableend
 \end{table}
 
-\subsection{API Design}
-\label{subsec:ch5_api_design}
+[Insert formal UML class diagram for Disbursement domain with Program, Invoice, Disbursement, FinanceRecord, Transaction, associations, and multiplicities]
 
-The frontend service mapping identifies the target endpoint family as \texttt{/scf/finance/disbursements}. The expected creation action is represented by \texttt{financeDisbursementService.createDisbursement()}, which submits the prepared payload to the backend. The backend is expected to process the request, create a draft record, and then participate in the submission and approval lifecycle.
+The following relationship decisions are confirmed:
 
-[Insert Disbursement API endpoints once finalized]
+\begin{itemize}
+    \item one \texttt{Program} has one or many \texttt{Invoice} records;
+    \item one \texttt{Program} has zero or many \texttt{Disbursement} records;
+    \item one \texttt{Disbursement} covers one or many invoices, depending on \texttt{INDIVIDUAL} or \texttt{CLUBBED} mode;
+    \item one successful \texttt{Disbursement} creates zero or one \texttt{FinanceRecord};
+    \item \texttt{Invoice}, \texttt{Disbursement}, and \texttt{FinanceRecord} generate visible \texttt{Transaction} records.
+\end{itemize}
 
-[Insert screenshot of Disbursement API Swagger endpoints]
+\subsection{Invoice and Disbursement State Machines}
+\label{subsec:ch5_state_machines}
+
+The invoice lifecycle uses one main \texttt{status} field. A separate \texttt{invoice\_amount\_state} is used only when the invoice is financed, to distinguish whether the bank is still waiting for repayment or has already been repaid.
 
 \begin{table}[H]
     \centering
-    \caption{Target API contract candidates}
-    \label{tab:ch5_api_candidates}
+    \caption{Disbursement lifecycle states}
+    \label{tab:ch5_disbursement_states}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.27\textwidth} Y}
+        \standardtablehead{\textbf{State} & \textbf{Meaning}}
+        \texttt{INITIATED} & Disbursement record created and payment submission attempted. A synchronous 422 from the gateway sends it directly to \texttt{FAILED}. \\
+        \texttt{PENDING\_CONFIRMATION} & Payment Gateway returned 202 Accepted. The \texttt{paymentRef} is stored while the system waits for async callback. \\
+        \texttt{SUCCESS} & Payment Gateway callback confirmed execution. Finance record and transaction effects are triggered. \\
+        \texttt{FAILED} & The request failed either immediately or through async callback. The invoice remains \texttt{LODGED} and can be retried. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+[Insert formal UML state machine diagram for Disbursement lifecycle: initial, INITIATED, PENDING\_CONFIRMATION, SUCCESS, FAILED, and transition labels]
+
+\subsection{Manual and Automatic Disbursement}
+\label{subsec:ch5_manual_auto_disbursement}
+
+Manual disbursement starts from user action. The user selects one or more lodged invoices, chooses \texttt{INDIVIDUAL} or \texttt{CLUBBED}, and enters the requested amount. The eligibility checks run before the disbursement is created. Figure~\ref{fig:ch5_manual_disbursement_screen} shows the manual disbursement wizard in the platform.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_manual_disbursement.png}
+    \caption{Manual disbursement wizard in the SCF platform}
+    \label{fig:ch5_manual_disbursement_screen}
+\end{figure}
+
+Automatic disbursement starts without user interaction when \texttt{program.autoDisbursement = true}. This flag represents business pre-approval, not a scheduler by itself. When an invoice reaches \texttt{LODGED}, the invoice module publishes \texttt{invoice.lodged}. The eligibility job consumes the event, runs the same checks, and creates an automatic individual disbursement if the invoice is eligible. In automatic mode, the system always finances 100\% of the remaining eligible amount, and clubbing is not available.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_auto_disbursement.png}
+    \caption{Automatic disbursement entry from the SCF Studio}
+    \label{fig:ch5_auto_disbursement_screen}
+\end{figure}
+
+\subsection{Payment Gateway Integration}
+\label{subsec:ch5_payment_gateway}
+
+The Payment Gateway integration follows a two-phase pattern. During the synchronous phase, the Disbursement service sends an HTTP payment request. A 202 Accepted response means the payment was accepted for processing, not that the money has already moved. The returned \texttt{paymentRef} is stored and used later to match the asynchronous callback.
+
+During the asynchronous phase, the Payment Gateway sends a webhook callback to \texttt{adria-gateway}. The gateway validates the HMAC signature and returns HTTP 200 quickly to avoid external retry storms. It then publishes the callback into Kafka. The \texttt{DisbursementEventConsumer} consumes the event, looks up the disbursement by \texttt{paymentRef}, and applies the final business result.
+
+[Insert corrected UML sequence diagram for manual disbursement with Payment Gateway, 202 Accepted, webhook callback, HMAC validation, Kafka topic \texttt{payment.callback}, and \texttt{DisbursementEventConsumer}]
+
+\begin{table}[H]
+    \centering
+    \caption{Kafka topics related to disbursement and repayment}
+    \label{tab:ch5_kafka_topics}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.25\textwidth} B{0.25\textwidth} Y}
+        \standardtablehead{\textbf{Topic} & \textbf{Producer} & \textbf{Purpose}}
+        \texttt{invoice.lodged} & Invoice service & Triggers eligibility checking and possible automatic disbursement. \\
+        \texttt{invoice.eligible} & Eligibility job & Signals that an invoice can be submitted for payment. \\
+        \texttt{payment.callback} & Gateway & Carries Payment Gateway result after HMAC validation. \\
+        \texttt{disbursement.success} & Disbursement consumer & Notifies downstream modules that payment was executed. \\
+        \texttt{finance.maturity} & Maturity scheduler & Triggers repayment processing at maturity date. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+\section{Implementation Scope}
+\label{sec:ch5_implementation_scope}
+
+\subsection{Frontend Scope}
+\label{subsec:ch5_frontend_scope}
+
+The React frontend is in scope for the Disbursement Module. The current platform screen exposes a six-step wizard: program and product selection, invoice selection, finance details, repayment details, accounting entries, and review and submit. This order is important because the repayment schedule is prepared before the user inspects accounting entries and submits the request.
+
+The transaction inquiry page also belongs to the visible scope. It shows invoices in their programs, and it surfaces related finance disbursement and finance repayment transactions when they exist. Finance records are not shown as a separate list; they appear through their transaction records.
+
+\subsection{Backend Scope}
+\label{subsec:ch5_backend_scope}
+
+The Disbursement Module owns the flow from invoice lodging up to successful disbursement and FinanceRecord creation. The repayment module is owned separately by another intern and takes over after FinanceRecord creation. The boundary is therefore clean: disbursement creates the handoff artifact; repayment manages maturity, penalties, retries, repayment success, overdue status, and NPA escalation.
+
+\begin{table}[H]
+    \centering
+    \caption{Scope boundary between Disbursement and Repayment}
+    \label{tab:ch5_scope_boundary}
     \standardtable
     \begin{tabularx}{\textwidth}{B{0.28\textwidth} Y}
-        \standardtablehead{\textbf{Candidate endpoint} & \textbf{Expected purpose}}
-        \texttt{POST /scf/finance/disbursements} & Create a draft disbursement request from selected invoices and finance terms. \\
-        \texttt{GET /scf/finance/disbursements} & List or search finance disbursement records for inquiry and follow-up. \\
-        \texttt{GET /scf/finance/disbursements/id} & Retrieve a single disbursement with details, fees, entries, schedule, and history. \\
-        \texttt{PUT /scf/finance/disbursements/id/submit} & Submit a draft request for approval. \\
-        \texttt{PUT /scf/finance/disbursements/id/approve} & Approve a pending request, respecting maker/checker rules. \\
-        \texttt{PUT /scf/finance/disbursements/id/reject} & Reject a pending request with review comments. \\
+        \standardtablehead{\textbf{Area} & \textbf{Ownership}}
+        Invoice reaches \texttt{LODGED} & Disbursement flow starts from this event. \\
+        Eligibility checks & Disbursement Module. \\
+        Payment Gateway submission & Disbursement Module. \\
+        Payment callback processing & Disbursement Module through gateway and Kafka consumer. \\
+        FinanceRecord creation & Disbursement Module creates the handoff artifact after success. \\
+        Repayment attempts and overdue handling & Repayment Module. \\
+        NPA and crystallization & Repayment Module and later legal/accounting processes. \\
     \end{tabularx}
     \standardtableend
 \end{table}
 
-The table above is intentionally presented as candidate API design. The final report should replace it or confirm it after the Swagger contract is validated by the team.
+\section{Open Questions and Validation}
+\label{sec:ch5_open_questions_validation}
 
-\subsection{UML Activity Diagram}
-\label{subsec:ch5_activity_diagram}
+The refinement process also left some questions open. These points should not be resolved by assumption. They need Product Owner confirmation or technical arbitration before implementation is frozen.
 
-Figure~\ref{fig:ch5_disbursement_activity_uml} presents the target activity flow. It follows a formal UML activity structure: initial node, actions, decision node with guarded branches, validation loop, final actions, and final node.
-
-\begin{figure}[H]
+\begin{table}[H]
     \centering
-    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_disbursement_activity_uml.png}
-    \caption{UML activity diagram for the target disbursement request flow}
-    \label{fig:ch5_disbursement_activity_uml}
-\end{figure}
-
-The activity diagram highlights the validation point. If the request is not valid, the user is sent back to correct the finance terms or invoice selection. If the request is valid, accounting entries and repayment schedule information are prepared before the request is submitted.
-
-\subsection{UML Sequence Diagram}
-\label{subsec:ch5_sequence_diagram}
-
-Figure~\ref{fig:ch5_disbursement_sequence_uml} shows the intended interaction between the user, frontend modal, frontend service, gateway, SCF service, and database. It is a target sequence diagram, not proof that every backend endpoint was already completed during the internship.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth, keepaspectratio]{images/ch5_disbursement_sequence_uml.png}
-    \caption{UML sequence diagram for target disbursement submission}
-    \label{fig:ch5_disbursement_sequence_uml}
-\end{figure}
-
-The sequence starts with loading the context needed by the wizard. After invoice eligibility data is returned, the user builds the request in the frontend. Submission then goes through the typed service, the gateway, and the SCF service. The expected backend result is a draft request that can enter the approval lifecycle.
-
-\section{Implementation}
-\label{sec:ch5_implementation}
-
-\subsection{Frontend Implementation}
-\label{subsec:ch5_frontend_implementation}
-
-The frontend side is the most visible part of the module in the available project context. The wizard structure is already aligned with the business process: select context, choose invoices, review financing, inspect accounting, prepare repayment, and submit. This is a sensible design for banking operations because it prevents the user from jumping directly to submission without seeing the financial consequences of the request.
-
-The service layer follows the same approach used by the rest of the frontend. \texttt{invoiceDisbursementService} is responsible for retrieving invoices that may be financed. \texttt{financeDisbursementService} is responsible for creating the finance disbursement request. Both services are expected to use the shared API client, so authentication, token handling, and gateway routing remain consistent with other modules.
-
-\subsection{Backend Implementation}
-\label{subsec:ch5_backend_implementation}
-
-The backend implementation must remain aligned with the SCF service style described in Chapter~\ref{chap:scf_domain}. It should validate the selected program, verify invoice eligibility, compute or confirm financial terms, prepare fee information from the program fee catalogue, create accounting and repayment details, persist the request, and expose lifecycle actions under maker/checker control.
-
-Because native integration had not yet reached the planned sprint during the internship, this section should be completed with the final classes, controllers, entities, and migrations once they are available.
-
-[Insert backend controller, service, mapper, repository, and migration details once finalized]
-
-\subsection{Key Technical Decisions}
-\label{subsec:ch5_technical_decisions}
-
-Several design decisions are worth recording because they connect the academic module with the real platform:
-
-\begin{itemize}
-    \item the module uses a wizard to match the natural order of the business operation;
-    \item request creation is separated from approval, preserving maker/checker control;
-    \item accounting and repayment information are displayed before submission, not hidden after it;
-    \item the API contract follows the existing \texttt{/scf/} gateway convention;
-    \item the module reuses program, invoice, fee, and transaction concepts rather than creating an isolated domain vocabulary.
-\end{itemize}
-
-\begin{algorithm}[H]
-    \DontPrintSemicolon
-    \Data{Selected program, product, invoices, finance terms, fee configuration}
-    \Result{Draft disbursement request ready for submission}
-    \BlankLine
-    Load program configuration and eligible invoices\;
-    Select one or more invoices\;
-    Capture finance amount, dates, and rate inputs\;
-    Validate invoice selection and finance terms against program rules\;
-    \If{validation fails}{
-        Return validation messages to the wizard\;
-    }
-    Derive fee breakdown from the program fee catalogue\;
-    Generate accounting entries and repayment schedule\;
-    Save disbursement request with draft status\;
-    \caption{Target creation logic for a disbursement request}
-    \label{alg:ch5_disbursement_creation}
-\end{algorithm}
-
-\section{Testing and Validation}
-\label{sec:ch5_testing_validation}
-
-Testing must cover both the user flow and the banking rules behind it. At frontend level, the wizard should be tested with complete input, missing invoice selection, invalid finance amount, and submission failure. At service level, API calls should be verified against the expected payload shape. At backend level, validation should reject requests that violate program limits, invoice eligibility, currency consistency, or maker/checker governance.
+    \caption{Open questions identified during refinement}
+    \label{tab:ch5_open_questions}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.28\textwidth} Y}
+        \standardtablehead{\textbf{Question} & \textbf{Why it matters}}
+        Clubbed partial repayment & If one finance record covers several invoices, partial repayment may require state at the junction-table level. \\
+        Exact trigger for \texttt{FINANCED} & The model currently treats FinanceRecord creation as the moment that sets the invoice to \texttt{FINANCED}, but the exact atomic order still needs confirmation. \\
+        Portfolio cap UX & When the program cap is reached, all lodged invoices become ineligible. The user-facing notification or queuing behavior is not yet defined. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
 
 [Insert testing evidence or validation screenshots]
-
-\begin{table}[H]
-    \centering
-    \caption{Validation scenarios for the Disbursement Module}
-    \label{tab:ch5_validation_scenarios}
-    \standardtable
-    \begin{tabularx}{\textwidth}{B{0.28\textwidth} Y}
-        \standardtablehead{\textbf{Scenario} & \textbf{Expected result}}
-        No invoice selected & The wizard prevents submission and shows a validation message. \\
-        Finance amount exceeds allowed limit & Backend validation rejects the request or returns a clear error. \\
-        Eligible invoices selected & The request can move to review with computed fees, entries, and schedule. \\
-        Draft submission & The request moves from draft preparation to the approval lifecycle. \\
-        Maker tries to approve own request & Governance rules prevent self-approval when maker/checker applies. \\
-    \end{tabularx}
-    \standardtableend
-\end{table}
-
-Validation with the Product Owner also played an important role. Functional diagrams were presented, discussed, and corrected when the flow did not match the expected business logic. This made the module less theoretical. Even before native integration, the design had to survive business review.
 
 \section{Conclusion}
 \label{sec:ch5_conclusion}
 
-This chapter presented the Disbursement Module as the academic PFE project. The module sits at a decisive point in the SCF chain: after product, program, invoice, and fee configuration, but before accounting, repayment, transaction follow-up, and approval. The work combined target design, visible frontend flow, service-contract preparation, and Product Owner refinement while the main platform was still progressing toward native integration.
+This chapter presented the Disbursement Module using the clarified context from Product Owner refinement. The module is centered on a precise business act: creating and confirming the bank's payment execution after eligibility checks pass. Its design depends on five distinct entities, a four-check eligibility engine, manual and automatic entry paths, a two-phase Payment Gateway integration, and Kafka-based callback handling.
 
 The next chapter evaluates the internship as a whole. It summarizes the contributions, the learning outcomes, the difficulties encountered, and the improvements that could support future development of the platform.

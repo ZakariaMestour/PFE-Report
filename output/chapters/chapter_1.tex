@@ -100,6 +100,22 @@ The SCF ecosystem is built around three main actors. The anchor is usually a lar
 
 The financing logic depends on the product type. In reverse factoring, the supplier can receive early payment based on the buyer's approved invoice. In dynamic discounting, early payment may be linked to discount rules that vary according to timing. Receivables finance and payables finance address different sides of the commercial obligation. Distributor finance extends the logic toward downstream distribution networks. The platform described in the internship context supports these product families through reusable product definitions and concrete program configurations.
 
+The two following illustrative flows, provided in the project material, make this distinction easier to read. Receivables finance is supplier-centered: the seller seeks financing against receivables owed by a buyer. Payables finance is buyer-centered: the buyer's approved obligations allow suppliers to receive early payment from the finance provider.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth, keepaspectratio]{images/scf_receivable_finance_transaction_flow.png}
+    \caption{Illustrative transaction flow for receivables finance}
+    \label{fig:ch1_receivable_finance_transaction_flow}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.88\textwidth, keepaspectratio]{images/scf_payable_finance_transaction_flow.png}
+    \caption{Illustrative transaction flow for payables finance}
+    \label{fig:ch1_payable_finance_transaction_flow}
+\end{figure}
+
 \subsection{Trade Finance as a Complementary Domain}
 \label{subsec:trade_finance}
 
@@ -117,7 +133,7 @@ The platform addresses these issues by moving business operations into a structu
 \subsection{Proposed Solution and Platform Ambition}
 \label{subsec:proposed_solution}
 
-The proposed solution is a Supply Chain Finance and Trade Finance platform built on a microservices architecture. Its ambition is to provide banks with a configurable environment for managing corporate financing programs and their related operations. The backend services handle core SCF business logic, reference data, runtime properties, gateway routing, discovery, configuration, audit, storage, and document conversion. The frontend provides role-based access to dashboards, master setup, counterparty onboarding, invoice upload, transaction inquiry, document inquiry, early payment, and finance disbursement flows.
+The proposed solution is a Supply Chain Finance and Trade Finance platform built around a modular SCF business service and the Adria technical standard. Its ambition is to provide banks with a configurable environment for managing corporate financing programs and their related operations. The SCF service groups the main business modules, while supporting services handle reference data, runtime properties, gateway routing, discovery, configuration, audit, storage, and document conversion. The frontend provides role-based access to dashboards, master setup, counterparty onboarding, invoice upload, transaction inquiry, document inquiry, early payment, and finance disbursement flows.
 
 The project context makes an important distinction between product and program. A product definition is a reusable template such as reverse factoring or receivables finance. A program is a concrete instance linked to an anchor, counterparties, currency, dates, limits, fees, disbursement rules, and repayment rules. This distinction is one of the intellectual hinges of the platform: it separates reusable banking product design from the operational configuration used for a specific business relationship.
 

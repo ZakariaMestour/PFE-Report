@@ -34,7 +34,19 @@ Figure~\ref{fig:ch4_navigation_role_flow} shows how routing, authentication, and
 
 The \texttt{AppSidebar} filters menu items according to the business view. Bank users see the broadest set of modules, including master setup, transaction inquiry, document inquiry, invoice management, early payment, and finance disbursement. Anchor users see a narrower set focused on their own operational activities, such as invoice upload, manual invoice entry, transaction inquiry, and early payment. Counterparty users receive an even more focused view, centered on their own invoices, transactions, and payment requests.
 
-[Insert screenshot of the SCF dashboard with role-based sidebar]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_scf_dashboard_light.png}
+    \caption{SCF dashboard in light mode with business-view filtering}
+    \label{fig:ch4_scf_dashboard_light}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_scf_dashboard_dark.png}
+    \caption{SCF dashboard in dark mode with buyer and supplier view selector}
+    \label{fig:ch4_scf_dashboard_dark}
+\end{figure}
 
 \subsection{\texttt{Index.tsx} and Module Selection}
 \label{subsec:index_module_selection}
@@ -42,6 +54,13 @@ The \texttt{AppSidebar} filters menu items according to the business view. Bank 
 The \texttt{Index.tsx} page renders the sidebar and a content area driven by a \texttt{selectedModule} state. This state decides which functional component is displayed: dashboard, master setup, transaction inquiry, document inquiry, invoice upload, invoice form, finance disbursement, early payment, or notifications. This approach keeps the primary workspace inside a single routed page while still allowing the user to move between modules.
 
 The design is pragmatic. It avoids turning every module switch into a full route transition, while the application still keeps authentication and global providers outside the page. For an operational banking interface, this feels natural: the user remains inside a controlled workspace and changes the working panel from the sidebar.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_scf_module_switch.png}
+    \caption{Module switch between Trade Finance and Supply Chain Finance}
+    \label{fig:ch4_module_switch}
+\end{figure}
 
 \section{Master Setup Module}
 \label{sec:master_setup_module}
@@ -51,16 +70,47 @@ The design is pragmatic. It avoids turning every module switch into a full route
 
 \texttt{SCFMasterSetup} acts as a container for several administrative and configuration modules. Its tabs include product suite, program configuration, counterparty onboarding, foundational data, and control centre features. Access to these tabs is role-gated, which prevents users outside the bank view from reaching administrative functions that do not belong to their business position.
 
-[Insert screenshot of the Master Setup tabs]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_navigation_menu.png}
+    \caption{Navigation menu exposing SCF Studio and inquiry modules}
+    \label{fig:ch4_navigation_menu_screenshot}
+\end{figure}
 
 \subsection{Product Suite and Program Configuration}
 \label{subsec:product_program_ui}
 
 The product suite exposes product definition management through \texttt{SCFProductSuite}, \texttt{SCFProductDefinition}, and product-related components such as \texttt{ProductSolutionToggle}. This interface allows the bank side to view, create, or edit product templates according to the supported SCF product families.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_product_configurator.png}
+    \caption{Product definition list in the SCF product configurator}
+    \label{fig:ch4_product_configurator}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_product_creation_form.png}
+    \caption{Product definition creation form}
+    \label{fig:ch4_product_creation_form}
+\end{figure}
+
 Program configuration is handled by \texttt{SCFProgramConfiguration} and \texttt{ProgramFormDialog}. The dialog is structured as a multi-step configuration process: \texttt{GeneralPartyPane}, \texttt{FeeCataloguePane}, and \texttt{DisbursementRepaymentPane}. The \texttt{useProgramForm} hook centralizes the form state and helps keep the wizard logic outside individual panes.
 
-[Insert screenshot of the Program Configuration wizard]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_program_configurator.png}
+    \caption{Program configuration list with active programs and actions}
+    \label{fig:ch4_program_configurator}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_program_creation_form.png}
+    \caption{Program configuration creation form}
+    \label{fig:ch4_program_creation_form}
+\end{figure}
 
 \subsection{Counterparty Onboarding and Foundational Data}
 \label{subsec:counterparty_foundational_ui}
@@ -93,7 +143,19 @@ Invoice upload is orchestrated by \texttt{InvoiceUploadForm}. The component coor
 
 The Excel path uses \texttt{ExcelInvoiceUploader} for spreadsheet files. The scanned path uses \texttt{ScannedInvoiceUploader} for images or PDF files that may require OCR processing. Once uploaded, rows are displayed in \texttt{InvoiceUploadTable}, with validation status and row-level issues. \texttt{ValidationSummaryCard} then aggregates the result, while \texttt{DisbursementStatusCard} gives an eligibility-oriented view.
 
-[Insert screenshot of Invoice Upload validation table]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_invoice_creation_upload.png}
+    \caption{Invoice management screen with upload processing method}
+    \label{fig:ch4_invoice_creation_upload}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_invoice_upload.png}
+    \caption{Invoice upload modal for Excel and scanned invoice files}
+    \label{fig:ch4_invoice_upload_modal}
+\end{figure}
 
 \subsection{Manual Invoice Form}
 \label{subsec:manual_invoice_form}
@@ -101,6 +163,13 @@ The Excel path uses \texttt{ExcelInvoiceUploader} for spreadsheet files. The sca
 The manual invoice flow is handled by \texttt{InvoiceForm}. It is organized into panes: \texttt{InvoiceGeneralDetailsPane}, \texttt{InvoiceLineItemsPane}, and \texttt{InvoiceSummaryPane}. Supporting components such as \texttt{InvoiceProgressIndicator}, \texttt{InvoicePaneRenderer}, and \texttt{InvoiceFormActions} give structure to the form experience.
 
 The \texttt{useInvoiceForm} hook centralizes state and calculation logic. This pattern keeps the panes focused on presentation and interaction rather than forcing each one to carry the whole form model. For multi-pane forms, that distinction helps readability.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_invoice_creation_manual.png}
+    \caption{Manual invoice creation entry point}
+    \label{fig:ch4_invoice_creation_manual}
+\end{figure}
 
 \section{Finance and Early Payment Flows}
 \label{sec:finance_early_payment}
@@ -115,7 +184,7 @@ This flow is smaller than the disbursement wizard, but it is highly meaningful i
 \subsection{Finance Disbursement Wizard}
 \label{subsec:finance_disbursement_wizard}
 
-The finance disbursement flow is implemented as a six-step wizard inside \texttt{FinanceDisbursementModal}. The panes are \texttt{ProgramProductSelectionPane}, \texttt{InvoiceSelectionPane}, \texttt{FinanceDetailsPane}, \texttt{AccountingEntriesPane}, \texttt{RepaymentDetailsPane}, and \texttt{ReviewSubmitPane}. Figure~\ref{fig:ch4_finance_disbursement_wizard} presents the sequence.
+The finance disbursement flow is implemented as a six-step wizard inside \texttt{FinanceDisbursementModal}. The panes are \texttt{ProgramProductSelectionPane}, \texttt{InvoiceSelectionPane}, \texttt{FinanceDetailsPane}, \texttt{RepaymentDetailsPane}, \texttt{AccountingEntriesPane}, and \texttt{ReviewSubmitPane}. Figure~\ref{fig:ch4_finance_disbursement_wizard} presents the earlier generated sequence, while Figure~\ref{fig:ch4_manual_disbursement_screen} shows the current platform screen.
 
 \begin{figure}[H]
     \centering
@@ -124,9 +193,14 @@ The finance disbursement flow is implemented as a six-step wizard inside \texttt
     \label{fig:ch4_finance_disbursement_wizard}
 \end{figure}
 
-The first pane selects the program and product context. The invoice pane loads eligible invoices and allows the user to select which invoices will be financed. The finance details pane captures terms and presents fee breakdown information. Accounting entries are displayed as debit and credit lines. The repayment pane configures schedule-related details. The final pane reviews the full request before submission.
+The first pane selects the program and product context. The invoice pane loads eligible invoices and allows the user to select which invoices will be financed. The finance details pane captures terms and presents fee breakdown information. The repayment pane configures schedule-related details. Accounting entries are displayed as debit and credit lines before the final review. The final pane reviews the full request before submission.
 
-[Insert screenshot of Finance Disbursement wizard]
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/platform_manual_disbursement.png}
+    \caption{Manual finance disbursement wizard}
+    \label{fig:ch4_manual_disbursement_screen}
+\end{figure}
 
 \section{Document Inquiry and Specification Documents}
 \label{sec:document_inquiry_specification}
