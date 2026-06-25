@@ -28,6 +28,10 @@ These are candidates for real platform screenshots to insert later.
 
 The current generated diagrams were rebuilt from `output/images/generate_professional_diagrams.py`. The pass replaced the earlier repetitive card-style diagrams with varied academic diagrams: UML use case diagrams, formal class diagrams with multiplicities, state machines, sequence diagrams, activity diagrams, architecture views, and workflow diagrams.
 
+- Latest UML audit: corrected the Chapter III core data model so `ScfProgramCashflow` is modeled as program-level cashflow configuration, not invoice-level data.
+- Latest UML audit: corrected the Chapter V Disbursement use case so the actor initiates `Request finance` only; `Choose mode` is now reached only through `<<include>>`.
+- Latest UML audit: rebuilt the Chapter V Disbursement class diagram layout with formal multiplicities and cleaner ledger-dependency routing.
+- Latest UML audit: rebuilt the Chapter V Disbursement sequence image with a real `alt` combined fragment and an explicit rejection message for failed eligibility checks.
 - Chapter III `ch3_core_data_model` is now a formal class diagram with multiplicities.
 - Chapter III `ch3_maker_checker_state` is now a UML state-machine diagram.
 - Chapter III `ch3_program_configuration_flow` is now a UML activity diagram.
@@ -57,7 +61,8 @@ The Disbursement Module chapter now uses `input/disbursement-context/CONTEXT.md`
 ## Final Polish Tasks
 
 - Replace all `[Insert ...]` placeholders with screenshots, figures, or validated project details.
-- Verify Chapter V quantitative evidence in Jira and Bitbucket: 20 Jira tickets in total, including 12 SCF-service tickets and 8 FDL tickets, with 40 pull requests reported in total.
+- Verify Chapter V quantitative evidence in Jira and Bitbucket using the final calculated totals, not formula fragments or unverified raw counts.
+- If time allows, add one extra sequence diagram for an implemented platform flow, preferably Program Configuration maker/checker approval or Invoice Upload validation. The mandatory UML set exists, but an extra implemented-flow sequence would strengthen the conception chapter.
 - Review the rebuilt diagrams after supervisor feedback and keep the SVG originals synchronized with PNG outputs.
 - Re-run LaTeX compilation after the final screenshot/page-de-garde insertion.
 - Check figure numbering, table numbering, and cross-references after the final compilation.

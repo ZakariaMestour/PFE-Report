@@ -32,8 +32,8 @@
 \contentsline {subsection}{\numberline {2.2.2}Architecture Overview}{17}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Monorepo Organization: Back-end and Front-end Structure}{18}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}Service Communication and Inter-service Protocols}{18}{subsection.2.2.4}%
-\contentsline {section}{\numberline {2.3}Backend Services Deep Dive}{18}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}\texttt {scf-service}: Core Business Logic}{18}{subsection.2.3.1}%
+\contentsline {section}{\numberline {2.3}Backend Services Deep Dive}{19}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}\texttt {scf-service}: Core Business Logic}{19}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}\texttt {scf-entities}: Shared JPA Entity Library}{19}{subsection.2.3.2}%
 \contentsline {subsection}{\numberline {2.3.3}\texttt {adria-gateway2-service}: API Gateway}{19}{subsection.2.3.3}%
 \contentsline {subsection}{\numberline {2.3.4}Foundation Data Library}{20}{subsection.2.3.4}%
@@ -45,7 +45,7 @@
 \contentsline {section}{\numberline {2.5}Security Architecture}{22}{section.2.5}%
 \contentsline {subsection}{\numberline {2.5.1}Identity and Access Management with Keycloak}{22}{subsection.2.5.1}%
 \contentsline {subsection}{\numberline {2.5.2}JWT Validation in the Backend}{22}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Maker/Checker Governance}{22}{subsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5.3}Maker/Checker Governance}{23}{subsection.2.5.3}%
 \contentsline {section}{\numberline {2.6}Data Storage Architecture}{23}{section.2.6}%
 \contentsline {subsection}{\numberline {2.6.1}Relational Persistence with PostgreSQL}{23}{subsection.2.6.1}%
 \contentsline {subsection}{\numberline {2.6.2}Object Storage and Document Conversion}{23}{subsection.2.6.2}%
@@ -75,8 +75,8 @@
 \contentsline {subsection}{\numberline {3.6.2}Program Creation Flow}{33}{subsection.3.6.2}%
 \contentsline {subsection}{\numberline {3.6.3}Fee Catalogue Structure}{34}{subsection.3.6.3}%
 \contentsline {subsection}{\numberline {3.6.4}Program Copy Feature}{34}{subsection.3.6.4}%
-\contentsline {section}{\numberline {3.7}Invoice Upload and Cashflow Management}{35}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Cashflow Validation Rules}{35}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.7}Program Cashflow Configuration and Invoice Upload}{35}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Disbursement and Repayment Cashflow Configuration}{35}{subsection.3.7.1}%
 \contentsline {section}{\numberline {3.8}Transaction Inquiry Module}{35}{section.3.8}%
 \contentsline {section}{\numberline {3.9}Conclusion}{36}{section.3.9}%
 \contentsline {chapter}{\numberline {4}Frontend Implementation and User Flows}{37}{chapter.4}%

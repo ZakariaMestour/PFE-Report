@@ -37,12 +37,12 @@ The diagram shows a deliberate separation of concerns. The frontend is responsib
 
 The available context describes a project organized around a modular backend and a frontend service named \texttt{trade-ui-service}. On the backend side, \texttt{scf-service} owns the SCF business modules, while \texttt{foundation-data-library-service} handles reference data. Shared entity libraries such as \texttt{scf-entities} and \texttt{foundation-data-library-entities} provide reusable JPA models without acting as runtime services.
 
-On the frontend side, the React application is organized around pages, feature modules, services, hooks, and typed models. Components such as \texttt{SCFMasterSetup}, \texttt{SCFCounterPartyOnboarding}, \texttt{ProgramFormDialog}, \texttt{InvoiceUploadForm}, and \texttt{FinanceDisbursementModal} express business features at the interface level. Service files then map user actions to backend endpoints through a shared Axios client.
+On the frontend side, the React application is organized around pages, feature modules, services, hooks, and typed models. Components such as \texttt{SCFMasterSetup}, \texttt{SCFCounterPartyOnboarding}, \texttt{ProgramFormDialog}, \texttt{InvoiceUploadForm}, and \texttt{FinanceDisbursementModal} express business features at the interface level. Core SCF and reference-data services map user actions to backend endpoints through a shared Axios client, while some preview screens remain in transition during the migration from Supabase-backed flows to native Spring Boot contracts.
 
 \subsection{Service Communication and Inter-service Protocols}
 \label{subsec:service_communication}
 
-External requests enter through the gateway. The configured route prefixes are \texttt{/scf/**}, \texttt{/fdl/**}, and \texttt{/properties/**}. The gateway then forwards requests to downstream services using load-balanced service identifiers such as \texttt{lb://scf-service}. Service discovery is provided by Eureka, while centralized configuration is handled through the Config Server.
+External requests enter through the gateway. In the Trade NextGen configuration, the gateway exposes application routes such as \path{/app/adria-scf/**} for the SCF service, \path{/app/foundation-data-library/**} for reference data, and \path{/app/trade-metadata/**} for metadata services. The gateway then forwards requests to registered downstream services through load-balanced routing. Service discovery is provided by Eureka, while centralized configuration is handled through the Config Server.
 
 This routing pattern keeps the frontend from knowing the internal location of each service. The browser calls stable gateway paths; the gateway handles resolution, security filters, fallback behavior, and routing. In a banking platform, that boundary is useful because it concentrates cross-cutting controls at the edge rather than scattering them across every screen.
 
@@ -75,7 +75,7 @@ The gateway is the first backend component reached by external calls. Its respon
     \label{fig:ch2_gateway_filter_chain}
 \end{figure}
 
-The route configuration maps \texttt{/scf/**} to \texttt{scf-service}, \texttt{/fdl/**} to the foundation data library, and \texttt{/properties/**} to the properties service. The \texttt{lb://} prefix indicates that service resolution is delegated to Eureka. When a downstream service is unavailable, fallback behavior returns a structured error rather than exposing a raw failure to the client.
+The route configuration contains three important public prefixes. The SCF route uses \path{/app/adria-scf/**} and forwards to \texttt{ADRIA-SCF-SERVICE}. The reference-data route uses \path{/app/foundation-data-library/**} and forwards to \texttt{FOUNDATION-DATA-LIBRARY-SERVICE}. The metadata route uses \path{/app/trade-metadata/**}. Rewrite filters remove the public route prefix before the request reaches the target service. The \texttt{lb://} prefix indicates that service resolution is delegated to discovery. When a downstream service is unavailable, fallback behavior returns a structured error rather than exposing a raw failure to the client.
 
 \subsection{Foundation Data Library}
 \label{subsec:fdl_service}
@@ -109,7 +109,7 @@ The role resolution logic maps Keycloak roles to one of three views: \texttt{BAN
 \subsection{Services Layer}
 \label{subsec:frontend_services_layer}
 
-The frontend services layer wraps the shared Axios client. Endpoint prefixes mirror the gateway routes: \texttt{/scf/} for SCF business operations and \texttt{/fdl/} for reference data. For example, \texttt{scfCounterPartyService} maps to \texttt{/scf/counterparties}, \texttt{scfProgramConfigService} maps to \texttt{/scf/programs}, and \texttt{cityMasterService} maps to \texttt{/fdl/cities}.
+The frontend services layer wraps the shared Axios client. Endpoint prefixes follow the configured gateway routes or direct local service URLs depending on the environment. For example, \texttt{scfCounterPartyService} targets \path{/app/adria-scf/api/v1/counter-parties} through the gateway, \texttt{scfProgramConfigService} targets \path{/api/v1/program-configurations} on the SCF backend, and \texttt{cityMasterService} targets \path{/app/foundation-data-library/api/v1/fdl/city-master}. This reflects the current migration stage of the platform: stable Spring Boot endpoints coexist with preview flows that are being progressively moved out of Supabase.
 
 This layer gives the interface a typed boundary. Components do not need to construct raw URLs everywhere. They call service functions that express intent: create a counterparty, submit a program, upload invoices, request early payment, or fetch transaction inquiry rows.
 
@@ -193,9 +193,9 @@ The development environment is provisioned through Docker Compose. The context l
         Gotenberg & Document conversion to PDF or image formats & 3000 \\
         Eureka & Service discovery registry & 8761 \\
         Config Server & Centralized external configuration & 8888 \\
-        Gateway & Request routing, filtering, and security edge & 8085 \\
-        SCF service & Core Supply Chain Finance business service & 8082 \\
-        Foundation data library & Reference data and transaction references & 8083 \\
+        Gateway & Request routing, filtering, and security edge & 9080 \\
+        SCF service & Core Supply Chain Finance business service & 8089 \\
+        Foundation data library & Reference data and transaction references & 8088 \\
         Properties service & Runtime properties and feature values & 8084 \\
     \end{tabularx}
     \standardtableend

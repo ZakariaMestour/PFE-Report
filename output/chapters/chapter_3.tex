@@ -40,7 +40,7 @@ The core model revolves around counterparties, anchors, product definitions, pro
 
 \texttt{ScfProgramFeeCatalogue} contains fee configuration. Its design uses JSON-serialized structures: \texttt{feeItems}, converted through \texttt{FeeItemsJsonConverter}, and \texttt{flatFeeConfig}, converted through \texttt{FlatFeeConfigJsonConverter}. That design gives the program flexible fee structures without multiplying relational tables for every fee variation.
 
-\texttt{ScfProgramCashflow} represents an invoice or cashflow entry inside a program. It stores invoice number, supplier, buyer, amount, currency, invoice date, due date, payment terms, validation status, validation errors, and validation warnings.
+\texttt{ScfProgramCashflow} represents the disbursement and repayment configuration attached to a program. It is not an invoice table. It stores settings such as disbursement account, repayment account, automatic disbursement, automatic repayment, multiple-disbursement support, part-payment and pre-payment flags, maximum allowed disbursements, holiday treatment, repayment actor, penalty behavior, appropriation sequence, and insurance configuration.
 
 \subsection{Business Enumerations}
 \label{subsec:business_enumerations}
@@ -172,38 +172,36 @@ This approach accepts the variability of banking fees without forcing every poss
 \subsection{Program Copy Feature}
 \label{subsec:program_copy}
 
-\texttt{ProgramSnapshotService} supports copying an existing program. It duplicates the configuration and its sub-entities, including anchors, counterparties, and fee catalogues, while excluding cashflows. The copied program starts in draft status.
+\texttt{ProgramSnapshotService} supports copying an existing program. It duplicates reusable configuration and its sub-entities, including anchors, counterparties, fee catalogues, and the program cashflow settings. The copied program starts in draft status.
 
-That exclusion is sensible. Cashflows represent operational entries linked to a particular program life. Copying them into a new draft could create false business history. The feature therefore copies reusable configuration, not transactional evidence.
+This behavior is coherent because the backend cashflow object is a configuration object, not transactional invoice history. The feature therefore copies reusable program settings while keeping operational records, such as uploaded invoices and financing transactions, outside the program-copy operation.
 
-\section{Invoice Upload and Cashflow Management}
+\section{Program Cashflow Configuration and Invoice Upload}
 \label{sec:invoice_cashflow}
 
-\subsection{Cashflow Validation Rules}
+\subsection{Disbursement and Repayment Cashflow Configuration}
 \label{subsec:cashflow_validation}
 
-Cashflows represent invoice-level data inside a program. The \texttt{CashflowUpdateController} accepts invoice details through \texttt{ProgramCashflowRequest}. The service validates duplicate invoice numbers, date consistency, and positive amounts. The result is stored as a \texttt{ScfProgramCashflow} with validation status, errors, and warnings.
+In the backend implementation, cashflow management refers to the program's disbursement and repayment setup. The \texttt{CashflowUpdateController} accepts a \texttt{ProgramCashflowRequest} for a target program and delegates the update to \texttt{CashflowUpdateService}. The service loads the program configuration, creates the associated \texttt{ScfProgramCashflow} if it does not already exist, validates the submitted policy fields, applies the mapper, and persists the result.
 
 \begin{algorithm}[H]
     \DontPrintSemicolon
-    \Data{Program identifier and submitted invoice data}
-    \Result{Persisted cashflow with validation status}
+    \Data{Program identifier and submitted disbursement/repayment settings}
+    \Result{Updated program cashflow configuration}
     \BlankLine
     Load the target program configuration\;
-    Check whether the invoice number already exists for the program\;
-    Verify that invoice date is not later than due date\;
-    Verify that invoice amount is positive\;
-    \If{blocking validation errors exist}{
-        Store the entry with error status and validation details\;
+    Validate insurance policy fields and related configuration values\;
+    \If{no cashflow object exists for the program}{
+        Create a new \texttt{ScfProgramCashflow} linked to the program\;
     }
-    \Else{
-        Store the entry as valid or warning depending on non-blocking findings\;
-    }
-    \caption{Cashflow validation routine}
-    \label{alg:cashflow_validation}
+    Apply the submitted settings through the mapper\;
+    Save the updated cashflow configuration\;
+    Return the program cashflow response\;
+    \caption{Program cashflow update routine}
+    \label{alg:cashflow_update}
 \end{algorithm}
 
-The important point is not only that validation exists. It is that validation results are persisted. This allows the frontend to display row-level feedback, summaries, and rejection reports instead of losing the reason behind a failed invoice.
+Invoice upload remains a separate operational flow. In the current sprint context, invoice upload and finance-disbursement preview screens still use transitional frontend services while the platform migrates these flows toward native Spring Boot endpoints. This separation avoids confusing two different concepts: program cashflow configuration defines how disbursement and repayment should behave, while uploaded invoices represent operational evidence that can later become eligible for financing.
 
 \section{Transaction Inquiry Module}
 \label{sec:transaction_inquiry_module}

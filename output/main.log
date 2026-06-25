@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.15)  25 JUN 2026 02:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.15)  25 JUN 2026 03:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -687,7 +687,13 @@ File: images/ch2_gateway_filter_chain.png Graphic file (type png)
 Package pdftex.def Info: images/ch2_gateway_filter_chain.png  used on input lin
 e 73.
 (pdftex.def)             Requested size: 455.24411pt x 188.74852pt.
- [19] [20 <./images/ch2_gateway_filter_chain.png (PNG copy)>]
+ [19]
+Overfull \hbox (15.4899pt too wide) in paragraph at lines 78--79
+\OT1/cmtt/m/n/12 /app / foundation-[]data-[]library / **$ \OT1/cmr/m/n/12 and f
+or-wards to \OT1/cmtt/m/n/12 FOUNDATION-DATA-LIBRARY-SERVICE\OT1/cmr/m/n/12 .
+ []
+
+[20 <./images/ch2_gateway_filter_chain.png (PNG copy)>]
 Overfull \hbox (79.18942pt too wide) in paragraph at lines 105--106
 [] \OT1/cmr/m/n/12 The ap-pli-ca-tion routes in-clude \OT1/cmtt/m/n/12 /auth\OT
 1/cmr/m/n/12 , the main pro-tected route \OT1/cmtt/m/n/12 /\OT1/cmr/m/n/12 , an
@@ -723,14 +729,14 @@ Chapter 3.
 
 
 ]
-<diagram_as_code/images/png/ch3_core_data_model.png, id=965, 1573.88pt x 1124.2
-pt>
+<diagram_as_code/images/png/ch3_core_data_model.png, id=965, 3011.25pt x 2047.6
+5pt>
 File: diagram_as_code/images/png/ch3_core_data_model.png Graphic file (type png
 )
 <use diagram_as_code/images/png/ch3_core_data_model.png>
 Package pdftex.def Info: diagram_as_code/images/png/ch3_core_data_model.png  us
 ed on input line 28.
-(pdftex.def)             Requested size: 455.24411pt x 325.16911pt.
+(pdftex.def)             Requested size: 455.24411pt x 309.54008pt.
 
 Overfull \hbox (18.57784pt too wide) in paragraph at lines 33--34
 \OT1/cmr/m/n/12 tact in-for-ma-tion, ad-dress data, role, sta-tus, and roll-bac
@@ -779,9 +785,15 @@ he model. Each \OT1/cmtt/m/n/12 ProgramFeeItem
  []
 
 [34 <./images/ch3_program_configuration_flow.png (PNG copy)>]
-Overfull \hbox (35.47658pt too wide) in paragraph at lines 185--186
-[] \OT1/cmr/m/n/12 Cash-flows rep-re-sent invoice-level data in-side a pro-gram
-. The \OT1/cmtt/m/n/12 CashflowUpdateController
+Overfull \hbox (0.73363pt too wide) in paragraph at lines 179--179
+[]\OT1/cmr/bx/n/17.28 Program Cash-flow Con-fig-u-ra-tion and In-voice Up-
+ []
+
+
+Overfull \hbox (72.05026pt too wide) in paragraph at lines 185--186
+\OT1/cmr/m/n/12 burse-ment and re-pay-ment setup. The \OT1/cmtt/m/n/12 Cashflow
+UpdateController \OT1/cmr/m/n/12 ac-cepts a \OT1/cmtt/m/n/12 ProgramCashflowReq
+uest
  []
 
 [35]) [36]
@@ -1042,12 +1054,12 @@ Overfull \hbox (26.69246pt too wide) in paragraph at lines 99--99
  []
 
 [57 <./images/ch5_disbursement_use_case.png (PNG copy)>] [58]
-<images/ch5_disbursement_class_diagram.png, id=1143, 2830.575pt x 1716.4125pt>
+<images/ch5_disbursement_class_diagram.png, id=1143, 2951.025pt x 1866.975pt>
 File: images/ch5_disbursement_class_diagram.png Graphic file (type png)
 <use images/ch5_disbursement_class_diagram.png>
 Package pdftex.def Info: images/ch5_disbursement_class_diagram.png  used on inp
 ut line 162.
-(pdftex.def)             Requested size: 455.24411pt x 276.04588pt.
+(pdftex.def)             Requested size: 455.24411pt x 288.01073pt.
  [59 <./images/ch5_disbursement_class_diagram.png (PNG copy)>]
 Overfull \hbox (5.23926pt too wide) in paragraph at lines 172--173
 []\OT1/cmr/m/n/12 one \OT1/cmtt/m/n/12 Disbursement \OT1/cmr/m/n/12 cov-ers one
@@ -1061,7 +1073,7 @@ Overfull \hbox (1.54134pt too wide) in paragraph at lines 180--181
 us \OT1/cmr/m/n/12 field. A sep-a-rate \OT1/cmtt/m/n/12 invoice[]amount[]state
  []
 
-<images/ch5_disbursement_state_machine.png, id=1149, 2529.45pt x 1204.5pt>
+<images/ch5_disbursement_state_machine.png, id=1148, 2529.45pt x 1204.5pt>
 File: images/ch5_disbursement_state_machine.png Graphic file (type png)
 <use images/ch5_disbursement_state_machine.png>
 Package pdftex.def Info: images/ch5_disbursement_state_machine.png  used on inp
@@ -1151,16 +1163,16 @@ LaTeX2e <2026-06-01>
 L3 programming layer <2026-05-26>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F3D2C363E162E87C367F6049E9FC6BFA;27046.
+(rerunfilecheck)             Checksum: FE1CB8EC2176DF321D7BF3C99900848A;27230.
  ) 
 Here is how much of TeX's memory you used:
  14924 strings out of 467508
- 244229 string characters out of 5408765
- 679937 words of memory out of 5000000
+ 244225 string characters out of 5408765
+ 679996 words of memory out of 5000000
  43631 multiletter control sequences out of 15000+600000
  635680 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 74i,11n,83p,1269b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,11n,83p,1269b,557s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\zakar\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
 1200.pk><C:/Users/zakar/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb><C:/Users/zakar/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -1168,7 +1180,7 @@ ic/amsfonts/cm/cmitt10.pfb><C:/Users/zakar/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmr12.pfb><C:/Users/zakar/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/zakar/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (86 pages, 29741630 bytes).
+Output written on main.pdf (86 pages, 29821275 bytes).
 PDF statistics:
  1337 PDF objects out of 1440 (max. 8388607)
  292 named destinations out of 1000 (max. 500000)

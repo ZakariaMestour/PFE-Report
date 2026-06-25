@@ -13,6 +13,11 @@ classDiagram
         +BigDecimal financePercent
         +ProgramStatus status
     }
+    class ScfProgramAnchor {
+        +String roleInProgram
+        +Boolean active
+        +ApprovalStatus approvalStatus
+    }
     class ScfAnchor {
         +String anchorCode
         +String name
@@ -35,26 +40,35 @@ classDiagram
         +Currency currency
         +Boolean primaryAccount
     }
+    class ScfProgramFeeCatalogue {
+        +List feeItems
+        +FlatFeeConfig flatFeeConfig
+        +ApprovalStatus approvalStatus
+    }
     class ScfProgramCashflow {
-        +String invoiceNumber
-        +BigDecimal amount
-        +LocalDate dueDate
-        +String validationStatus
+        +Boolean autoDisbursement
+        +Boolean autoRepayment
+        +Boolean multipleDisbursement
+        +Integer maxDisbursementsAllowed
+        +String repaymentBy
     }
-    class Country {
-        +String code
-        +String name
+    class CountryMaster {
+        +String countryCodeIso2
+        +String countryCodeIso3
+        +String countryName
     }
-    class City {
-        +String code
-        +String name
-        +String postalCode
+    class CityMaster {
+        +String cityCode
+        +String cityName
+        +String countryCodeIso2
     }
     ScfProductDefinition "1" --> "0..*" ScfProgramConfiguration : defines
-    ScfProgramConfiguration "1" --> "1..*" ScfAnchor : assigns
-    ScfProgramConfiguration "1" --> "0..*" ScfProgramCounterParty : configures
-    ScfCounterParty "1" --> "0..*" ScfProgramCounterParty : joins
-    ScfCounterParty "1" --> "0..*" ScfBankAccount : owns
-    ScfProgramConfiguration "1" --> "0..*" ScfProgramCashflow : contains
-    Country "1" --> "0..*" City : contains
-    ScfCounterParty --> Country : country
+    ScfProgramConfiguration "1" *-- "0..1" ScfProgramAnchor : anchor assignment
+    ScfProgramAnchor "0..*" --> "1" ScfAnchor : references
+    ScfProgramConfiguration "1" *-- "0..*" ScfProgramCounterParty : program parties
+    ScfProgramCounterParty "0..*" --> "1" ScfCounterParty : references
+    ScfCounterParty "1" *-- "0..*" ScfBankAccount : owns
+    ScfProgramConfiguration "1" *-- "0..1" ScfProgramCashflow : cashflow settings
+    ScfProgramConfiguration "1" *-- "0..1" ScfProgramFeeCatalogue : fee settings
+    CountryMaster "1" --> "0..*" CityMaster : contains
+    ScfCounterParty "0..*" ..> "0..1" CountryMaster : address country

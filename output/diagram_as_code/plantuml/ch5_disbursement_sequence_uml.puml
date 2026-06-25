@@ -13,6 +13,7 @@ skinparam shadowing false
 skinparam linetype ortho
 skinparam monochrome true
 title Manual Disbursement with Async Payment Callback
+autonumber
 
 actor "Buyer/Supplier" as User
 participant "React Wizard" as UI

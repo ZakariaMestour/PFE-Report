@@ -449,40 +449,66 @@ def ch2_storage():
 
 
 def ch3_class():
-    d = Diagram("ch3_core_data_model", 860, 520, "Main SCF Class Diagram")
-    d.uml_class(330, 40, 170, "ScfProgramConfiguration", ["+id: UUID", "+reference: String", "+currency: Currency", "+financePercent: BigDecimal", "+status: ProgramStatus"], [], CREAM, TEAL)
-    d.uml_class(65, 62, 150, "ScfProductDefinition", ["+code: String", "+type: ProductType", "+instrument: Instrument", "+status: ApprovalStatus"], [], CREAM, NAVY)
-    d.uml_class(640, 62, 150, "ScfAnchor", ["+anchorCode: String", "+name: String", "+role: AnchorRole"], [], CREAM, NAVY)
-    d.uml_class(65, 245, 160, "ScfCounterParty", ["+legalName: String", "+role: CounterpartyRole", "+status: CounterPartyStatus", "+taxIdentifier: String"], [], CREAM, TEAL)
-    d.uml_class(345, 245, 150, "ScfProgramCounterParty", ["+roleInProgram: String", "+limitAmount: BigDecimal", "+active: Boolean"], [], CREAM, GOLD)
-    d.uml_class(640, 245, 145, "Country", ["+code: String", "+name: String"], [], CREAM, NAVY)
-    d.uml_class(640, 380, 145, "City", ["+code: String", "+name: String", "+postalCode: String"], [], CREAM, NAVY)
-    d.uml_class(65, 390, 160, "ScfBankAccount", ["+iban: String", "+swiftCode: String", "+currency: Currency", "+primaryAccount: Boolean"], [], CREAM, NAVY)
-    d.uml_class(330, 390, 170, "ScfProgramCashflow", ["+invoiceNumber: String", "+amount: BigDecimal", "+dueDate: LocalDate", "+validationStatus: String"], [], CREAM, GOLD)
-    d.line(215, 100, 329, 100, NAVY)
-    d.text(235, 94, "1", 7, NAVY)
-    d.text(310, 94, "0..*", 7, NAVY)
-    d.line(500, 100, 639, 100, NAVY)
-    d.text(515, 94, "1", 7, NAVY)
-    d.text(610, 94, "1..*", 7, NAVY)
-    d.line(407, 151, 407, 244, GOLD)
-    d.text(414, 170, "1", 7, NAVY)
-    d.text(414, 235, "0..*", 7, NAVY)
-    d.line(225, 310, 344, 310, GOLD)
-    d.text(242, 304, "1", 7, NAVY)
-    d.text(314, 304, "0..*", 7, NAVY)
-    d.path([(145, 344), (145, 389)], NAVY)
-    d.text(152, 356, "1", 7, NAVY)
-    d.text(152, 383, "0..*", 7, NAVY)
-    d.path([(495, 310), (565, 310), (565, 180), (500, 180)], GOLD)
-    d.text(520, 304, "program link", 6.5, GOLD)
-    d.line(712, 336, 712, 379, NAVY)
-    d.text(718, 355, "1", 7, NAVY)
-    d.text(718, 374, "0..*", 7, NAVY)
-    d.path([(640, 285), (595, 285), (595, 130), (500, 130)], NAVY)
-    d.text(600, 278, "country", 6.5, NAVY)
-    d.path([(407, 151), (407, 205), (555, 205), (555, 452), (500, 452)], GOLD, dash="5 3")
-    d.text(570, 318, "1 to 0..*", 6.5, GOLD)
+    d = Diagram("ch3_core_data_model", 1000, 680, "Main SCF Class Diagram")
+    d.uml_class(40, 55, 180, "ScfProductDefinition", ["+code: String", "+type: ProductType", "+instrument: Instrument", "+status: ApprovalStatus"], [], CREAM, NAVY)
+    d.uml_class(330, 45, 220, "ScfProgramConfiguration", ["+id: UUID", "+reference: String", "+currency: Currency", "+financePercent: BigDecimal", "+status: ProgramStatus"], [], CREAM, TEAL)
+    d.uml_class(780, 55, 180, "ScfAnchor", ["+anchorCode: String", "+name: String", "+role: AnchorRole"], [], CREAM, NAVY)
+    d.uml_class(615, 205, 205, "ScfProgramAnchor", ["+roleInProgram: String", "+active: Boolean", "+approvalStatus: ApprovalStatus"], [], CREAM, GREEN)
+    d.uml_class(40, 250, 200, "ScfCounterParty", ["+legalName: String", "+role: CounterpartyRole", "+status: CounterPartyStatus", "+taxIdentifier: String"], [], CREAM, TEAL)
+    d.uml_class(330, 250, 220, "ScfProgramCounterParty", ["+roleInProgram: String", "+limitAmount: BigDecimal", "+active: Boolean"], [], CREAM, GOLD)
+    d.uml_class(780, 250, 180, "CountryMaster", ["+countryCodeIso2: String", "+countryCodeIso3: String", "+countryName: String"], [], CREAM, NAVY)
+    d.uml_class(40, 470, 200, "ScfBankAccount", ["+iban: String", "+swiftCode: String", "+currency: Currency", "+primaryAccount: Boolean"], [], CREAM, NAVY)
+    d.uml_class(330, 430, 220, "ScfProgramCashflow", ["+autoDisbursement: Boolean", "+autoRepayment: Boolean", "+multipleDisbursement: Boolean", "+maxDisbursements: Integer", "+repaymentBy: String"], [], CREAM, GOLD)
+    d.uml_class(590, 430, 210, "ScfProgramFeeCatalogue", ["+feeItems: List", "+flatFeeConfig: Object", "+approvalStatus: ApprovalStatus"], [], CREAM, GOLD)
+    d.uml_class(780, 465, 180, "CityMaster", ["+cityCode: String", "+cityName: String", "+countryCodeIso2: String"], [], CREAM, NAVY)
+
+    d.line(220, 103, 329, 103, NAVY)
+    d.text(236, 96, "1", 7, NAVY)
+    d.text(305, 96, "0..*", 7, NAVY)
+    d.text(274, 92, "defines", 6.4, NAVY, anchor="middle")
+
+    d.path([(550, 96), (585, 96), (585, 240), (614, 240)], GREEN)
+    d.text(558, 90, "1", 7, NAVY)
+    d.text(590, 235, "0..1", 7, NAVY)
+    d.text(596, 166, "anchor assignment", 6.2, GREEN, anchor="middle")
+
+    d.path([(718, 205), (718, 155), (870, 155), (870, 128)], GREEN)
+    d.text(724, 196, "0..*", 7, NAVY)
+    d.text(878, 143, "1", 7, NAVY)
+    d.text(790, 147, "references", 6.2, GREEN, anchor="middle")
+
+    d.line(440, 141, 440, 249, GOLD)
+    d.text(448, 160, "1", 7, NAVY)
+    d.text(448, 242, "0..*", 7, NAVY)
+    d.text(470, 205, "program parties", 6.2, GOLD, anchor="middle")
+
+    d.line(240, 292, 329, 292, GOLD)
+    d.text(252, 285, "1", 7, NAVY)
+    d.text(300, 285, "0..*", 7, NAVY)
+    d.text(285, 282, "references", 6.2, GOLD, anchor="middle")
+
+    d.line(140, 334, 140, 469, NAVY)
+    d.text(148, 354, "1", 7, NAVY)
+    d.text(148, 462, "0..*", 7, NAVY)
+    d.text(176, 405, "owns", 6.2, NAVY, anchor="middle")
+
+    d.path([(385, 141), (300, 190), (300, 475), (329, 475)], GOLD)
+    d.text(394, 155, "1", 7, NAVY)
+    d.text(305, 468, "0..1", 7, NAVY)
+    d.text(306, 337, "cashflow settings", 6.2, GOLD, anchor="middle")
+
+    d.path([(550, 125), (575, 125), (575, 392), (695, 392), (695, 429)], GOLD)
+    d.text(558, 118, "1", 7, NAVY)
+    d.text(703, 421, "0..1", 7, NAVY)
+    d.text(635, 384, "fee settings", 6.2, GOLD, anchor="middle")
+
+    d.line(870, 322, 870, 464, NAVY)
+    d.text(878, 343, "1", 7, NAVY)
+    d.text(878, 455, "0..*", 7, NAVY)
+    d.text(903, 398, "contains", 6.2, NAVY, anchor="middle")
+
+    d.path([(240, 320), (270, 320), (270, 395), (870, 395), (870, 323)], GRAY, dash="5 3")
+    d.text(600, 388, "address country code", 6.2, GRAY, anchor="middle")
     d.save()
 
 
@@ -709,7 +735,6 @@ def disbursement_use_case():
     for cx, cy, label, color in cases:
         d.usecase(cx, cy, 160, 50, label, color)
     d.line(112, 260, 285, 130, GRAY)
-    d.line(112, 260, 285, 230, GRAY)
     d.line(365, 155, 365, 204, TEAL, dash="5 3", arrow=True)
     d.text(405, 184, "<<include>>", 6.4, TEAL, anchor="middle")
     d.line(445, 230, 530, 180, TEAL, dash="5 3", arrow=True)
@@ -720,44 +745,61 @@ def disbursement_use_case():
     d.text(648, 243, "<<include>>", 6.4, NAVY, anchor="middle")
     d.line(610, 320, 610, 379, GREEN, dash="5 3", arrow=True)
     d.text(650, 357, "<<include>>", 6.4, GREEN, anchor="middle")
-    d.text(510, 452, "Only the primary front-office actor is shown; payment and scheduling are internal collaborators.", 6.8, NAVY, "700", "middle")
+    d.text(510, 452, "Automatic mode is triggered by invoice state; payment and scheduling remain internal collaborators.", 6.8, NAVY, "700", "middle")
     d.save()
 
 
 def disbursement_class():
-    d = Diagram("ch5_disbursement_class_diagram", 940, 570, "UML Class Diagram - Disbursement Domain")
-    d.uml_class(40, 60, 165, "Program", ["+type: ProgramType", "+financePercent: Decimal", "+maxDisbursement: int", "+maxTenorDays: int", "+autoDisbursement: bool"], [], CREAM, NAVY)
-    d.uml_class(285, 60, 165, "Invoice", ["+status: InvoiceStatus", "+amountState: AmountState", "+amount: Decimal", "+issueDate: Date", "+dueDate: Date", "+tenorDays: int"], [], CREAM, TEAL)
-    d.uml_class(560, 60, 175, "Disbursement", ["+mode: INDIVIDUAL|CLUBBED", "+source: MANUAL|AUTO", "+state: DisbState", "+amount: Decimal", "+paymentRef: String", "+failureReason: String"], [], CREAM, GOLD)
-    d.uml_class(285, 350, 165, "FinanceRecord", ["+status: FinanceStatus", "+scope: INDIVIDUAL|CLUBBED", "+principalAmount: Decimal", "+maturityDate: Date", "+totalDue: Decimal"], [], CREAM, GREEN)
-    d.uml_class(560, 350, 175, "FinanceRecordInvoice", ["+allocatedAmount: Decimal", "+settledAmount: Decimal", "+allocationState: String"], [], CREAM, GOLD)
-    d.uml_class(765, 350, 135, "Transaction", ["+type: TransactionType", "+amount: Decimal", "+reference: String", "+createdAt: Instant"], [], CREAM, NAVY)
-    d.line(205, 120, 284, 120, NAVY)
-    d.text(214, 113, "1", 7, NAVY)
-    d.text(258, 113, "1..*", 7, NAVY)
-    d.line(450, 120, 559, 120, TEAL)
-    d.text(462, 113, "1..*", 7, NAVY)
-    d.text(535, 113, "1", 7, NAVY)
-    d.path([(125, 160), (125, 255), (648, 255), (648, 170)], GOLD)
-    d.text(136, 190, "1", 7, NAVY)
-    d.text(600, 247, "0..*", 7, NAVY)
-    d.path([(648, 170), (648, 295), (368, 295), (368, 349)], GREEN)
-    d.text(505, 286, "creates if SUCCESS", 6.5, GREEN, anchor="middle")
-    d.text(378, 340, "0..1", 7, NAVY)
-    d.line(450, 415, 559, 415, GOLD)
-    d.text(462, 408, "1", 7, NAVY)
-    d.text(530, 408, "1..*", 7, NAVY)
-    d.path([(648, 170), (648, 349)], GOLD)
-    d.text(656, 255, "1 to 0..1", 7, NAVY)
-    d.path([(368, 170), (368, 235), (648, 235), (648, 349)], TEAL, dash="5 3")
-    d.text(505, 226, "covered invoices", 6.5, TEAL, anchor="middle")
-    d.path([(450, 430), (515, 430), (515, 520), (835, 520), (835, 438)], NAVY, dash="5 3")
-    d.path([(735, 150), (750, 150), (750, 300), (835, 300), (835, 349)], NAVY, dash="5 3")
-    d.path([(450, 150), (520, 150), (520, 300), (835, 300)], NAVY, dash="5 3")
-    d.text(715, 535, "generated ledger entries", 6.5, NAVY, anchor="middle")
-    d.rect(40, 455, 390, 62, WARM, GOLD, 1.0, 2)
-    d.text(58, 476, "Constraint", 7.4, GOLD, "700")
-    d.text(58, 495, "No separate finance-request class; Disbursement carries mode and source.", 7.0, NAVY)
+    d = Diagram("ch5_disbursement_class_diagram", 980, 620, "UML Class Diagram - Disbursement Domain")
+    d.uml_class(50, 95, 180, "Program", ["+type: ProgramType", "+financePercent: Decimal", "+maxDisbursement: int", "+maxTenorDays: int", "+autoDisbursement: bool"], [], CREAM, NAVY)
+    d.uml_class(300, 95, 190, "Invoice", ["+status: InvoiceStatus", "+amountState: AmountState", "+amount: Decimal", "+issueDate: Date", "+dueDate: Date", "+tenorDays: int"], [], CREAM, TEAL)
+    d.uml_class(570, 95, 210, "Disbursement", ["+mode: INDIVIDUAL|CLUBBED", "+source: MANUAL|AUTO", "+state: DisbState", "+amount: Decimal", "+paymentRef: String", "+failureReason: String"], [], CREAM, GOLD)
+    d.uml_class(300, 390, 210, "FinanceRecordInvoice", ["+allocatedAmount: Decimal", "+settledAmount: Decimal", "+allocationState: String"], [], CREAM, GOLD)
+    d.uml_class(570, 390, 210, "FinanceRecord", ["+status: FinanceStatus", "+scope: INDIVIDUAL|CLUBBED", "+principalAmount: Decimal", "+maturityDate: Date", "+totalDue: Decimal"], [], CREAM, GREEN)
+    d.uml_class(820, 390, 145, "Transaction", ["+type: TransactionType", "+amount: Decimal", "+reference: String", "+createdAt: Instant"], [], CREAM, NAVY)
+
+    # Core aggregate relations.
+    d.line(230, 160, 299, 160, NAVY)
+    d.text(240, 152, "1", 7, NAVY)
+    d.text(268, 152, "1..*", 7, NAVY)
+    d.text(264, 146, "contains", 6.4, NAVY, anchor="middle")
+
+    d.line(490, 160, 569, 160, TEAL)
+    d.text(500, 152, "1..*", 7, NAVY)
+    d.text(545, 152, "1", 7, NAVY)
+    d.text(530, 146, "covers", 6.4, TEAL, anchor="middle")
+
+    d.path([(140, 95), (140, 68), (675, 68), (675, 94)], GOLD)
+    d.text(150, 82, "1", 7, NAVY)
+    d.text(640, 82, "0..*", 7, NAVY)
+    d.text(405, 60, "authorizes", 6.4, GOLD, anchor="middle")
+
+    d.path([(675, 245), (675, 389)], GREEN)
+    d.text(685, 266, "1", 7, NAVY)
+    d.text(685, 378, "0..1", 7, NAVY)
+    d.text(730, 318, "creates if SUCCESS", 6.5, GREEN, anchor="middle")
+
+    d.line(510, 452, 569, 452, GOLD)
+    d.text(518, 444, "1..*", 7, NAVY)
+    d.text(548, 444, "1", 7, NAVY)
+    d.text(540, 438, "allocates", 6.4, GOLD, anchor="middle")
+
+    d.path([(405, 389), (405, 246)], TEAL)
+    d.text(415, 375, "1..*", 7, NAVY)
+    d.text(415, 260, "1", 7, NAVY)
+    d.text(452, 318, "references", 6.4, TEAL, anchor="middle")
+
+    # Ledger-entry dependencies kept on the right side to avoid crossing associations.
+    d.path([(780, 170), (890, 170), (890, 389)], NAVY, dash="5 3")
+    d.text(900, 274, "FINANCE_DISBURSEMENT", 6.2, NAVY, anchor="middle")
+    d.path([(675, 540), (675, 560), (890, 560), (890, 516)], NAVY, dash="5 3")
+    d.text(780, 552, "FINANCE_REPAYMENT", 6.2, NAVY, anchor="middle")
+    d.path([(490, 225), (845, 225), (845, 389)], NAVY, dash="5 3")
+    d.text(610, 216, "INVOICE", 6.2, NAVY, anchor="middle")
+
+    d.rect(50, 535, 470, 55, WARM, GOLD, 1.0, 2)
+    d.text(66, 556, "Constraint", 7.4, GOLD, "700")
+    d.text(66, 574, "No separate finance-request class; Disbursement carries mode and source.", 7.0, NAVY)
     d.save()
 
 
@@ -795,34 +837,47 @@ def disbursement_sequence():
     names = ["Buyer/Supplier", "React Wizard", "Disb. Service", "Program/Invoice", "Payment GW", "adria-gateway", "Kafka", "EventConsumer"]
     for x, name in zip(xs, names):
         d.lifeline(x, 55, 650, name, 112)
-    for x, y, h in [(190, 95, 470), (330, 125, 465), (470, 155, 110), (610, 285, 185), (760, 420, 120), (900, 455, 90), (1040, 490, 120)]:
+    for x, y, h in [(190, 95, 470), (330, 125, 505), (470, 155, 75), (610, 335, 90), (760, 455, 95), (900, 535, 45), (1040, 565, 75)]:
         d.activation(x, y, h)
-    messages = [
-        (60, 190, 100, "select lodged invoices + mode", NAVY, False),
-        (190, 330, 130, "requestFinance(payload)", TEAL, False),
-        (330, 470, 160, "load program rules + invoice state", NAVY, False),
-        (470, 330, 190, "rules, tenor, remaining amount", GOLD, True),
-        (330, 330, 220, "run C1-C4 eligibility checks", TEAL, False),
-        (330, 610, 290, "POST /payments", NAVY, False),
-        (610, 330, 320, "202 Accepted + paymentRef", GOLD, True),
-        (330, 190, 350, "state=PENDING_CONFIRMATION", GOLD, True),
-        (610, 760, 425, "POST /callbacks/payment", NAVY, False),
-        (760, 760, 455, "validate HMAC signature", GREEN, False),
-        (760, 610, 485, "HTTP 200 fast ack", GOLD, True),
-        (760, 900, 515, "publish payment.callback", TEAL, False),
-        (900, 1040, 545, "consume callback event", TEAL, False),
-        (1040, 330, 575, "update disbursement SUCCESS/FAILED", GREEN, False),
-        (330, 330, 605, "create FinanceRecord + Transaction; update Invoice", GREEN, False),
-    ]
-    for x1, x2, y, label, color, dashed in messages:
+
+    def message(x1, x2, y, label, color=NAVY, dashed=False):
         end = x2 - 1 if x2 > x1 else x2 + 1
         d.line(x1, y, end, y, color, arrow=True, dash="4 3" if dashed else None)
         d.text((x1 + x2) / 2, y - 6, label, 6.1, color, anchor="middle")
-    d.rect(300, 235, 360, 38, WHITE, GOLD, 1.0, 2, dash="5 3")
-    d.text(315, 258, "alt: any eligibility check fails -> no Disbursement is submitted to Payment Gateway", 6.6, GOLD)
-    d.rect(590, 333, 180, 52, WHITE, RED, 1.0, 2, dash="5 3")
-    d.text(604, 354, "alt: sync 422", 6.5, RED, "700")
-    d.text(604, 371, "state=FAILED; invoice remains LODGED", 6.2, RED)
+
+    def self_message(x, y, label, color=TEAL):
+        d.path([(x, y), (x + 34, y), (x + 34, y + 18), (x + 1, y + 18)], color, arrow=True)
+        d.text(x + 48, y + 8, label, 6.1, color, anchor="start")
+
+    message(60, 190, 100, "select lodged invoices + mode")
+    message(190, 330, 130, "requestFinance(payload)", TEAL)
+    message(330, 470, 160, "load program rules + invoice state")
+    message(470, 330, 190, "rules, tenor, remaining amount", GOLD, dashed=True)
+    self_message(330, 220, "run C1-C4 eligibility checks", TEAL)
+
+    # UML combined fragment for the eligibility decision.
+    frame_x, frame_y, frame_w, frame_h = 160, 245, 505, 178
+    d.line(frame_x, frame_y, frame_x + frame_w, frame_y, GOLD)
+    d.line(frame_x, frame_y + frame_h, frame_x + frame_w, frame_y + frame_h, GOLD)
+    d.line(frame_x, frame_y, frame_x, frame_y + frame_h, GOLD)
+    d.line(frame_x + frame_w, frame_y, frame_x + frame_w, frame_y + frame_h, GOLD)
+    d.rect(frame_x, frame_y, 28, 16, WHITE, GOLD, 1.0, 1)
+    d.text(frame_x + 7, frame_y + 12, "alt", 6.2, GOLD, "700")
+    d.line(frame_x, 300, frame_x + frame_w, 300, GOLD)
+    d.text(305, 265, "[any eligibility check fails]", 6.2, RED, anchor="middle")
+    message(330, 190, 285, "reject with business code", RED, dashed=True)
+    d.text(385, 321, "[eligible]", 6.2, GREEN, anchor="middle")
+    message(330, 610, 345, "POST /payments")
+    message(610, 330, 375, "202 Accepted + paymentRef", GOLD, dashed=True)
+    message(330, 190, 405, "state=PENDING_CONFIRMATION", GOLD, dashed=True)
+
+    message(610, 760, 455, "POST /callbacks/payment")
+    self_message(760, 485, "validate HMAC signature", GREEN)
+    message(760, 610, 520, "HTTP 200 fast ack", GOLD, dashed=True)
+    message(760, 900, 550, "publish payment.callback", TEAL)
+    message(900, 1040, 580, "consume callback event", TEAL)
+    message(1040, 330, 610, "update disbursement SUCCESS/FAILED", GREEN)
+    self_message(330, 638, "create FinanceRecord + Transaction; update Invoice", GREEN)
     d.save()
 
 

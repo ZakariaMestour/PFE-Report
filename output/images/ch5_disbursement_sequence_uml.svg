@@ -34,12 +34,12 @@
 <text x="1040" y="70" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B1D3A" font-weight="700">EventConsumer</text>
 <line x1="1040" y1="77" x2="1040" y2="705" stroke="#D4D0C8" stroke-width="0.8" stroke-dasharray="4 3"/>
 <rect x="187" y="95" width="6" height="470" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
-<rect x="327" y="125" width="6" height="465" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
-<rect x="467" y="155" width="6" height="110" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
-<rect x="607" y="285" width="6" height="185" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
-<rect x="757" y="420" width="6" height="120" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
-<rect x="897" y="455" width="6" height="90" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
-<rect x="1037" y="490" width="6" height="120" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
+<rect x="327" y="125" width="6" height="505" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
+<rect x="467" y="155" width="6" height="75" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
+<rect x="607" y="335" width="6" height="90" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
+<rect x="757" y="455" width="6" height="95" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
+<rect x="897" y="535" width="6" height="45" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
+<rect x="1037" y="565" width="6" height="75" rx="0" fill="#FFFFFF" stroke="#6B7280" stroke-width="0.8"/>
 <line x1="60" y1="100" x2="189" y2="100" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
 <text x="125.0" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B1D3A" font-weight="400">select lodged invoices + mode</text>
 <line x1="190" y1="130" x2="329" y2="130" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
@@ -48,31 +48,37 @@
 <text x="400.0" y="154" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B1D3A" font-weight="400">load program rules + invoice state</text>
 <line x1="470" y1="190" x2="331" y2="190" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
 <text x="400.0" y="184" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#C9962A" font-weight="400">rules, tenor, remaining amount</text>
-<line x1="330" y1="220" x2="331" y2="220" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
-<text x="330.0" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B7285" font-weight="400">run C1-C4 eligibility checks</text>
-<line x1="330" y1="290" x2="609" y2="290" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
-<text x="470.0" y="284" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B1D3A" font-weight="400">POST /payments</text>
-<line x1="610" y1="320" x2="331" y2="320" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
-<text x="470.0" y="314" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#C9962A" font-weight="400">202 Accepted + paymentRef</text>
-<line x1="330" y1="350" x2="191" y2="350" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
-<text x="260.0" y="344" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#C9962A" font-weight="400">state=PENDING_CONFIRMATION</text>
-<line x1="610" y1="425" x2="759" y2="425" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
-<text x="685.0" y="419" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B1D3A" font-weight="400">POST /callbacks/payment</text>
-<line x1="760" y1="455" x2="761" y2="455" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
-<text x="760.0" y="449" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#166534" font-weight="400">validate HMAC signature</text>
-<line x1="760" y1="485" x2="611" y2="485" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
-<text x="685.0" y="479" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#C9962A" font-weight="400">HTTP 200 fast ack</text>
-<line x1="760" y1="515" x2="899" y2="515" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
-<text x="830.0" y="509" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B7285" font-weight="400">publish payment.callback</text>
-<line x1="900" y1="545" x2="1039" y2="545" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
-<text x="970.0" y="539" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B7285" font-weight="400">consume callback event</text>
-<line x1="1040" y1="575" x2="331" y2="575" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
-<text x="685.0" y="569" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#166534" font-weight="400">update disbursement SUCCESS/FAILED</text>
-<line x1="330" y1="605" x2="331" y2="605" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
-<text x="330.0" y="599" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#166534" font-weight="400">create FinanceRecord + Transaction; update Invoice</text>
-<rect x="300" y="235" width="360" height="38" rx="2" fill="#FFFFFF" stroke="#C9962A" stroke-width="1.0" stroke-dasharray="5 3"/>
-<text x="315" y="258" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.6" fill="#C9962A" font-weight="400">alt: any eligibility check fails -&gt; no Disbursement is submitted to Payment Gateway</text>
-<rect x="590" y="333" width="180" height="52" rx="2" fill="#FFFFFF" stroke="#B91C1C" stroke-width="1.0" stroke-dasharray="5 3"/>
-<text x="604" y="354" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.5" fill="#B91C1C" font-weight="700">alt: sync 422</text>
-<text x="604" y="371" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.2" fill="#B91C1C" font-weight="400">state=FAILED; invoice remains LODGED</text>
+<path d="M 330,220 L 364,220 L 364,238 L 331,238" fill="none" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
+<text x="378" y="228" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B7285" font-weight="400">run C1-C4 eligibility checks</text>
+<line x1="160" y1="245" x2="665" y2="245" stroke="#C9962A" stroke-width="1.2"/>
+<line x1="160" y1="423" x2="665" y2="423" stroke="#C9962A" stroke-width="1.2"/>
+<line x1="160" y1="245" x2="160" y2="423" stroke="#C9962A" stroke-width="1.2"/>
+<line x1="665" y1="245" x2="665" y2="423" stroke="#C9962A" stroke-width="1.2"/>
+<rect x="160" y="245" width="28" height="16" rx="1" fill="#FFFFFF" stroke="#C9962A" stroke-width="1.0"/>
+<text x="167" y="257" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.2" fill="#C9962A" font-weight="700">alt</text>
+<line x1="160" y1="300" x2="665" y2="300" stroke="#C9962A" stroke-width="1.2"/>
+<text x="305" y="265" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.2" fill="#B91C1C" font-weight="400">[any eligibility check fails]</text>
+<line x1="330" y1="285" x2="191" y2="285" stroke="#B91C1C" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_red)"/>
+<text x="260.0" y="279" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#B91C1C" font-weight="400">reject with business code</text>
+<text x="385" y="321" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.2" fill="#166534" font-weight="400">[eligible]</text>
+<line x1="330" y1="345" x2="609" y2="345" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<text x="470.0" y="339" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B1D3A" font-weight="400">POST /payments</text>
+<line x1="610" y1="375" x2="331" y2="375" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+<text x="470.0" y="369" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#C9962A" font-weight="400">202 Accepted + paymentRef</text>
+<line x1="330" y1="405" x2="191" y2="405" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+<text x="260.0" y="399" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#C9962A" font-weight="400">state=PENDING_CONFIRMATION</text>
+<line x1="610" y1="455" x2="759" y2="455" stroke="#0B1D3A" stroke-width="1.2" marker-end="url(#arrow_navy)"/>
+<text x="685.0" y="449" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B1D3A" font-weight="400">POST /callbacks/payment</text>
+<path d="M 760,485 L 794,485 L 794,503 L 761,503" fill="none" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<text x="808" y="493" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#166534" font-weight="400">validate HMAC signature</text>
+<line x1="760" y1="520" x2="611" y2="520" stroke="#C9962A" stroke-width="1.2" stroke-dasharray="4 3" marker-end="url(#arrow_gold)"/>
+<text x="685.0" y="514" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#C9962A" font-weight="400">HTTP 200 fast ack</text>
+<line x1="760" y1="550" x2="899" y2="550" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
+<text x="830.0" y="544" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B7285" font-weight="400">publish payment.callback</text>
+<line x1="900" y1="580" x2="1039" y2="580" stroke="#0B7285" stroke-width="1.2" marker-end="url(#arrow_teal)"/>
+<text x="970.0" y="574" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#0B7285" font-weight="400">consume callback event</text>
+<line x1="1040" y1="610" x2="331" y2="610" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<text x="685.0" y="604" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#166534" font-weight="400">update disbursement SUCCESS/FAILED</text>
+<path d="M 330,638 L 364,638 L 364,656 L 331,656" fill="none" stroke="#166534" stroke-width="1.2" marker-end="url(#arrow_green)"/>
+<text x="378" y="646" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="6.1" fill="#166534" font-weight="400">create FinanceRecord + Transaction; update Invoice</text>
 </svg>

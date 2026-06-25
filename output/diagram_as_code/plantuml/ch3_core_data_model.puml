@@ -27,6 +27,11 @@ class ScfProgramConfiguration {
   +financePercent: BigDecimal
   +status: ProgramStatus
 }
+class ScfProgramAnchor {
+  +roleInProgram: String
+  +active: Boolean
+  +approvalStatus: ApprovalStatus
+}
 class ScfAnchor {
   +anchorCode: String
   +name: String
@@ -49,28 +54,37 @@ class ScfBankAccount {
   +currency: Currency
   +primaryAccount: Boolean
 }
+class ScfProgramFeeCatalogue {
+  +feeItems: List
+  +flatFeeConfig: FlatFeeConfig
+  +approvalStatus: ApprovalStatus
+}
 class ScfProgramCashflow {
-  +invoiceNumber: String
-  +amount: BigDecimal
-  +dueDate: LocalDate
-  +validationStatus: String
+  +autoDisbursement: Boolean
+  +autoRepayment: Boolean
+  +multipleDisbursement: Boolean
+  +maxDisbursementsAllowed: Integer
+  +repaymentBy: String
 }
-class Country {
-  +code: String
-  +name: String
+class CountryMaster {
+  +countryCodeIso2: String
+  +countryCodeIso3: String
+  +countryName: String
 }
-class City {
-  +code: String
-  +name: String
-  +postalCode: String
+class CityMaster {
+  +cityCode: String
+  +cityName: String
+  +countryCodeIso2: String
 }
 ScfProductDefinition "1" --> "0..*" ScfProgramConfiguration : defines
-ScfProgramConfiguration "1" --> "1..*" ScfAnchor : assigns
-ScfProgramConfiguration "1" --> "0..*" ScfProgramCounterParty : configures
-ScfCounterParty "1" --> "0..*" ScfProgramCounterParty : joins
-ScfCounterParty "1" --> "0..*" ScfBankAccount : owns
-ScfProgramConfiguration "1" --> "0..*" ScfProgramCashflow : contains
-Country "1" --> "0..*" City : contains
-ScfCounterParty --> Country : country
+ScfProgramConfiguration "1" *-- "0..1" ScfProgramAnchor : anchor assignment
+ScfProgramAnchor "0..*" --> "1" ScfAnchor : references
+ScfProgramConfiguration "1" *-- "0..*" ScfProgramCounterParty : program parties
+ScfProgramCounterParty "0..*" --> "1" ScfCounterParty : references
+ScfCounterParty "1" *-- "0..*" ScfBankAccount : owns
+ScfProgramConfiguration "1" *-- "0..1" ScfProgramCashflow : cashflow settings
+ScfProgramConfiguration "1" *-- "0..1" ScfProgramFeeCatalogue : fee settings
+CountryMaster "1" --> "0..*" CityMaster : contains
+ScfCounterParty "0..*" ..> "0..1" CountryMaster : address country
 
 @enduml

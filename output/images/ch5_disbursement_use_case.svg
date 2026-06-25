@@ -37,7 +37,6 @@
 <text x="610" y="400" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Process async</text>
 <text x="610" y="411" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">callback</text>
 <line x1="112" y1="260" x2="285" y2="130" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="112" y1="260" x2="285" y2="230" stroke="#6B7280" stroke-width="1.2"/>
 <line x1="365" y1="155" x2="365" y2="204" stroke="#0B7285" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_teal)"/>
 <text x="405" y="184" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.4" fill="#0B7285" font-weight="400">&lt;&lt;include&gt;&gt;</text>
 <line x1="445" y1="230" x2="530" y2="180" stroke="#0B7285" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_teal)"/>
@@ -48,5 +47,5 @@
 <text x="648" y="243" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.4" fill="#0B1D3A" font-weight="400">&lt;&lt;include&gt;&gt;</text>
 <line x1="610" y1="320" x2="610" y2="379" stroke="#166534" stroke-width="1.2" stroke-dasharray="5 3" marker-end="url(#arrow_green)"/>
 <text x="650" y="357" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.4" fill="#166534" font-weight="400">&lt;&lt;include&gt;&gt;</text>
-<text x="510" y="452" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B1D3A" font-weight="700">Only the primary front-office actor is shown; payment and scheduling are internal collaborators.</text>
+<text x="510" y="452" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.8" fill="#0B1D3A" font-weight="700">Automatic mode is triggered by invoice state; payment and scheduling remain internal collaborators.</text>
 </svg>

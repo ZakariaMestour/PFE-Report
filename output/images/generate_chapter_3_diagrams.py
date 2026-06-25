@@ -120,7 +120,7 @@ def data_model():
 {svg_box(305, 175, 145, 86, "PROGRAM", [("reference", GRAY, "400"), ("productType", GRAY, "400"), ("limits + dates", TEAL, "600")], header=TEAL, stroke=TEAL)}
 {svg_box(585, 175, 135, 86, "ANCHOR", [("anchorName", GRAY, "400"), ("anchorCode", GRAY, "400"), ("anchorRole", TEAL, "600")], header=TEAL, stroke=TEAL)}
 {svg_box(475, 300, 135, 74, "FEE_CATALOGUE", [("feeItems JSON", GRAY, "400"), ("flatFeeConfig", TEAL, "600")], header=GOLD, stroke=GOLD)}
-{svg_box(635, 300, 115, 74, "CASHFLOW", [("invoiceNumber", GRAY, "400"), ("validation", TEAL, "600")], header=GOLD, stroke=GOLD)}
+{svg_box(635, 300, 115, 74, "CASHFLOW", [("autoDisb.", GRAY, "400"), ("repayment", TEAL, "600")], header=GOLD, stroke=GOLD)}
 {svg_box(475, 60, 135, 74, "PRODUCT_DEF", [("productCode", GRAY, "400"), ("instrument", TEAL, "600")], header=NAVY2)}
   <line x1="377" y1="131" x2="377" y2="174" stroke="{GRAY}" stroke-width="1.2" stroke-dasharray="5 2" marker-end="url(#arrow_gray)"/>
   <line x1="170" y1="218" x2="304" y2="218" stroke="{NAVY}" stroke-width="1.4" marker-end="url(#arrow_navy)"/>
@@ -143,7 +143,7 @@ def data_model():
             ((305,175,145,86),"PROGRAM",[("reference",GRAY,"400"),("productType",GRAY,"400"),("limits + dates",TEAL,"600")],TEAL,TEAL),
             ((585,175,135,86),"ANCHOR",[("anchorName",GRAY,"400"),("anchorCode",GRAY,"400"),("anchorRole",TEAL,"600")],TEAL,TEAL),
             ((475,300,135,74),"FEE_CATALOGUE",[("feeItems JSON",GRAY,"400"),("flatFeeConfig",TEAL,"600")],GOLD,GOLD),
-            ((635,300,115,74),"CASHFLOW",[("invoiceNumber",GRAY,"400"),("validation",TEAL,"600")],GOLD,GOLD),
+            ((635,300,115,74),"CASHFLOW",[("autoDisb.",GRAY,"400"),("repayment",TEAL,"600")],GOLD,GOLD),
             ((475,60,135,74),"PRODUCT_DEF",[("productCode",GRAY,"400"),("instrument",TEAL,"600")],NAVY2,NAVY),
         ]:
             draw_box(d, box, title, lines, s, header, stroke)
