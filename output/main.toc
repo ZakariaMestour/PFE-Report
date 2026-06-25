@@ -1,143 +1,132 @@
-\contentsline {chapter}{General Introduction}{1}{chapter*.4}%
+\contentsline {chapter}{Acknowledgements}{i}{chapter*.1}%
+\contentsline {chapter}{List of Acronyms}{ii}{chapter*.2}%
+\contentsline {chapter}{R\'esum\'e}{iii}{chapter*.3}%
+\contentsline {chapter}{General Introduction}{1}{chapter*.7}%
 \contentsline {chapter}{\numberline {1}Project Context and Background}{4}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Introduction}{4}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Host Organization: Adria Business \& Technology}{4}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Company Overview and Positioning}{4}{subsection.1.2.1}%
 \contentsline {subsection}{\numberline {1.2.2}Vision, Mission, and Core Values}{5}{subsection.1.2.2}%
-\contentsline {subsection}{\numberline {1.2.3}Areas of Expertise}{6}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.3}Areas of Expertise}{5}{subsection.1.2.3}%
 \contentsline {subsection}{\numberline {1.2.4}Information Sheet}{6}{subsection.1.2.4}%
-\contentsline {subsection}{\numberline {1.2.5}Products and Services Portfolio}{7}{subsection.1.2.5}%
+\contentsline {subsection}{\numberline {1.2.5}Products and Services Portfolio}{6}{subsection.1.2.5}%
 \contentsline {subsection}{\numberline {1.2.6}Organizational Structure}{7}{subsection.1.2.6}%
 \contentsline {subsection}{\numberline {1.2.7}Strategic Partnerships and Clientele}{7}{subsection.1.2.7}%
 \contentsline {section}{\numberline {1.3}General Context of the Project}{8}{section.1.3}%
 \contentsline {subsection}{\numberline {1.3.1}Supply Chain Finance: Domain Overview}{8}{subsection.1.3.1}%
 \contentsline {subsection}{\numberline {1.3.2}Trade Finance as a Complementary Domain}{10}{subsection.1.3.2}%
-\contentsline {subsection}{\numberline {1.3.3}Problem Statement: Why Digitizing SCF and Trade Finance}{11}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.3}Problem Statement: Why Digitizing SCF and Trade Finance}{10}{subsection.1.3.3}%
 \contentsline {subsection}{\numberline {1.3.4}Proposed Solution and Platform Ambition}{11}{subsection.1.3.4}%
-\contentsline {subsection}{\numberline {1.3.5}Multi-Bank and Configuration Strategy}{12}{subsection.1.3.5}%
+\contentsline {subsection}{\numberline {1.3.5}Multi-Bank and Configuration Strategy}{11}{subsection.1.3.5}%
 \contentsline {section}{\numberline {1.4}Project Methodology and Management}{12}{section.1.4}%
 \contentsline {subsection}{\numberline {1.4.1}Agile Framework: Scrum at Adria}{12}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {1.4.2}Sprint Structure and Jira-Based Ticket Management}{13}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.2}Sprint Structure and Jira-Based Ticket Management}{12}{subsection.1.4.2}%
 \contentsline {subsection}{\numberline {1.4.3}Developer Role and Contribution Scope}{13}{subsection.1.4.3}%
-\contentsline {subsection}{\numberline {1.4.4}Tools and Work Environment}{14}{subsection.1.4.4}%
+\contentsline {subsection}{\numberline {1.4.4}Tools and Work Environment}{13}{subsection.1.4.4}%
 \contentsline {subsection}{\numberline {1.4.5}Timeline and Internship Planning}{14}{subsection.1.4.5}%
 \contentsline {section}{\numberline {1.5}Conclusion}{15}{section.1.5}%
-\contentsline {chapter}{\numberline {2}System Architecture and Technical Stack}{17}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Introduction}{17}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Overall Architecture: Modular SCF Service on Adria Standard}{18}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}The Adria Standard}{18}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Architecture Overview}{18}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Monorepo Organization: Back-end and Front-end Structure}{19}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Service Communication and Inter-service Protocols}{20}{subsection.2.2.4}%
-\contentsline {section}{\numberline {2.3}Backend Services Deep Dive}{20}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}\texttt {scf-service}: Core Business Logic}{20}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}\texttt {scf-entities}: Shared JPA Entity Library}{20}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}\texttt {adria-gateway2-service}: API Gateway}{21}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Foundation Data Library}{21}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Properties, Registry, Configuration, and Audit Services}{22}{subsection.2.3.5}%
-\contentsline {section}{\numberline {2.4}Frontend Architecture}{22}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Technology Stack}{22}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}Routing Strategy and Role-Based Views}{22}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Services Layer}{23}{subsection.2.4.3}%
-\contentsline {section}{\numberline {2.5}Security Architecture}{23}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Identity and Access Management with Keycloak}{23}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}JWT Validation in the Backend}{24}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Maker/Checker Governance}{24}{subsection.2.5.3}%
-\contentsline {section}{\numberline {2.6}Data Storage Architecture}{25}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Relational Persistence with PostgreSQL}{25}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Object Storage and Document Conversion}{25}{subsection.2.6.2}%
-\contentsline {section}{\numberline {2.7}Infrastructure and Deployment}{26}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Docker Compose Stack}{26}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Environment-Specific Configuration}{27}{subsection.2.7.2}%
-\contentsline {section}{\numberline {2.8}Conclusion}{28}{section.2.8}%
-\contentsline {chapter}{\numberline {3}SCF Domain: Design and Implementation}{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Introduction}{29}{section.3.1}%
-\contentsline {section}{\numberline {3.2}SCF Data Model: Entities and Relationships}{29}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}BaseEntity: Shared Auditing and Governance Fields}{29}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Core Business Entities}{30}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Business Enumerations}{31}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Maker/Checker Governance Pattern}{32}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Business Rationale}{32}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Technical Implementation}{33}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}OriginalDataRestorer}{33}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Counterparty Module}{34}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Business Purpose}{34}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Onboarding Workflow}{34}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Document Management for Counterparties}{34}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Product Definition Module}{35}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Product Versus Program}{35}{subsection.3.5.1}%
-\contentsline {subsection}{\numberline {3.5.2}Product Definition Lifecycle}{35}{subsection.3.5.2}%
-\contentsline {section}{\numberline {3.6}Program Configuration Module}{35}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}What a Program Represents}{35}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Program Creation Flow}{36}{subsection.3.6.2}%
-\contentsline {subsection}{\numberline {3.6.3}Fee Catalogue Structure}{36}{subsection.3.6.3}%
-\contentsline {subsection}{\numberline {3.6.4}Program Copy Feature}{37}{subsection.3.6.4}%
-\contentsline {section}{\numberline {3.7}Invoice Upload and Cashflow Management}{37}{section.3.7}%
-\contentsline {subsection}{\numberline {3.7.1}Cashflow Validation Rules}{37}{subsection.3.7.1}%
-\contentsline {section}{\numberline {3.8}Transaction Inquiry Module}{38}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Conclusion}{38}{section.3.9}%
-\contentsline {chapter}{\numberline {4}Frontend Implementation and User Flows}{39}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Introduction}{39}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Application Architecture and Navigation}{39}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Application Entry Point and Route Structure}{39}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Role-Based Sidebar and View Adaptation}{40}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}\texttt {Index.tsx} and Module Selection}{43}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Master Setup Module}{44}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Tab Structure and Role-Gated Access}{44}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Product Suite and Program Configuration}{45}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Counterparty Onboarding and Foundational Data}{48}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Control Centre}{48}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Invoice Management Flows}{48}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Invoice Upload Flow}{48}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Manual Invoice Form}{50}{subsection.4.4.2}%
-\contentsline {section}{\numberline {4.5}Finance and Early Payment Flows}{51}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Early Payment Request}{51}{subsection.4.5.1}%
-\contentsline {subsection}{\numberline {4.5.2}Finance Disbursement Wizard}{51}{subsection.4.5.2}%
-\contentsline {section}{\numberline {4.6}Document Inquiry and Specification Documents}{53}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Notifications Panel}{53}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Forms Engineering: Patterns and Practices}{53}{section.4.8}%
-\contentsline {subsection}{\numberline {4.8.1}Hooks and Form State}{53}{subsection.4.8.1}%
-\contentsline {subsection}{\numberline {4.8.2}Error Handling and User Feedback}{53}{subsection.4.8.2}%
-\contentsline {section}{\numberline {4.9}API Services Layer}{54}{section.4.9}%
-\contentsline {subsection}{\numberline {4.9.1}Axios Client and Endpoint Mapping}{54}{subsection.4.9.1}%
-\contentsline {subsection}{\numberline {4.9.2}TypeScript Types}{54}{subsection.4.9.2}%
-\contentsline {section}{\numberline {4.10}Conclusion}{55}{section.4.10}%
-\contentsline {chapter}{\numberline {5}Disbursement Module: PFE Project}{56}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introduction}{56}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Context and Motivation}{56}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Position in the SCF Value Chain}{56}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Architecture Boundary of the Module}{57}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Access Symmetry}{57}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Requirements and Functional Specification}{58}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Functional Requirements}{58}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Eligibility Rules}{60}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}Non-functional Requirements}{61}{subsection.5.3.3}%
-\contentsline {section}{\numberline {5.4}Design}{61}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Domain Model}{61}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Invoice and Disbursement State Machines}{63}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}Manual and Automatic Disbursement}{64}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}Payment Gateway Integration}{66}{subsection.5.4.4}%
-\contentsline {section}{\numberline {5.5}Implementation Scope}{68}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Frontend Scope}{68}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Backend Scope}{68}{subsection.5.5.2}%
-\contentsline {section}{\numberline {5.6}Open Questions and Validation}{69}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Conclusion}{70}{section.5.7}%
-\contentsline {chapter}{\numberline {6}Evaluation and Reflection}{71}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Introduction}{71}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Contributions Summary}{71}{section.6.2}%
-\contentsline {subsection}{\numberline {6.2.1}Sprint-by-Sprint Overview}{71}{subsection.6.2.1}%
-\contentsline {subsection}{\numberline {6.2.2}Classification of Contributions}{73}{subsection.6.2.2}%
-\contentsline {subsection}{\numberline {6.2.3}Quantitative Summary}{73}{subsection.6.2.3}%
-\contentsline {section}{\numberline {6.3}Critical Evaluation}{74}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}What Went Well}{74}{subsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.3.2}Difficulties Faced and How They Were Handled}{75}{subsection.6.3.2}%
-\contentsline {subsection}{\numberline {6.3.3}Limitations of the Current Work}{75}{subsection.6.3.3}%
-\contentsline {section}{\numberline {6.4}Skills Acquired}{76}{section.6.4}%
-\contentsline {subsection}{\numberline {6.4.1}Technical Skills}{76}{subsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.4.2}Professional and Soft Skills}{77}{subsection.6.4.2}%
-\contentsline {section}{\numberline {6.5}Recommendations for Future Development}{77}{section.6.5}%
-\contentsline {subsection}{\numberline {6.5.1}Integration of the Disbursement Module}{77}{subsection.6.5.1}%
-\contentsline {subsection}{\numberline {6.5.2}Asynchronous Processing}{78}{subsection.6.5.2}%
-\contentsline {subsection}{\numberline {6.5.3}Mobile Access for Counterparties}{78}{subsection.6.5.3}%
-\contentsline {subsection}{\numberline {6.5.4}Advanced Reporting and Analytics}{78}{subsection.6.5.4}%
-\contentsline {section}{\numberline {6.6}Conclusion}{79}{section.6.6}%
+\contentsline {chapter}{\numberline {2}System Architecture and Technical Stack}{16}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{16}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Overall Architecture: Modular SCF Service on Adria Standard}{16}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}The Adria Standard}{16}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Architecture Overview}{17}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Monorepo Organization: Back-end and Front-end Structure}{18}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Service Communication and Inter-service Protocols}{18}{subsection.2.2.4}%
+\contentsline {section}{\numberline {2.3}Backend Services Deep Dive}{18}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}\texttt {scf-service}: Core Business Logic}{18}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}\texttt {scf-entities}: Shared JPA Entity Library}{19}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}\texttt {adria-gateway2-service}: API Gateway}{19}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Foundation Data Library}{20}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Properties, Registry, Configuration, and Audit Services}{20}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Frontend Architecture}{21}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Technology Stack}{21}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Routing Strategy and Role-Based Views}{21}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Services Layer}{21}{subsection.2.4.3}%
+\contentsline {section}{\numberline {2.5}Security Architecture}{22}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Identity and Access Management with Keycloak}{22}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}JWT Validation in the Backend}{22}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Maker/Checker Governance}{22}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Data Storage Architecture}{23}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Relational Persistence with PostgreSQL}{23}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Object Storage and Document Conversion}{23}{subsection.2.6.2}%
+\contentsline {section}{\numberline {2.7}Infrastructure and Deployment}{24}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Docker Compose Stack}{24}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Environment-Specific Configuration}{25}{subsection.2.7.2}%
+\contentsline {section}{\numberline {2.8}Conclusion}{26}{section.2.8}%
+\contentsline {chapter}{\numberline {3}SCF Domain: Design and Implementation}{27}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introduction}{27}{section.3.1}%
+\contentsline {section}{\numberline {3.2}SCF Data Model: Entities and Relationships}{27}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}BaseEntity: Shared Auditing and Governance Fields}{27}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Core Business Entities}{28}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Business Enumerations}{29}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Maker/Checker Governance Pattern}{30}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Business Rationale}{30}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Technical Implementation}{31}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}OriginalDataRestorer}{31}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Counterparty Module}{32}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Business Purpose}{32}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Onboarding Workflow}{32}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Document Management for Counterparties}{32}{subsection.3.4.3}%
+\contentsline {section}{\numberline {3.5}Product Definition Module}{33}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Product Versus Program}{33}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Product Definition Lifecycle}{33}{subsection.3.5.2}%
+\contentsline {section}{\numberline {3.6}Program Configuration Module}{33}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}What a Program Represents}{33}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Program Creation Flow}{33}{subsection.3.6.2}%
+\contentsline {subsection}{\numberline {3.6.3}Fee Catalogue Structure}{34}{subsection.3.6.3}%
+\contentsline {subsection}{\numberline {3.6.4}Program Copy Feature}{34}{subsection.3.6.4}%
+\contentsline {section}{\numberline {3.7}Invoice Upload and Cashflow Management}{35}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Cashflow Validation Rules}{35}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}Transaction Inquiry Module}{35}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Conclusion}{36}{section.3.9}%
+\contentsline {chapter}{\numberline {4}Frontend Implementation and User Flows}{37}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Introduction}{37}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Application Architecture and Navigation}{37}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Application Entry Point and Route Structure}{37}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Role-Based Sidebar and View Adaptation}{38}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}\texttt {Index.tsx} and Module Selection}{41}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Master Setup Module}{42}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Tab Structure and Role-Gated Access}{42}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Product Suite and Program Configuration}{43}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Counterparty Onboarding and Foundational Data}{46}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Control Centre}{46}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Invoice Management Flows}{46}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Invoice Upload Flow}{46}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Manual Invoice Form}{48}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Finance and Early Payment Flows}{49}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Early Payment Request}{49}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Finance Disbursement Wizard}{49}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Document Inquiry and Specification Documents}{51}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Notifications Panel}{51}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Forms Engineering: Patterns and Practices}{51}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Hooks and Form State}{51}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Error Handling and User Feedback}{51}{subsection.4.8.2}%
+\contentsline {section}{\numberline {4.9}API Services Layer}{51}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Axios Client and Endpoint Mapping}{51}{subsection.4.9.1}%
+\contentsline {subsection}{\numberline {4.9.2}TypeScript Types}{52}{subsection.4.9.2}%
+\contentsline {section}{\numberline {4.10}Conclusion}{53}{section.4.10}%
+\contentsline {chapter}{\numberline {5}Disbursement Module: PFE Project}{54}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introduction}{54}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Context and Motivation}{54}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Position in the SCF Value Chain}{54}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Architecture Boundary of the Module}{55}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Access Symmetry}{55}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Requirements and Functional Specification}{56}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Functional Requirements}{56}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Eligibility Rules}{57}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Non-functional Requirements}{58}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Design}{58}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Domain Model}{58}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Invoice and Disbursement State Machines}{60}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}Manual and Automatic Disbursement}{61}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}Payment Gateway Integration}{63}{subsection.5.4.4}%
+\contentsline {section}{\numberline {5.5}Implementation Scope}{65}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Frontend Scope}{65}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Backend Scope}{65}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.6}Open Questions and Validation}{66}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Internship Evaluation and Contribution Summary}{66}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Critical Evaluation and Limitations}{68}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Skills Acquired and Future Recommendations}{69}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Conclusion}{71}{section.5.10}%
+\contentsline {chapter}{General Conclusion}{72}{chapter*.8}%
+\contentsline {chapter}{R\'ef\'erences Bibliographiques}{74}{chapter*.9}%

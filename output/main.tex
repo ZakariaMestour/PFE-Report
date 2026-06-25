@@ -1,6 +1,6 @@
 \documentclass[12pt,a4paper]{report}
 
-\usepackage[margin=2.5cm]{geometry}
+\usepackage[top=2.5cm,bottom=2.5cm,left=3cm,right=2cm]{geometry}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -12,6 +12,7 @@
 \usepackage{setspace}
 \usepackage{float}
 \usepackage{enumitem}
+\usepackage{etoolbox}
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage[hidelinks]{hyperref}
 
@@ -20,7 +21,18 @@
 
 \onehalfspacing
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.6em}
+\setlength{\parskip}{6pt}
+\newlength{\firstparagraphindent}
+\setlength{\firstparagraphindent}{1.25cm}
+\makeatletter
+\newcommand{\indentfirstparagraphonly}{%
+    \everypar{%
+        \hskip\firstparagraphindent\relax
+        \everypar{}%
+    }%
+}
+\apptocmd{\@afterheading}{\indentfirstparagraphonly}{}{}
+\makeatother
 
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{Z}{>{\centering\arraybackslash}X}
@@ -51,6 +63,9 @@
 \begin{document}
 
 \pagenumbering{roman}
+\input{chapters/acknowledgements}
+\input{chapters/acronyms}
+\input{chapters/abstract}
 \tableofcontents
 \listoffigures
 \listoftables
@@ -64,6 +79,7 @@
 \include{chapters/chapter_3}
 \include{chapters/chapter_4}
 \include{chapters/chapter_5}
-\include{chapters/chapter_6}
+\input{chapters/general_conclusion}
+\input{chapters/references}
 
 \end{document}

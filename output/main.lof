@@ -2,45 +2,44 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Supply Chain Finance ecosystem}}{8}{figure.1.1}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Illustrative transaction flow for receivables finance}}{9}{figure.1.2}%
 \contentsline {figure}{\numberline {1.3}{\ignorespaces Illustrative transaction flow for payables finance}}{10}{figure.1.3}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Daily development and validation workflow}}{13}{figure.1.4}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Daily development and validation workflow}}{12}{figure.1.4}%
 \contentsline {figure}{\numberline {1.5}{\ignorespaces Internship timeline and parallel Disbursement Module refinement}}{15}{figure.1.5}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Global architecture of the SCF platform}}{19}{figure.2.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Gateway routing and filter chain}}{21}{figure.2.2}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Authentication and role resolution flow}}{24}{figure.2.3}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Document storage and conversion flow}}{25}{figure.2.4}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Global architecture of the SCF platform}}{17}{figure.2.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Gateway routing and filter chain}}{20}{figure.2.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Authentication and role resolution flow}}{22}{figure.2.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Document storage and conversion flow}}{24}{figure.2.4}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces SCF core data model}}{30}{figure.3.1}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Maker/checker governance lifecycle}}{33}{figure.3.2}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Program configuration functional flow}}{36}{figure.3.3}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces SCF core data model}}{28}{figure.3.1}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Maker/checker governance lifecycle}}{31}{figure.3.2}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Program configuration functional flow}}{34}{figure.3.3}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Frontend routing and role-based navigation}}{40}{figure.4.1}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Back-office use cases for bank maker and checker roles}}{41}{figure.4.2}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Middle-office use cases for monitoring and follow-up}}{41}{figure.4.3}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Front-office use cases for buyer and supplier actions}}{42}{figure.4.4}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces SCF dashboard in light mode with business-view filtering}}{42}{figure.4.5}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces SCF dashboard in dark mode with buyer and supplier view selector}}{43}{figure.4.6}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Module switch between Trade Finance and Supply Chain Finance}}{44}{figure.4.7}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Navigation menu exposing SCF Studio and inquiry modules}}{45}{figure.4.8}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Product definition list in the SCF product configurator}}{45}{figure.4.9}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Product definition creation form}}{46}{figure.4.10}%
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Program configuration list with active programs and actions}}{47}{figure.4.11}%
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Program configuration creation form}}{47}{figure.4.12}%
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Invoice upload component flow}}{49}{figure.4.13}%
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Invoice management screen with upload processing method}}{50}{figure.4.14}%
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Invoice upload modal for Excel and scanned invoice files}}{50}{figure.4.15}%
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Manual invoice creation entry point}}{51}{figure.4.16}%
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Finance disbursement six-step wizard}}{52}{figure.4.17}%
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Manual finance disbursement wizard}}{52}{figure.4.18}%
-\contentsline {figure}{\numberline {4.19}{\ignorespaces Frontend services layer}}{54}{figure.4.19}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Frontend routing and role-based navigation}}{38}{figure.4.1}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Back-office use cases for bank maker and checker roles}}{39}{figure.4.2}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Middle-office use cases for monitoring and follow-up}}{39}{figure.4.3}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Front-office use cases for buyer and supplier actions}}{40}{figure.4.4}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces SCF dashboard in light mode with business-view filtering}}{40}{figure.4.5}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces SCF dashboard in dark mode with buyer and supplier view selector}}{41}{figure.4.6}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Module switch between Trade Finance and Supply Chain Finance}}{42}{figure.4.7}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Navigation menu exposing SCF Studio and inquiry modules}}{43}{figure.4.8}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Product definition list in the SCF product configurator}}{43}{figure.4.9}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Product definition creation form}}{44}{figure.4.10}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Program configuration list with active programs and actions}}{45}{figure.4.11}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Program configuration creation form}}{45}{figure.4.12}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Invoice upload component flow}}{47}{figure.4.13}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Invoice management screen with upload processing method}}{48}{figure.4.14}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Invoice upload modal for Excel and scanned invoice files}}{48}{figure.4.15}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Manual invoice creation entry point}}{49}{figure.4.16}%
+\contentsline {figure}{\numberline {4.17}{\ignorespaces Finance disbursement six-step wizard}}{50}{figure.4.17}%
+\contentsline {figure}{\numberline {4.18}{\ignorespaces Manual finance disbursement wizard}}{50}{figure.4.18}%
+\contentsline {figure}{\numberline {4.19}{\ignorespaces Frontend services layer}}{52}{figure.4.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Use case diagram of the Disbursement Module}}{60}{figure.5.1}%
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Disbursement domain class diagram}}{62}{figure.5.2}%
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Disbursement lifecycle state machine}}{64}{figure.5.3}%
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Manual disbursement wizard in the SCF platform}}{65}{figure.5.4}%
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Automatic disbursement entry from the SCF Studio}}{66}{figure.5.5}%
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Manual disbursement sequence with Payment Gateway callback and Kafka processing}}{67}{figure.5.6}%
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Two contribution streams during the internship}}{72}{figure.6.1}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Main skills acquired during the internship}}{76}{figure.6.2}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Recommendations for future platform development}}{78}{figure.6.3}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Use case diagram of the Disbursement Module}}{57}{figure.5.1}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Disbursement domain class diagram}}{59}{figure.5.2}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Disbursement lifecycle state machine}}{61}{figure.5.3}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Manual disbursement wizard in the SCF platform}}{62}{figure.5.4}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Automatic disbursement entry from the SCF Studio}}{63}{figure.5.5}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Manual disbursement sequence with Payment Gateway callback and Kafka processing}}{64}{figure.5.6}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Two contribution streams during the internship}}{67}{figure.5.7}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Main skills acquired during the internship}}{70}{figure.5.8}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Recommendations for future platform development}}{71}{figure.5.9}%

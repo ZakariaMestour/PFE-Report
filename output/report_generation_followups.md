@@ -21,8 +21,8 @@ These are candidates for real platform screenshots to insert later.
 - Chapter IV: `[Insert screenshot of Transaction Inquiry filters and results]`
 - Chapter V: `[Insert screenshot of Disbursement API Swagger endpoints]`
 - Chapter V: `[Insert backend controller, service, mapper, repository, and migration details once finalized]`
-- Chapter VI: `[Insert screenshot or export of Jira sprint/ticket summary if available]`
-- Chapter VI: `[Insert bug-fix examples and Product Owner refinement-session count if available]`
+- Chapter V: `[Insert screenshot or export of Jira sprint/ticket summary if available]`
+- Chapter V: `[Insert bug-fix examples and Product Owner refinement-session count if available]`
 
 ## Diagram Status
 
@@ -57,8 +57,8 @@ The Disbursement Module chapter now uses `input/disbursement-context/CONTEXT.md`
 ## Final Polish Tasks
 
 - Replace all `[Insert ...]` placeholders with screenshots, figures, or validated project details.
-- Verify Chapter VI quantitative evidence in Jira and Bitbucket: 12 SCF-service tickets, 8 FDL tickets, backend plus front-end parts, and reported pull request count `19 + 12 + 8 + 1 = 40`.
+- Verify Chapter V quantitative evidence in Jira and Bitbucket: 20 Jira tickets in total, including 12 SCF-service tickets and 8 FDL tickets, with 40 pull requests reported in total.
 - Review the rebuilt diagrams after supervisor feedback and keep the SVG originals synchronized with PNG outputs.
-- Re-run LaTeX compilation once a TeX engine is installed or available in PATH.
-- Check figure numbering, table numbering, and cross-references after compilation.
+- Re-run LaTeX compilation after the final screenshot/page-de-garde insertion.
+- Check figure numbering, table numbering, and cross-references after the final compilation.
 - Review all chapters for institution-specific formatting requirements before final export.

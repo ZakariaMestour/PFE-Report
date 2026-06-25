@@ -306,9 +306,120 @@ The refinement process also left some questions open. These points should not be
 
 [Insert testing evidence or validation screenshots]
 
+\section{Internship Evaluation and Contribution Summary}
+\label{sec:ch5_evaluation_contributions}
+
+The Disbursement Module was prepared while daily work continued inside the Supply Chain Finance Platform Team. This dual rhythm shaped the internship. On one side, sprint tickets required concrete delivery inside the shared codebase. On the other side, the PFE subject required functional analysis, diagrams, refinement with the Product Owner, and a design that could later fit into the platform.
+
+\begin{table}[H]
+    \centering
+    \caption{Internship timeline and contribution focus}
+    \label{tab:ch5_sprint_overview}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.22\textwidth} Y}
+        \standardtablehead{\textbf{Period} & \textbf{Main focus}}
+        Weeks 1--2 & Remote onboarding, business training, Java and Spring Boot refresh, and first contact with Adria standards. \\
+        Sprint 2 onward & Integration into the SCF team, Jira-based tasks, code review workflow, and platform familiarization. \\
+        Middle sprints & Contributions across frontend and backend modules, with regular exposure to SCF entities and user flows. \\
+        Sprint gaps and Mondays & Parallel work on the Disbursement Module through Product Owner refinement and diagram validation. \\
+        Entering Sprint 8 & Consolidation of platform understanding and preparation of the academic module for future integration. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch6_contribution_streams.png}
+    \caption{Two contribution streams during the internship}
+    \label{fig:ch5_contribution_streams}
+\end{figure}
+
+The delivery record contains 20 Jira tickets: 12 related to the SCF service and 8 related to the Foundation Data Library. These tickets produced 40 pull requests in total, covering backend changes, frontend integration work, review adjustments, and supporting corrections. The number is useful because it gives a measurable view of the work, but it should not be read alone. A small validation correction can have more business value than a larger visual change, especially in a banking platform where status transitions and eligibility rules affect risk.
+
+\begin{table}[H]
+    \centering
+    \caption{Quantitative contribution indicators}
+    \label{tab:ch5_quantitative_indicators}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.30\textwidth} Y}
+        \standardtablehead{\textbf{Indicator} & \textbf{Reported value}}
+        Jira tickets completed & 20 tickets in total: 12 on the SCF service and 8 on the Foundation Data Library. \\
+        Pull requests submitted & 40 pull requests in total. \\
+        Work distribution & Each reported ticket involved coordinated backend and frontend work, depending on the module scope. \\
+        Main backend areas & SCF service and Foundation Data Library. \\
+        Main delivery workflow & Jira ticket, local implementation, Bitbucket pull request, technical lead review, merge, then tester validation. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+\section{Critical Evaluation and Limitations}
+\label{sec:ch5_critical_evaluation}
+
+The strongest part of the internship was the exposure to a real delivery chain. A feature did not end when the code compiled. It had to be pushed, reviewed, corrected when needed, merged, and then checked by testing. That rhythm taught a simple lesson very quickly: professional software is not only about producing code, but about making a change understandable and acceptable to other people.
+
+The work also exposed several difficulties. SCF vocabulary was dense at the beginning, especially around programs, products, invoices, cashflows, disbursement, repayment, and maker/checker governance. The architecture added another layer: gateway routing, JWT validation, shared entity libraries, service boundaries, document storage, and frontend role adaptation all had to be understood before making confident changes.
+
+\begin{table}[H]
+    \centering
+    \caption{Main difficulties and responses}
+    \label{tab:ch5_difficulties}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.28\textwidth} Y Y}
+        \standardtablehead{\textbf{Difficulty} & \textbf{Impact} & \textbf{Response}}
+        Banking vocabulary & Domain terms were hard to separate at first, especially when similar concepts appeared in different modules. & Existing modules were studied repeatedly, and Product Owner refinement helped stabilize the vocabulary. \\
+        Existing architecture & The platform used several services, shared conventions, and pre-configured Adria standards. & Changes were prepared from existing patterns before adding or modifying behavior. \\
+        Maker/checker logic & Governance rules affect visibility, status transitions, approval behavior, and rollback. & The existing approval flows were analyzed before modeling the Disbursement Module. \\
+        Role-based frontend behavior & Screens and actions change depending on bank, anchor, or counterparty roles. & Keycloak role extraction and business-view helpers were used as reference points. \\
+        Parallel PFE work & The Disbursement Module had to progress before its native integration sprint. & The module was treated as target design, with explicit boundaries and placeholders for final backend validation. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+The main limitation remains the timing of the Disbursement Module. Since the platform had not yet reached the sprint planned for native integration, the module could not be presented as a completely merged backend feature with final migrations, Swagger contract, and end-to-end evidence. The result is therefore a combination of validated design, visible frontend flow, and future integration preparation.
+
+\section{Skills Acquired and Future Recommendations}
+\label{sec:ch5_skills_recommendations}
+
+The internship strengthened both technical and professional skills. On the backend side, it improved practice with Spring Boot services, JPA entities, validation logic, OAuth2 resource-server behavior, and service organization. On the frontend side, it developed stronger habits with React, TypeScript, React Router, React Query, typed service layers, form decomposition, and reusable hooks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch6_skills_map.png}
+    \caption{Main skills acquired during the internship}
+    \label{fig:ch5_skills_map}
+\end{figure}
+
+The professional side mattered just as much. Jira changed the meaning of a task: it became a visible unit of commitment between developer, reviewer, tester, and team. Pull requests encouraged clearer code and better explanations. Review comments taught precision. Tester feedback taught patience. Product Owner discussions improved the ability to transform business speech into diagrams, statuses, actors, conditions, and system behavior.
+
+\begin{table}[H]
+    \centering
+    \caption{Skills acquired and reinforced}
+    \label{tab:ch5_skills_acquired}
+    \standardtable
+    \begin{tabularx}{\textwidth}{B{0.25\textwidth} Y}
+        \standardtablehead{\textbf{Skill area} & \textbf{Learning outcome}}
+        Backend development & Better understanding of Spring Boot services, JPA entities, validation, and governance-oriented design. \\
+        Frontend development & Stronger practice with React, TypeScript, form flows, hooks, services, and role-based UI behavior. \\
+        Security awareness & Clearer view of OAuth2, Keycloak roles, JWT validation, and protected gateway calls. \\
+        Banking domain & Practical understanding of SCF actors, programs, products, invoices, fees, disbursement, and repayment. \\
+        Collaboration & Experience with Jira, Bitbucket pull requests, technical lead review, tester validation, and Product Owner refinement. \\
+        Technical writing & Ability to transform code, diagrams, and business discussions into an academic report structure. \\
+    \end{tabularx}
+    \standardtableend
+\end{table}
+
+Several recommendations can be drawn from the work. The Disbursement Module should continue toward native integration in the main SCF platform, with a confirmed backend contract, controller endpoints, validation rules, approval lifecycle, and transaction inquiry linkage. Asynchronous processing should also be strengthened for payment callbacks, notification delivery, document processing, and invoice-related events. The platform could later benefit from mobile access for counterparties and richer reporting for bank users who need to monitor financed amounts, overdue repayments, program utilization, counterparty exposure, and approval bottlenecks.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth, keepaspectratio]{images/ch6_future_roadmap.png}
+    \caption{Recommendations for future platform development}
+    \label{fig:ch5_future_roadmap}
+\end{figure}
+
 \section{Conclusion}
 \label{sec:ch5_conclusion}
 
 This chapter presented the Disbursement Module using the clarified context from Product Owner refinement. The module is centered on a precise business act: creating and confirming the bank's payment execution after eligibility checks pass. Its design depends on five distinct entities, a four-check eligibility engine, manual and automatic entry paths, a two-phase Payment Gateway integration, and Kafka-based callback handling.
 
-The next chapter evaluates the internship as a whole. It summarizes the contributions, the learning outcomes, the difficulties encountered, and the improvements that could support future development of the platform.
+The chapter also evaluated the internship contribution as a whole. It summarized the delivery rhythm, the reported 20 Jira tickets, the 40 pull requests, the main difficulties encountered, the skills acquired, and the recommendations that can support future development of the platform. This closes the five-chapter body of the report and prepares the transition toward the general conclusion.
