@@ -1,0 +1,28 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Internship Timeline
+
+left to right direction
+rectangle "February 2026\nRemote training\nBusiness logic\nJava / Spring Boot" as Feb
+rectangle "Week 3\nOn-site work\nTeam integration\nSCF codebase" as Week3
+rectangle "Sprints 2 to 8\nJira tickets\nPR + testing" as Sprints
+rectangle "Mondays\nPO refinement\nModule rules\nDiagram reviews" as Mondays
+rectangle "July 1st 2026\nReport closure\nFinal synthesis" as July
+Feb --> Week3
+Week3 --> Sprints
+Sprints --> Mondays
+Mondays --> July
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Document Storage and Conversion Flow
+
+left to right direction
+package "Frontend" {
+  rectangle "Upload UI\nmultipart file" as UploadUI
+}
+node "Gateway" {
+  rectangle "Gateway\nClamAV scan" as Gateway
+}
+package "Business Service" {
+  rectangle "SCF Service\nmetadata + storage ports" as SCF
+}
+package "Storage and Conversion" {
+  database "MinIO\nobject bytes" as MinIO
+  database "PostgreSQL\ndocument row" as Postgres
+  node "Gotenberg\nPDF conversion" as Gotenberg
+}
+UploadUI --> Gateway
+Gateway --> SCF
+SCF --> MinIO
+SCF --> Postgres
+SCF --> Gotenberg
+
+@enduml

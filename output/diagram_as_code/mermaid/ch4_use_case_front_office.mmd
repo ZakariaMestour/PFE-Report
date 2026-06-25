@@ -1,0 +1,41 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% SCF Front Office Use Case Diagram
+    %% Mermaid has no native UML use-case syntax; this is a UML-style rendering.
+
+    Buyer["Buyer"]
+    Supplier["Supplier"]
+
+    subgraph Boundary["SCF Front Office Boundary"]
+        UC2(["Track invoice status"])
+        UC5(["Request payment"])
+        UC6(["Consult transactions"])
+        UC1(["Upload or create invoice"])
+        UC3(["Request finance"])
+        UC4(["Request early payment"])
+    end
+
+    Bank["Bank"]
+
+    Buyer --- UC2
+    Buyer --- UC5
+    Buyer --- UC6
+
+    Supplier --- UC1
+    Supplier --- UC3
+    Supplier --- UC4
+
+    UC5 --- Bank
+    UC3 --- Bank
+    UC4 --- Bank
+
+    Buyer ~~~ Supplier
+    UC2 ~~~ UC5
+    UC5 ~~~ UC6
+    UC1 ~~~ UC3
+    UC3 ~~~ UC4
+
+    classDef actor fill:#ffffff,stroke:#333333,stroke-width:1px,color:#333333;
+    classDef usecase fill:#ffffff,stroke:#333333,stroke-width:1px,color:#333333;
+    class Buyer,Supplier,Bank actor;
+    class UC1,UC2,UC3,UC4,UC5,UC6 usecase;

@@ -1,0 +1,35 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title SCF Middle Office
+
+left to right direction
+actor "Middle Office Analyst" as A1
+actor "Compliance / Audit" as A2
+rectangle "SCF Middle Office Boundary" {
+  usecase "Monitor transactions" as UC1
+  usecase "Filter inquiry results" as UC2
+  usecase "Follow failed payments" as UC3
+  usecase "Export operational report" as UC4
+  usecase "Consult audit trail" as UC5
+  usecase "Analyze portfolio exposure" as UC6
+}
+A1 -- UC1
+A1 -- UC3
+A1 -- UC4
+A1 -- UC6
+A2 -- UC5
+UC1 ..> UC2 : <<include>>
+
+@enduml

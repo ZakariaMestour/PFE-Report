@@ -1,0 +1,22 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Disbursement Module
+
+    subgraph Actors["Actors"]
+    Buyer_or_Supplier["Buyer or Supplier"]
+    end
+    subgraph Boundary["Disbursement Module Boundary"]
+        UC1(["Request finance"])
+        UC2(["Choose mode INDIVIDUAL/CLUBBED"])
+        UC3(["Automatic disbursement"])
+        UC4(["Run eligibility checks"])
+        UC5(["Submit payment instruction"])
+        UC6(["Process async callback"])
+    end
+    Buyer_or_Supplier --- UC1
+    Buyer_or_Supplier --- UC2
+    UC1 -. "&lt;&lt;include&gt;&gt;" .-> UC2
+    UC2 -. "&lt;&lt;include&gt;&gt;" .-> UC4
+    UC3 -. "&lt;&lt;include&gt;&gt;" .-> UC4
+    UC4 -. "&lt;&lt;include&gt;&gt;" .-> UC5
+    UC5 -. "&lt;&lt;include&gt;&gt;" .-> UC6

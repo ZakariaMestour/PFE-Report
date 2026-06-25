@@ -1,4 +1,4 @@
-<svg viewBox="0 0 820 470" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
+<svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto;">
 
 <defs>
   <marker id="arrow_navy" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#0B1D3A"/></marker>
@@ -8,53 +8,52 @@
   <marker id="arrow_red" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#B91C1C"/></marker>
   <marker id="arrow_gray" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#6B7280"/></marker>
 </defs>
-<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">Use Case Diagram - Front Office</text>
-<rect x="180" y="55" width="580" height="360" rx="2" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
-<text x="470" y="78" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B1D3A" font-weight="700">SCF Front Office Boundary</text>
-<circle cx="80" cy="95" r="8" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
-<line x1="80" y1="103" x2="80" y2="133" stroke="#0B7285" stroke-width="1.2"/>
-<line x1="62" y1="115" x2="98" y2="115" stroke="#0B7285" stroke-width="1.2"/>
-<line x1="80" y1="133" x2="64" y2="155" stroke="#0B7285" stroke-width="1.2"/>
-<line x1="80" y1="133" x2="96" y2="155" stroke="#0B7285" stroke-width="1.2"/>
-<text x="80" y="173" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B7285" font-weight="700">Buyer</text>
-<circle cx="80" cy="345" r="8" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
-<line x1="80" y1="353" x2="80" y2="383" stroke="#166534" stroke-width="1.2"/>
-<line x1="62" y1="365" x2="98" y2="365" stroke="#166534" stroke-width="1.2"/>
-<line x1="80" y1="383" x2="64" y2="405" stroke="#166534" stroke-width="1.2"/>
-<line x1="80" y1="383" x2="96" y2="405" stroke="#166534" stroke-width="1.2"/>
-<text x="80" y="423" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#166534" font-weight="700">Supplier</text>
-<circle cx="205" cy="220" r="8" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
-<line x1="205" y1="228" x2="205" y2="258" stroke="#0B1D3A" stroke-width="1.2"/>
-<line x1="187" y1="240" x2="223" y2="240" stroke="#0B1D3A" stroke-width="1.2"/>
-<line x1="205" y1="258" x2="189" y2="280" stroke="#0B1D3A" stroke-width="1.2"/>
-<line x1="205" y1="258" x2="221" y2="280" stroke="#0B1D3A" stroke-width="1.2"/>
-<text x="205" y="298" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="700">Front-office</text>
-<text x="205" y="309" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="700">user</text>
-<ellipse cx="330.0" cy="125.0" rx="77.5" ry="24.0" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
-<text x="330" y="120" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Upload or create</text>
-<text x="330" y="131" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">invoice</text>
-<ellipse cx="565.0" cy="125.0" rx="77.5" ry="24.0" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
-<text x="565" y="120" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Track invoice</text>
-<text x="565" y="131" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">status</text>
-<ellipse cx="330.0" cy="225.0" rx="77.5" ry="24.0" fill="#FFFFFF" stroke="#C9962A" stroke-width="1.2"/>
-<text x="330" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Request</text>
-<text x="330" y="231" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">finance</text>
-<ellipse cx="565.0" cy="225.0" rx="77.5" ry="24.0" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
-<text x="565" y="220" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Request early</text>
-<text x="565" y="231" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">payment</text>
-<ellipse cx="330.0" cy="325.0" rx="77.5" ry="24.0" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
-<text x="330" y="320" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Request</text>
-<text x="330" y="331" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">payment</text>
-<ellipse cx="565.0" cy="325.0" rx="77.5" ry="24.0" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
-<text x="565" y="320" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Consult</text>
-<text x="565" y="331" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">transactions</text>
-<line x1="100" y1="135" x2="182" y2="242" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="100" y1="385" x2="182" y2="242" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="225" y1="260" x2="255" y2="125" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="225" y1="260" x2="490" y2="125" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="225" y1="260" x2="255" y2="225" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="225" y1="260" x2="490" y2="225" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="225" y1="260" x2="255" y2="325" stroke="#6B7280" stroke-width="1.2"/>
-<line x1="225" y1="260" x2="490" y2="325" stroke="#6B7280" stroke-width="1.2"/>
-<text x="470" y="396" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#0B1D3A" font-weight="700">Both buyer and supplier can initiate all three lodged-invoice request types.</text>
+<text x="26" y="28" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="14" fill="#0B1D3A" font-weight="700">UML Use Case Diagram - Front Office</text>
+<rect x="190" y="60" width="545" height="410" rx="2" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
+<text x="462" y="84" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="#0B1D3A" font-weight="700">SCF Front Office Boundary</text>
+<circle cx="80" cy="105" r="8" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="80" y1="113" x2="80" y2="143" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="62" y1="125" x2="98" y2="125" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="80" y1="143" x2="64" y2="165" stroke="#0B7285" stroke-width="1.2"/>
+<line x1="80" y1="143" x2="96" y2="165" stroke="#0B7285" stroke-width="1.2"/>
+<text x="80" y="183" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B7285" font-weight="700">Buyer</text>
+<circle cx="80" cy="305" r="8" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
+<line x1="80" y1="313" x2="80" y2="343" stroke="#166534" stroke-width="1.2"/>
+<line x1="62" y1="325" x2="98" y2="325" stroke="#166534" stroke-width="1.2"/>
+<line x1="80" y1="343" x2="64" y2="365" stroke="#166534" stroke-width="1.2"/>
+<line x1="80" y1="343" x2="96" y2="365" stroke="#166534" stroke-width="1.2"/>
+<text x="80" y="383" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#166534" font-weight="700">Supplier</text>
+<circle cx="820" cy="205" r="8" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
+<line x1="820" y1="213" x2="820" y2="243" stroke="#0B1D3A" stroke-width="1.2"/>
+<line x1="802" y1="225" x2="838" y2="225" stroke="#0B1D3A" stroke-width="1.2"/>
+<line x1="820" y1="243" x2="804" y2="265" stroke="#0B1D3A" stroke-width="1.2"/>
+<line x1="820" y1="243" x2="836" y2="265" stroke="#0B1D3A" stroke-width="1.2"/>
+<text x="820" y="283" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7" fill="#0B1D3A" font-weight="700">Bank</text>
+<ellipse cx="600.0" cy="105.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
+<text x="600" y="100" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Request</text>
+<text x="600" y="111" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">payment</text>
+<ellipse cx="360.0" cy="170.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="360" y="165" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Track invoice</text>
+<text x="360" y="176" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">status</text>
+<ellipse cx="520.0" cy="230.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#0B1D3A" stroke-width="1.2"/>
+<text x="520" y="225" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Consult</text>
+<text x="520" y="236" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">transactions</text>
+<ellipse cx="360.0" cy="285.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#0B7285" stroke-width="1.2"/>
+<text x="360" y="280" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Upload or create</text>
+<text x="360" y="291" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">invoice</text>
+<ellipse cx="600.0" cy="330.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#C9962A" stroke-width="1.2"/>
+<text x="600" y="325" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Request</text>
+<text x="600" y="336" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">finance</text>
+<ellipse cx="520.0" cy="415.0" rx="75.0" ry="24.0" fill="#FFFFFF" stroke="#166534" stroke-width="1.2"/>
+<text x="520" y="410" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">Request early</text>
+<text x="520" y="421" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="7.2" fill="#1A1A1A" font-weight="600">payment</text>
+<line x1="108" y1="145" x2="525" y2="105" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="108" y1="145" x2="285" y2="170" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="108" y1="145" x2="445" y2="230" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="108" y1="345" x2="285" y2="285" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="108" y1="345" x2="525" y2="330" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="108" y1="345" x2="445" y2="415" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="792" y1="245" x2="675" y2="105" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="792" y1="245" x2="675" y2="330" stroke="#6B7280" stroke-width="1.2"/>
+<line x1="792" y1="245" x2="595" y2="415" stroke="#6B7280" stroke-width="1.2"/>
 </svg>

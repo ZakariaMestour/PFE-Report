@@ -1,0 +1,20 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Frontend Routing and Role-Based Navigation
+
+    subgraph Application["Application Shell"]
+        App["App.tsx\nproviders + routes"]
+        Auth["KeycloakAuth\nPKCE callback + tokens"]
+        Guard["AuthGuard\nprotected route + redirect"]
+        Index["Index.tsx\nsidebar + selectedModule"]
+    end
+    subgraph RoleLayer["Role Adaptation"]
+        View["Business View\nBANK / ANCHOR / COUNTERPARTY"]
+        Modules["Feature Modules\ndashboard + SCF flows"]
+    end
+
+    App --> Auth
+    App --> Guard
+    Guard --> Index
+    Index --> View
+    Index --> Modules

@@ -1,0 +1,52 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+classDiagram
+    class Program {
+        +ProgramType type
+        +Decimal financePercent
+        +int maxDisbursement
+        +int maxTenorDays
+        +bool autoDisbursement
+    }
+    class Invoice {
+        +InvoiceStatus status
+        +AmountState amountState
+        +Decimal amount
+        +Date issueDate
+        +Date dueDate
+        +int tenorDays
+    }
+    class Disbursement {
+        +DisbursementMode mode
+        +DisbursementSource source
+        +DisbursementState state
+        +Decimal amount
+        +String paymentRef
+        +String failureReason
+    }
+    class FinanceRecord {
+        +FinanceStatus status
+        +FinanceScope scope
+        +Decimal principalAmount
+        +Date maturityDate
+        +Decimal totalDue
+    }
+    class FinanceRecordInvoice {
+        +Decimal allocatedAmount
+        +Decimal settledAmount
+        +String allocationState
+    }
+    class Transaction {
+        +TransactionType type
+        +Decimal amount
+        +String reference
+        +Instant createdAt
+    }
+    Program "1" --> "1..*" Invoice : contains
+    Program "1" --> "0..*" Disbursement : authorizes
+    Disbursement "1" --> "1..*" Invoice : covers
+    Disbursement "1" --> "0..1" FinanceRecord : creates if SUCCESS
+    FinanceRecord "1" --> "1..*" FinanceRecordInvoice : allocates
+    FinanceRecordInvoice "1..*" --> "1" Invoice : references
+    Invoice ..> Transaction : INVOICE
+    Disbursement ..> Transaction : FINANCE_DISBURSEMENT
+    FinanceRecord ..> Transaction : FINANCE_REPAYMENT

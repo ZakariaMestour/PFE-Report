@@ -1,0 +1,15 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+stateDiagram-v2
+    [*] --> INITIATED
+    INITIATED --> PENDING_CONFIRMATION: POST /payments / 202 Accepted + paymentRef
+    INITIATED --> FAILED: sync 422 rejection
+    PENDING_CONFIRMATION --> SUCCESS: async callback SUCCESS
+    PENDING_CONFIRMATION --> FAILED: async callback FAILED
+    SUCCESS --> [*]
+    FAILED --> [*]
+    note right of SUCCESS
+        Create FinanceRecord
+        Create FINANCE_DISBURSEMENT transaction
+        Publish disbursement.success
+        Set invoice FINANCED
+    end note

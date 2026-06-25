@@ -1,0 +1,24 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title UML State Machine - Maker/Checker Governance
+
+[*] --> DRAFT
+DRAFT --> PENDING_APPROVAL : submit()
+PENDING_APPROVAL --> APPROVED : checker approves
+PENDING_APPROVAL --> REJECTED : checker rejects(comment)
+REJECTED --> DRAFT : restore originalData on update rejection
+APPROVED --> [*]
+
+@enduml

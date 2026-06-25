@@ -1,0 +1,16 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Frontend Services Layer
+
+    subgraph UI["UI Layer"]
+        Components["Components\nforms, tables, wizards"]
+        Hooks["Hooks\nuseProgramForm\nuseInvoiceForm"]
+    end
+    subgraph Access["Access Layer"]
+        Services["Feature Services\ntyped functions\nendpoint mapping"]
+        Client["Axios Client\nBearer token"]
+        Types["Types\nDTO models"]
+    end
+    Components --> Hooks --> Services
+    Services --> Client
+    Services --> Types

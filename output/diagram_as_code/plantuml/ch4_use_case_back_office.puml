@@ -1,0 +1,37 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title SCF Back Office
+
+left to right direction
+actor "Bank Maker" as A1
+actor "Bank Checker" as A2
+rectangle "SCF Back Office Boundary" {
+  usecase "Create / edit product" as UC1
+  usecase "Configure program" as UC2
+  usecase "Onboard counterparty" as UC3
+  usecase "Submit pending change" as UC4
+  usecase "Review pending operation" as UC5
+  usecase "Approve or reject" as UC6
+}
+A1 -- UC1
+A1 -- UC2
+A1 -- UC3
+A2 -- UC5
+UC1 ..> UC4 : <<include>>
+UC2 ..> UC4 : <<include>>
+UC3 ..> UC4 : <<include>>
+UC5 ..> UC6 : <<include>>
+
+@enduml

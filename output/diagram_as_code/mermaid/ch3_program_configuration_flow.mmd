@@ -1,0 +1,15 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart TD
+    %% UML Activity - Program Configuration
+    Start((Start))
+    Product["Select product definition"]
+    General["Enter general program data"]
+    Parties["Assign anchor and counterparties"]
+    Fees["Configure fees and flat charges"]
+    Rules["Configure cashflow and disbursement rules"]
+    Decision{"Complete?"}
+    End((End))
+
+    Start --> Product --> General --> Parties --> Fees --> Rules --> Decision
+    Decision -->|yes: submit for approval| End
+    Decision -.->|no| General

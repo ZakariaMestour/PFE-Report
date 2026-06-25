@@ -1,0 +1,33 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Supply Chain Finance Ecosystem
+
+left to right direction
+package "Governance and Financing" {
+  node "Bank\nprogram governance\nfinancing control" as Bank
+  node "SCF Program\nproduct rules\neligibility\nfinance limits" as Program
+}
+package "Commercial Relationship" {
+  node "Anchor\nlarge buyer or seller\nrisk reference" as Anchor
+  node "Counterparty\nsupplier / buyer\nSME participant" as Counterparty
+  node "Invoice Pool\ncashflows\ntrade documents" as InvoicePool
+}
+Bank --> Program : governance
+Anchor --> Program : program relationship
+Program --> Counterparty : eligible operations
+InvoicePool --> Program : invoice evidence
+Counterparty --> Anchor : goods / invoice exchange
+
+@enduml

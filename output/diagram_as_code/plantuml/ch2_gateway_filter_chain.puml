@@ -1,0 +1,38 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Gateway Routing and Filter Chain
+
+left to right direction
+package "Gateway Layer" {
+  rectangle "Request\nbrowser/API" as Request
+  rectangle "Auth\nJWT / public paths" as Auth
+  rectangle "Security\nClamAV, limits" as Security
+  rectangle "Routing\n/scf /fdl /properties" as Routing
+  rectangle "Discovery\nlb:// service" as Discovery
+  rectangle "Fallback\nresilience" as Fallback
+}
+package "Callback Security" {
+  rectangle "HMAC\nwebhooks" as HMAC
+  rectangle "Logging\ncorrelation" as Logging
+}
+Request --> Auth
+Auth --> Security
+Security --> Routing
+Routing --> Discovery
+Discovery --> Fallback
+HMAC ..> Routing
+Logging ..> Routing
+
+@enduml

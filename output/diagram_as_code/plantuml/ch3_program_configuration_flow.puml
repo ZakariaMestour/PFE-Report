@@ -1,0 +1,30 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title UML Activity - Program Configuration
+
+start
+:Select product definition;
+:Enter general program data;
+:Assign anchor and counterparties;
+:Configure fees and flat charges;
+:Configure cashflow and disbursement rules;
+if (Complete?) then (yes)
+  :Submit for approval;
+  stop
+else (no)
+  :Return to general program data;
+endif
+
+@enduml

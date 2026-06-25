@@ -1,0 +1,8 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+stateDiagram-v2
+    [*] --> DRAFT
+    DRAFT --> PENDING_APPROVAL: submit()
+    PENDING_APPROVAL --> APPROVED: checker approves
+    PENDING_APPROVAL --> REJECTED: checker rejects(comment)
+    REJECTED --> DRAFT: restore originalData on update rejection
+    APPROVED --> [*]

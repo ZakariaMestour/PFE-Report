@@ -1,0 +1,34 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Frontend Routing and Role-Based Navigation
+
+left to right direction
+package "Application Shell" {
+  rectangle "App.tsx\nproviders + routes" as App
+  rectangle "KeycloakAuth\nPKCE callback + tokens" as Auth
+  rectangle "AuthGuard\nprotected route + redirect" as Guard
+  rectangle "Index.tsx\nsidebar + selectedModule" as Index
+}
+package "Role Adaptation" {
+  rectangle "Business View\nBANK / ANCHOR / COUNTERPARTY" as View
+  rectangle "Feature Modules\ndashboard + SCF flows" as Modules
+}
+App --> Auth
+App --> Guard
+Guard --> Index
+Index --> View
+Index --> Modules
+
+@enduml

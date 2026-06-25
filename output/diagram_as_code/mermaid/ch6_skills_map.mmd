@@ -1,0 +1,20 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart TB
+    %% Skills Acquired During the Internship
+
+    Growth["Internship Growth\ntechnical, domain, and process learning"]
+    subgraph Skills["Skill Areas"]
+        Backend["Backend\nSpring Boot\nJPA/OAuth2"]
+        Frontend["Frontend\nReact\nTypeScript"]
+        DevOps["DevOps\nDocker\nGit / PR"]
+        Banking["Banking\nSCF domain\nprogram logic"]
+        Collaboration["Collaboration\nScrum\nPO refinement"]
+        Quality["Quality\nreview\ntesting feedback"]
+    end
+
+    Growth --> Backend
+    Growth --> Frontend
+    Growth --> DevOps
+    Growth --> Banking
+    Growth --> Collaboration
+    Growth --> Quality

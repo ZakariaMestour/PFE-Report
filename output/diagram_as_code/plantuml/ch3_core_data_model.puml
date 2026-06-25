@@ -1,0 +1,76 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Main SCF Class Diagram
+
+class ScfProductDefinition {
+  +code: String
+  +type: ProductType
+  +instrument: Instrument
+  +status: ApprovalStatus
+}
+class ScfProgramConfiguration {
+  +id: UUID
+  +reference: String
+  +currency: Currency
+  +financePercent: BigDecimal
+  +status: ProgramStatus
+}
+class ScfAnchor {
+  +anchorCode: String
+  +name: String
+  +role: AnchorRole
+}
+class ScfCounterParty {
+  +legalName: String
+  +role: CounterpartyRole
+  +status: CounterPartyStatus
+  +taxIdentifier: String
+}
+class ScfProgramCounterParty {
+  +roleInProgram: String
+  +limitAmount: BigDecimal
+  +active: Boolean
+}
+class ScfBankAccount {
+  +iban: String
+  +swiftCode: String
+  +currency: Currency
+  +primaryAccount: Boolean
+}
+class ScfProgramCashflow {
+  +invoiceNumber: String
+  +amount: BigDecimal
+  +dueDate: LocalDate
+  +validationStatus: String
+}
+class Country {
+  +code: String
+  +name: String
+}
+class City {
+  +code: String
+  +name: String
+  +postalCode: String
+}
+ScfProductDefinition "1" --> "0..*" ScfProgramConfiguration : defines
+ScfProgramConfiguration "1" --> "1..*" ScfAnchor : assigns
+ScfProgramConfiguration "1" --> "0..*" ScfProgramCounterParty : configures
+ScfCounterParty "1" --> "0..*" ScfProgramCounterParty : joins
+ScfCounterParty "1" --> "0..*" ScfBankAccount : owns
+ScfProgramConfiguration "1" --> "0..*" ScfProgramCashflow : contains
+Country "1" --> "0..*" City : contains
+ScfCounterParty --> Country : country
+
+@enduml

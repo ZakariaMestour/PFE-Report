@@ -1,0 +1,33 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Invoice Upload Component Interaction
+
+left to right direction
+package "InvoiceUploadForm" {
+  rectangle "State owner\nprogram context" as Form
+  rectangle "ExcelUploader\nspreadsheet rows" as Excel
+  rectangle "ScannedUploader\nPDF / image path" as Scanned
+  rectangle "UploadTable\nrow validation\nissue details" as Table
+  rectangle "Summary\ncounts" as Summary
+  rectangle "Reports\nrejection file" as Reports
+}
+Form --> Excel
+Excel --> Table
+Table --> Summary
+Form --> Scanned
+Scanned --> Table
+Table --> Reports
+
+@enduml

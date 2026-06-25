@@ -1,0 +1,15 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Invoice Upload Component Interaction
+
+    subgraph UploadForm["InvoiceUploadForm"]
+        Form["State owner\nprogram context"]
+        Excel["ExcelUploader\nspreadsheet rows"]
+        Scanned["ScannedUploader\nPDF / image path"]
+        Table["UploadTable\nrow validation\nissue details"]
+        Summary["Summary\ncounts"]
+        Reports["Reports\nrejection file"]
+    end
+
+    Form --> Excel --> Table --> Summary
+    Form --> Scanned --> Table --> Reports

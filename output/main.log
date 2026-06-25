@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.15)  22 JUN 2026 17:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.6.15)  23 JUN 2026 15:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -708,16 +708,20 @@ Package pdftex.def Info: images/ch2_auth_role_flow.png  used on input line 128.
 
 (pdftex.def)             Requested size: 455.24411pt x 199.85138pt.
 [23] [24 <./images/ch2_auth_role_flow.png (PNG copy)>]
-<images/ch2_storage_document_flow.png, id=999, 2469.225pt x 1084.05pt>
-File: images/ch2_storage_document_flow.png Graphic file (type png)
-<use images/ch2_storage_document_flow.png>
-Package pdftex.def Info: images/ch2_storage_document_flow.png  used on input li
-ne 166.
-(pdftex.def)             Requested size: 455.24411pt x 199.85138pt.
- [25 <./images/ch2_storage_document_flow.png (PNG copy)>] [26] [27]) [28]
+<diagram_as_code/images/png/ch2_storage_document_flow.png, id=999, 1573.88pt x 
+670.505pt>
+File: diagram_as_code/images/png/ch2_storage_document_flow.png Graphic file (ty
+pe png)
+<use diagram_as_code/images/png/ch2_storage_document_flow.png>
+Package pdftex.def Info: diagram_as_code/images/png/ch2_storage_document_flow.p
+ng  used on input line 166.
+(pdftex.def)             Requested size: 455.24411pt x 193.94014pt.
+ [25 <./diagram_as_code/images/png/ch2_storage_document_flow.png (PNG copy)>] [
+26] [27]) [28]
 \openout2 = `chapters/chapter_3.aux'.
 
- (chapters/chapter_3.tex
+
+(chapters/chapter_3.tex
 Chapter 3.
 [29
 
@@ -725,19 +729,22 @@ Chapter 3.
 
 
 ]
-<images/ch3_core_data_model.png, id=1022, 2589.675pt x 1565.85pt>
-File: images/ch3_core_data_model.png Graphic file (type png)
-<use images/ch3_core_data_model.png>
-Package pdftex.def Info: images/ch3_core_data_model.png  used on input line 28.
-
-(pdftex.def)             Requested size: 455.24411pt x 275.2464pt.
+<diagram_as_code/images/png/ch3_core_data_model.png, id=1022, 1573.88pt x 1124.
+2pt>
+File: diagram_as_code/images/png/ch3_core_data_model.png Graphic file (type png
+)
+<use diagram_as_code/images/png/ch3_core_data_model.png>
+Package pdftex.def Info: diagram_as_code/images/png/ch3_core_data_model.png  us
+ed on input line 28.
+(pdftex.def)             Requested size: 455.24411pt x 325.16911pt.
 
 Overfull \hbox (18.57784pt too wide) in paragraph at lines 33--34
 \OT1/cmr/m/n/12 tact in-for-ma-tion, ad-dress data, role, sta-tus, and roll-bac
 k data. It is linked to \OT1/cmtt/m/n/12 ScfBankAccount\OT1/cmr/m/n/12 ,
  []
 
-[30 <./images/ch3_core_data_model.png (PNG copy)>] [31] [32]
+[30 <./diagram_as_code/images/png/ch3_core_data_model.png (PNG copy)>] [31]
+[32]
 <images/ch3_maker_checker_state.png, id=1037, 2348.775pt x 933.4875pt>
 File: images/ch3_maker_checker_state.png Graphic file (type png)
 <use images/ch3_maker_checker_state.png>
@@ -809,25 +816,25 @@ File: images/ch4_navigation_role_flow.png Graphic file (type png)
 Package pdftex.def Info: images/ch4_navigation_role_flow.png  used on input lin
 e 30.
 (pdftex.def)             Requested size: 455.24411pt x 215.63173pt.
-<images/ch4_use_case_back_office.png, id=1074, 2469.225pt x 1415.2875pt>
+<images/ch4_use_case_back_office.png, id=1074, 2770.35pt x 1686.3pt>
 File: images/ch4_use_case_back_office.png Graphic file (type png)
 <use images/ch4_use_case_back_office.png>
 Package pdftex.def Info: images/ch4_use_case_back_office.png  used on input lin
 e 39.
-(pdftex.def)             Requested size: 455.24411pt x 260.91707pt.
+(pdftex.def)             Requested size: 455.24411pt x 277.09534pt.
  [40 <./images/ch4_navigation_role_flow.png (PNG copy)>]
-<images/ch4_use_case_middle_office.png, id=1080, 2469.225pt x 1415.2875pt>
+<images/ch4_use_case_middle_office.png, id=1080, 2770.35pt x 2017.5375pt>
 File: images/ch4_use_case_middle_office.png Graphic file (type png)
 <use images/ch4_use_case_middle_office.png>
 Package pdftex.def Info: images/ch4_use_case_middle_office.png  used on input l
 ine 46.
-(pdftex.def)             Requested size: 455.24411pt x 260.91707pt.
-<images/ch4_use_case_front_office.png, id=1081, 2469.225pt x 1415.2875pt>
+(pdftex.def)             Requested size: 455.24411pt x 331.52478pt.
+<images/ch4_use_case_front_office.png, id=1081, 2710.125pt x 1565.85pt>
 File: images/ch4_use_case_front_office.png Graphic file (type png)
 <use images/ch4_use_case_front_office.png>
 Package pdftex.def Info: images/ch4_use_case_front_office.png  used on input li
 ne 53.
-(pdftex.def)             Requested size: 455.24411pt x 260.91707pt.
+(pdftex.def)             Requested size: 455.24411pt x 263.01321pt.
  [41 <./images/ch4_use_case_back_office.png (PNG copy)> <./images/ch4_use_case_
 middle_office.png (PNG copy)>]
 <images/platform_scf_dashboard_light.png, id=1086, 893.301pt x 483.552pt>
@@ -911,27 +918,29 @@ hrough \OT1/cmtt/m/n/12 scfCounterPartyService\OT1/cmr/m/n/12 .
 
 [47 <./images/platform_program_configurator.png> <./images/platform_program_cre
 ation_form.png>]
-<images/ch4_invoice_upload_flow.png, id=1128, 2288.55pt x 1053.9375pt>
-File: images/ch4_invoice_upload_flow.png Graphic file (type png)
-<use images/ch4_invoice_upload_flow.png>
-Package pdftex.def Info: images/ch4_invoice_upload_flow.png  used on input line
- 160.
-(pdftex.def)             Requested size: 455.24411pt x 209.64195pt.
- [48]
-<images/platform_invoice_creation_upload.png, id=1133, 1000.611pt x 543.996pt>
+<diagram_as_code/images/png/ch4_invoice_upload_flow.png, id=1128, 1017.8025pt x
+ 1308.89pt>
+File: diagram_as_code/images/png/ch4_invoice_upload_flow.png Graphic file (type
+ png)
+<use diagram_as_code/images/png/ch4_invoice_upload_flow.png>
+Package pdftex.def Info: diagram_as_code/images/png/ch4_invoice_upload_flow.png
+  used on input line 160.
+(pdftex.def)             Requested size: 455.24411pt x 585.44005pt.
+ [48] [49 <./diagram_as_code/images/png/ch4_invoice_upload_flow.png (PNG copy)>
+]
+<images/platform_invoice_creation_upload.png, id=1137, 1000.611pt x 543.996pt>
 File: images/platform_invoice_creation_upload.png Graphic file (type png)
 <use images/platform_invoice_creation_upload.png>
 Package pdftex.def Info: images/platform_invoice_creation_upload.png  used on i
 nput line 169.
 (pdftex.def)             Requested size: 455.24411pt x 247.50195pt.
-<images/platform_invoice_upload.png, id=1134, 1193.55pt x 426.831pt>
+<images/platform_invoice_upload.png, id=1138, 1193.55pt x 426.831pt>
 File: images/platform_invoice_upload.png Graphic file (type png)
 <use images/platform_invoice_upload.png>
 Package pdftex.def Info: images/platform_invoice_upload.png  used on input line
  176.
 (pdftex.def)             Requested size: 455.24411pt x 162.80316pt.
- [49 <./images/ch4_invoice_upload_flow.png (PNG copy)> <./images/platform_invoi
-ce_creation_upload.png>]
+
 Overfull \hbox (103.47913pt too wide) in paragraph at lines 184--185
 \OT1/cmr/m/n/12 The man-ual in-voice flow is han-dled by \OT1/cmtt/m/n/12 Invoi
 ceForm\OT1/cmr/m/n/12 . It is or-ga-nized into panes: \OT1/cmtt/m/n/12 InvoiceG
@@ -945,7 +954,9 @@ oicePaneRenderer\OT1/cmr/m/n/12 , and \OT1/cmtt/m/n/12 InvoiceFormActions \OT1/
 cmr/m/n/12 give struc-
  []
 
-<images/platform_invoice_creation_manual.png, id=1140, 1012.875pt x 539.397pt>
+[50 <./images/platform_invoice_creation_upload.png> <./images/platform_invoice_
+upload.png>]
+<images/platform_invoice_creation_manual.png, id=1145, 1012.875pt x 539.397pt>
 File: images/platform_invoice_creation_manual.png Graphic file (type png)
 <use images/platform_invoice_creation_manual.png>
 Package pdftex.def Info: images/platform_invoice_creation_manual.png  used on i
@@ -958,8 +969,7 @@ Overfull \hbox (104.64073pt too wide) in paragraph at lines 201--202
 questForm\OT1/cmr/m/n/12 .
  []
 
-[50 <./images/platform_invoice_upload.png> <./images/platform_invoice_creation_
-manual.png>]
+
 Overfull \hbox (61.57574pt too wide) in paragraph at lines 208--209
 \OT1/cmr/m/n/12 The fi-nance dis-burse-ment flow is im-ple-mented as a six-step
  wiz-ard in-side \OT1/cmtt/m/n/12 FinanceDisbursementModal\OT1/cmr/m/n/12 .
@@ -972,33 +982,35 @@ cmr/m/n/12 , \OT1/cmtt/m/n/12 InvoiceSelectionPane\OT1/cmr/m/n/12 , \OT1/cmtt/m
 /n/12 FinanceDetailsPane\OT1/cmr/m/n/12 ,
  []
 
-<images/ch4_finance_disbursement_wizard.png, id=1149, 2469.225pt x 858.20625pt>
+<images/ch4_finance_disbursement_wizard.png, id=1148, 2469.225pt x 858.20625pt>
 
 File: images/ch4_finance_disbursement_wizard.png Graphic file (type png)
 <use images/ch4_finance_disbursement_wizard.png>
 Package pdftex.def Info: images/ch4_finance_disbursement_wizard.png  used on in
 put line 212.
 (pdftex.def)             Requested size: 455.24411pt x 158.21567pt.
-<images/platform_manual_disbursement.png, id=1150, 955.278pt x 637.509pt>
+[51 <./images/platform_invoice_creation_manual.png>]
+<images/platform_manual_disbursement.png, id=1154, 955.278pt x 637.509pt>
 File: images/platform_manual_disbursement.png Graphic file (type png)
 <use images/platform_manual_disbursement.png>
 Package pdftex.def Info: images/platform_manual_disbursement.png  used on input
  line 221.
 (pdftex.def)             Requested size: 455.24411pt x 303.81213pt.
-[51 <./images/ch4_finance_disbursement_wizard.png (PNG copy)>]
+
 Overfull \hbox (33.98318pt too wide) in paragraph at lines 229--230
 \OT1/cmtt/m/n/12 DocumentInquiry \OT1/cmr/m/n/12 gives users a fil-tered brows-
 ing in-ter-face for doc-u-ments. \OT1/cmtt/m/n/12 DocumentUploadPopup
  []
 
-
+[52 <./images/ch4_finance_disbursement_wizard.png (PNG copy)> <./images/platfor
+m_manual_disbursement.png>]
 Overfull \hbox (1.36288pt too wide) in paragraph at lines 231--232
 []\OT1/cmr/m/n/12 The \OT1/cmtt/m/n/12 SpecificationDocument \OT1/cmr/m/n/12 pa
 ge is routed sep-a-rately and pro-tected through \OT1/cmtt/m/n/12 AuthGuard\OT1
 /cmr/m/n/12 .
  []
 
-[52 <./images/platform_manual_disbursement.png>]
+[53]
 Overfull \hbox (56.1364pt too wide) in paragraph at lines 259--260
 []\OT1/cmr/m/n/12 Feature ser-vices wrap this client with typed func-tions. Ex-
 am-ples in-clude \OT1/cmtt/m/n/12 scfProgramConfigService\OT1/cmr/m/n/12 ,
@@ -1011,17 +1023,16 @@ oadService\OT1/cmr/m/n/12 , \OT1/cmtt/m/n/12 financeDisbursementService\OT1/cmr
 /m/n/12 , \OT1/cmtt/m/n/12 documentInquiryService\OT1/cmr/m/n/12 ,
  []
 
-<images/ch4_services_layer.png, id=1162, 2288.55pt x 1023.825pt>
+<images/ch4_services_layer.png, id=1166, 2288.55pt x 1023.825pt>
 File: images/ch4_services_layer.png Graphic file (type png)
 <use images/ch4_services_layer.png>
 Package pdftex.def Info: images/ch4_services_layer.png  used on input line 263.
 
 (pdftex.def)             Requested size: 455.24411pt x 203.65219pt.
-[53] [54 <./images/ch4_services_layer.png (PNG copy)>]) [55]
+[54 <./images/ch4_services_layer.png (PNG copy)>]) [55]
 \openout2 = `chapters/chapter_5.aux'.
 
-
-(chapters/chapter_5.tex
+ (chapters/chapter_5.tex
 Chapter 5.
 [56
 
@@ -1119,11 +1130,11 @@ Package pdftex.def Info: images/ch6_contribution_streams.png  used on input lin
 e 41.
 (pdftex.def)             Requested size: 455.24411pt x 227.61586pt.
  [72 <./images/ch6_contribution_streams.png (PNG copy)>] [73] [74] [75]
-<images/ch6_skills_map.png, id=1271, 2348.775pt x 1264.725pt>
+<images/ch6_skills_map.png, id=1271, 2348.775pt x 1084.05pt>
 File: images/ch6_skills_map.png Graphic file (type png)
 <use images/ch6_skills_map.png>
 Package pdftex.def Info: images/ch6_skills_map.png  used on input line 143.
-(pdftex.def)             Requested size: 455.24411pt x 245.12477pt.
+(pdftex.def)             Requested size: 455.24411pt x 210.10695pt.
 
 [76 <./images/ch6_skills_map.png (PNG copy)>] [77]
 <images/ch6_future_roadmap.png, id=1281, 2348.775pt x 1023.825pt>
@@ -1145,7 +1156,7 @@ Package rerunfilecheck Info: File `main.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  14930 strings out of 467508
- 243909 string characters out of 5408765
+ 244329 string characters out of 5408765
  681030 words of memory out of 5000000
  43639 multiletter control sequences out of 15000+600000
  635680 words of font info for 70 fonts, out of 8000000 for 9000
@@ -1158,7 +1169,7 @@ ic/amsfonts/cm/cmitt10.pfb><C:/Users/zakar/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmr12.pfb><C:/Users/zakar/AppData/Local/Programs/MiKTe
 X/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/zakar/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on main.pdf (88 pages, 29713725 bytes).
+Output written on main.pdf (88 pages, 29741070 bytes).
 PDF statistics:
  1383 PDF objects out of 1440 (max. 8388607)
  297 named destinations out of 1000 (max. 500000)

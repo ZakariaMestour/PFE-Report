@@ -1,0 +1,41 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Authentication and Role Resolution
+
+actor Browser
+participant Keycloak
+participant "React Auth" as ReactAuth
+participant "Business View" as BusinessView
+participant Backend
+Browser -> Keycloak : authorize + PKCE
+activate Keycloak
+Keycloak --> Browser : authorization code
+deactivate Keycloak
+Browser -> Keycloak : token exchange
+activate Keycloak
+Keycloak --> ReactAuth : access + refresh token
+deactivate Keycloak
+activate ReactAuth
+ReactAuth -> BusinessView : decode roles
+activate BusinessView
+BusinessView --> ReactAuth : BANK / ANCHOR / COUNTERPARTY
+deactivate BusinessView
+ReactAuth -> Backend : Bearer API call
+activate Backend
+Backend --> ReactAuth : authorized response
+deactivate Backend
+deactivate ReactAuth
+
+@enduml

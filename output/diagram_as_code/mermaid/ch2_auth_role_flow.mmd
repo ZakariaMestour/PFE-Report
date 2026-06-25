@@ -1,0 +1,29 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+sequenceDiagram
+title Authentication and Role Resolution
+autonumber
+
+actor Browser
+participant Keycloak
+participant ReactAuth as React Auth
+participant BusinessView as Business View
+participant Backend
+
+Browser->>Keycloak: authorize + PKCE
+activate Keycloak
+Keycloak-->>Browser: authorization code
+deactivate Keycloak
+Browser->>Keycloak: token exchange
+activate Keycloak
+Keycloak-->>ReactAuth: access + refresh token
+deactivate Keycloak
+activate ReactAuth
+ReactAuth->>BusinessView: decode roles
+activate BusinessView
+BusinessView-->>ReactAuth: BANK / ANCHOR / COUNTERPARTY
+deactivate BusinessView
+ReactAuth->>Backend: Bearer API call
+activate Backend
+Backend-->>ReactAuth: authorized response
+deactivate Backend
+deactivate ReactAuth

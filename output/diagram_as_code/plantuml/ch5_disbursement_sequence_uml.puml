@@ -1,0 +1,59 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Manual Disbursement with Async Payment Callback
+
+actor "Buyer/Supplier" as User
+participant "React Wizard" as UI
+participant "Disbursement Service" as DS
+participant "Program/Invoice Services" as PI
+participant "Payment Gateway" as PG
+participant "adria-gateway" as AG
+participant "Kafka payment.callback" as K
+participant "DisbursementEventConsumer" as C
+User -> UI : select lodged invoices + mode
+activate UI
+UI -> DS : requestFinance(payload)
+activate DS
+DS -> PI : load program rules + invoice state
+activate PI
+PI --> DS : rules, tenor, remaining amount
+deactivate PI
+DS -> DS : run C1-C4 eligibility checks
+alt any eligibility check fails
+  DS --> UI : reject with business code
+else eligible
+  DS -> PG : POST /payments
+  activate PG
+  PG --> DS : 202 Accepted + paymentRef
+  deactivate PG
+  DS --> UI : state=PENDING_CONFIRMATION
+end
+PG -> AG : POST /callbacks/payment
+activate AG
+AG -> AG : validate HMAC signature
+AG --> PG : HTTP 200 fast ack
+AG -> K : publish payment.callback
+activate K
+K -> C : consume callback event
+deactivate K
+activate C
+C -> DS : update disbursement SUCCESS/FAILED
+DS -> DS : create FinanceRecord + Transaction and update Invoice
+deactivate C
+deactivate AG
+deactivate DS
+deactivate UI
+
+@enduml

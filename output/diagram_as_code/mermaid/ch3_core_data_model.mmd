@@ -1,0 +1,60 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+classDiagram
+    class ScfProductDefinition {
+        +String code
+        +ProductType type
+        +Instrument instrument
+        +ApprovalStatus status
+    }
+    class ScfProgramConfiguration {
+        +UUID id
+        +String reference
+        +Currency currency
+        +BigDecimal financePercent
+        +ProgramStatus status
+    }
+    class ScfAnchor {
+        +String anchorCode
+        +String name
+        +AnchorRole role
+    }
+    class ScfCounterParty {
+        +String legalName
+        +CounterpartyRole role
+        +CounterPartyStatus status
+        +String taxIdentifier
+    }
+    class ScfProgramCounterParty {
+        +String roleInProgram
+        +BigDecimal limitAmount
+        +Boolean active
+    }
+    class ScfBankAccount {
+        +String iban
+        +String swiftCode
+        +Currency currency
+        +Boolean primaryAccount
+    }
+    class ScfProgramCashflow {
+        +String invoiceNumber
+        +BigDecimal amount
+        +LocalDate dueDate
+        +String validationStatus
+    }
+    class Country {
+        +String code
+        +String name
+    }
+    class City {
+        +String code
+        +String name
+        +String postalCode
+    }
+    ScfProductDefinition "1" --> "0..*" ScfProgramConfiguration : defines
+    ScfProgramConfiguration "1" --> "1..*" ScfAnchor : assigns
+    ScfProgramConfiguration "1" --> "0..*" ScfProgramCounterParty : configures
+    ScfCounterParty "1" --> "0..*" ScfProgramCounterParty : joins
+    ScfCounterParty "1" --> "0..*" ScfBankAccount : owns
+    ScfProgramConfiguration "1" --> "0..*" ScfProgramCashflow : contains
+    Country "1" --> "0..*" City : contains
+    ScfCounterParty --> Country : country

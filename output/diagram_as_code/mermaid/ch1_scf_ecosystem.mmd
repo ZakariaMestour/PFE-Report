@@ -1,0 +1,20 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart TB
+    %% Supply Chain Finance Ecosystem
+
+    subgraph Governance["Governance and Financing"]
+        Bank["Bank\nprogram governance\nfinancing control"]
+        Program["SCF Program\nproduct rules\neligibility\nfinance limits"]
+    end
+
+    subgraph Trade["Commercial Relationship"]
+        Anchor["Anchor\nlarge buyer or seller\nrisk reference"]
+        Counterparty["Counterparty\nsupplier / buyer\nSME participant"]
+        InvoicePool["Invoice Pool\ncashflows\ntrade documents"]
+    end
+
+    Bank -->|governance| Program
+    Anchor -->|program relationship| Program
+    Program -->|eligible operations| Counterparty
+    InvoicePool -->|invoice evidence| Program
+    Counterparty -->|goods, services, invoice exchange| Anchor

@@ -1,0 +1,20 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Gateway Routing and Filter Chain
+
+    subgraph GatewayLayer["Gateway Layer"]
+        Request["Request\nbrowser/API"]
+        Auth["Auth\nJWT / public paths"]
+        Security["Security\nClamAV, limits"]
+        Routing["Routing\n/scf /fdl /properties"]
+        Discovery["Discovery\nlb:// service"]
+        Fallback["Fallback\nresilience"]
+    end
+    subgraph Callback["Callback Security"]
+        HMAC["HMAC\nwebhooks"]
+        Logging["Logging\ncorrelation"]
+    end
+
+    Request --> Auth --> Security --> Routing --> Discovery --> Fallback
+    HMAC -.-> Routing
+    Logging -.-> Routing

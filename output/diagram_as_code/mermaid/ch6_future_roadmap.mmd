@@ -1,0 +1,15 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Recommendations for Future Development
+
+    Disbursement["Disbursement\nnative module"]
+    Async["Async Flows\nKafka/RabbitMQ"]
+    Mobile["Mobile\ncounterparty access"]
+    Analytics["Analytics\nportfolio view"]
+    Principle["Common direction\nGoverned, traceable, configurable, useful for bank operations"]
+
+    Disbursement --> Async --> Mobile --> Analytics
+    Principle -.-> Disbursement
+    Principle -.-> Async
+    Principle -.-> Mobile
+    Principle -.-> Analytics

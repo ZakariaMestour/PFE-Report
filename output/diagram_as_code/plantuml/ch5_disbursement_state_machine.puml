@@ -1,0 +1,31 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title UML State Machine - Disbursement Lifecycle
+
+[*] --> INITIATED
+INITIATED --> PENDING_CONFIRMATION : POST /payments / 202 Accepted + paymentRef
+INITIATED --> FAILED : sync 422 rejection
+PENDING_CONFIRMATION --> SUCCESS : async callback SUCCESS
+PENDING_CONFIRMATION --> FAILED : async callback FAILED
+SUCCESS --> [*]
+FAILED --> [*]
+note right of SUCCESS
+Create FinanceRecord
+Create FINANCE_DISBURSEMENT transaction
+Publish disbursement.success
+Set invoice FINANCED
+end note
+
+@enduml

@@ -1,0 +1,47 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+sequenceDiagram
+title Manual Disbursement with Async Payment Callback
+autonumber
+
+actor User as Buyer/Supplier
+participant UI as React Wizard
+participant DS as Disbursement Service
+participant PI as Program/Invoice Services
+participant PG as Payment Gateway
+participant AG as adria-gateway
+participant K as Kafka payment.callback
+participant C as DisbursementEventConsumer
+
+User->>UI: select lodged invoices + mode
+activate UI
+UI->>DS: requestFinance(payload)
+activate DS
+DS->>PI: load program rules + invoice state
+activate PI
+PI-->>DS: rules, tenor, remaining amount
+deactivate PI
+DS->>DS: run C1-C4 eligibility checks
+alt any eligibility check fails
+    DS-->>UI: reject with business code
+else eligible
+    DS->>PG: POST /payments
+    activate PG
+    PG-->>DS: 202 Accepted + paymentRef
+    deactivate PG
+    DS-->>UI: state=PENDING_CONFIRMATION
+end
+PG->>AG: POST /callbacks/payment
+activate AG
+AG->>AG: validate HMAC signature
+AG-->>PG: HTTP 200 fast ack
+AG->>K: publish payment.callback
+activate K
+deactivate AG
+K->>C: consume callback event
+deactivate K
+activate C
+C->>DS: update disbursement SUCCESS/FAILED
+DS->>DS: create FinanceRecord + Transaction and update Invoice
+deactivate C
+deactivate DS
+deactivate UI

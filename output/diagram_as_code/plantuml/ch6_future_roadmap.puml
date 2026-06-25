@@ -1,0 +1,31 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Recommendations for Future Development
+
+left to right direction
+rectangle "Disbursement\nnative module" as Disbursement
+rectangle "Async Flows\nKafka/RabbitMQ" as Async
+rectangle "Mobile\ncounterparty access" as Mobile
+rectangle "Analytics\nportfolio view" as Analytics
+rectangle "Common direction\nGoverned, traceable, configurable, useful for bank operations" as Principle
+Disbursement --> Async
+Async --> Mobile
+Mobile --> Analytics
+Principle ..> Disbursement
+Principle ..> Async
+Principle ..> Mobile
+Principle ..> Analytics
+
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+skinparam usecase {
+  BorderColor #333333
+  BackgroundColor white
+  ArrowColor #333333
+}
+title SCF Front Office
+
+left to right direction
+actor "Buyer" as Buyer
+actor "Supplier" as Supplier
+actor "Bank" as Bank
+rectangle "SCF Front Office Boundary" {
+  usecase "Track invoice\nstatus" as UC2
+  usecase "Request\npayment" as UC5
+  usecase "Consult\ntransactions" as UC6
+  usecase "Upload or create\ninvoice" as UC1
+  usecase "Request\nfinance" as UC3
+  usecase "Request early\npayment" as UC4
+}
+
+Buyer -right- UC2
+Buyer -right- UC5
+Buyer -right- UC6
+Supplier -right- UC1
+Supplier -right- UC3
+Supplier -right- UC4
+
+Bank -left- UC5
+Bank -left- UC3
+Bank -left- UC4
+
+Buyer -[hidden]down- Supplier
+UC2 -[hidden]down- UC5
+UC5 -[hidden]down- UC6
+UC1 -[hidden]down- UC3
+UC3 -[hidden]down- UC4
+
+@enduml

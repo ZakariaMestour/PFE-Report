@@ -1,0 +1,23 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% SCF Back Office
+
+    Bank_Maker["Bank Maker"]
+    Bank_Checker["Bank Checker"]
+
+    subgraph Boundary["SCF Back Office Boundary"]
+        UC1(["Create / edit product"])
+        UC2(["Configure program"])
+        UC3(["Onboard counterparty"])
+        UC4(["Submit pending change"])
+        UC5(["Review pending operation"])
+        UC6(["Approve or reject"])
+    end
+    Bank_Maker --- UC1
+    Bank_Maker --- UC2
+    Bank_Maker --- UC3
+    Bank_Checker --- UC5
+    UC1 -. "&lt;&lt;include&gt;&gt;" .-> UC4
+    UC2 -. "&lt;&lt;include&gt;&gt;" .-> UC4
+    UC3 -. "&lt;&lt;include&gt;&gt;" .-> UC4
+    UC5 -. "&lt;&lt;include&gt;&gt;" .-> UC6

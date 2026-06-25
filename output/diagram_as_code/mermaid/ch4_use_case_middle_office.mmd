@@ -1,0 +1,21 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% SCF Middle Office
+
+    Middle_Office_Analyst["Middle Office Analyst"]
+    Compliance_Audit["Compliance / Audit"]
+
+    subgraph Boundary["SCF Middle Office Boundary"]
+        UC1(["Monitor transactions"])
+        UC2(["Filter inquiry results"])
+        UC3(["Follow failed payments"])
+        UC4(["Export operational report"])
+        UC5(["Consult audit trail"])
+        UC6(["Analyze portfolio exposure"])
+    end
+    Middle_Office_Analyst --- UC1
+    Middle_Office_Analyst --- UC3
+    Middle_Office_Analyst --- UC4
+    Middle_Office_Analyst --- UC6
+    Compliance_Audit --- UC5
+    UC1 -. "&lt;&lt;include&gt;&gt;" .-> UC2

@@ -1,0 +1,17 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Internship Contribution Streams
+
+    subgraph Delivery["Platform Delivery"]
+        Jira["Jira\ntickets"]
+        Bitbucket["Bitbucket\nPR review"]
+        Tester["Tester\nvalidation"]
+    end
+    subgraph PFE["PFE Module Preparation"]
+        PO["PO Sessions\nbusiness rules"]
+        Diagrams["Diagrams\nflow review"]
+        Design["Target Design\nfuture merge"]
+    end
+    Jira --> Bitbucket --> Tester
+    PO --> Diagrams --> Design
+    Tester -.->|delivery context feeds module analysis| PO

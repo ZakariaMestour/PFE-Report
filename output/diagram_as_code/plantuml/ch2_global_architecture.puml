@@ -1,0 +1,42 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Global Architecture of the SCF Platform
+
+left to right direction
+package "Channel Layer" {
+  node "React SPA\nrole views" as React
+  node "Axios Client\ngateway paths" as Axios
+}
+package "Business and Edge Layer" {
+  node "adria-gateway\nJWT, filters, routing" as Gateway
+  node "scf-service\nmodular monolith\nSCF modules" as SCF
+  node "FDL / Properties\nreference data\nruntime values" as FDL
+}
+package "Infrastructure Layer" {
+  node "Keycloak\nOIDC" as Keycloak
+  database "PostgreSQL\nbusiness data" as Postgres
+  database "MinIO\ndocuments" as MinIO
+  node "Kafka\nevents" as Kafka
+}
+React --> Axios
+Axios --> Gateway
+Gateway --> SCF
+Gateway --> FDL
+Gateway ..> Keycloak
+SCF --> Postgres
+SCF --> MinIO
+SCF --> Kafka
+
+@enduml

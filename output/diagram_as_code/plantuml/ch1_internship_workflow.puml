@@ -1,0 +1,38 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Daily Development and Validation Workflow
+
+left to right direction
+package "Developer Lane" {
+  rectangle "Jira Ticket" as Jira
+  rectangle "Implementation\nBackend + Frontend" as Implement
+  rectangle "Push Branch\nBitbucket" as Push
+}
+package "Tech Lead Lane" {
+  rectangle "Pull Request Review" as Review
+  rectangle "Merge" as Merge
+}
+package "Tester Lane" {
+  rectangle "Verification" as Verify
+}
+Jira --> Implement
+Implement --> Push
+Push --> Review
+Review --> Merge : approved
+Review ..> Implement : changes requested
+Merge --> Verify
+Verify ..> Implement : defect feedback
+
+@enduml

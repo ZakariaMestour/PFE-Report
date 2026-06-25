@@ -1,0 +1,21 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Daily Development and Validation Workflow
+
+    subgraph Developer["Developer Lane"]
+        Jira["Jira Ticket"]
+        Implement["Implementation\nBackend + Frontend"]
+        Push["Push Branch\nBitbucket"]
+    end
+    subgraph Lead["Tech Lead Lane"]
+        Review["Pull Request Review"]
+        Merge["Merge"]
+    end
+    subgraph QA["Tester Lane"]
+        Verify["Verification"]
+    end
+
+    Jira --> Implement --> Push --> Review
+    Review -->|approved| Merge --> Verify
+    Review -.->|changes requested| Implement
+    Verify -.->|defect feedback| Implement

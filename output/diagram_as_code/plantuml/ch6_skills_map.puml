@@ -1,0 +1,34 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Skills Acquired During the Internship
+
+top to bottom direction
+rectangle "Internship Growth\ntechnical, domain, and process learning" as Growth
+package "Skill Areas" {
+rectangle "Backend\nSpring Boot\nJPA/OAuth2" as Backend
+rectangle "Frontend\nReact\nTypeScript" as Frontend
+rectangle "DevOps\nDocker\nGit / PR" as DevOps
+rectangle "Banking\nSCF domain\nprogram logic" as Banking
+rectangle "Collaboration\nScrum\nPO refinement" as Collaboration
+rectangle "Quality\nreview\ntesting feedback" as Quality
+}
+Growth --> Backend
+Growth --> Frontend
+Growth --> DevOps
+Growth --> Banking
+Growth --> Collaboration
+Growth --> Quality
+
+@enduml

@@ -1,0 +1,72 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title UML Class Diagram - Disbursement Domain
+
+class Program {
+  +type: ProgramType
+  +financePercent: Decimal
+  +maxDisbursement: int
+  +maxTenorDays: int
+  +autoDisbursement: bool
+}
+class Invoice {
+  +status: InvoiceStatus
+  +amountState: AmountState
+  +amount: Decimal
+  +issueDate: Date
+  +dueDate: Date
+  +tenorDays: int
+}
+class Disbursement {
+  +mode: DisbursementMode
+  +source: DisbursementSource
+  +state: DisbursementState
+  +amount: Decimal
+  +paymentRef: String
+  +failureReason: String
+}
+class FinanceRecord {
+  +status: FinanceStatus
+  +scope: FinanceScope
+  +principalAmount: Decimal
+  +maturityDate: Date
+  +totalDue: Decimal
+}
+class FinanceRecordInvoice {
+  +allocatedAmount: Decimal
+  +settledAmount: Decimal
+  +allocationState: String
+}
+class Transaction {
+  +type: TransactionType
+  +amount: Decimal
+  +reference: String
+  +createdAt: Instant
+}
+Program "1" --> "1..*" Invoice : contains
+Program "1" --> "0..*" Disbursement : authorizes
+Disbursement "1" --> "1..*" Invoice : covers
+Disbursement "1" --> "0..1" FinanceRecord : creates if SUCCESS
+FinanceRecord "1" --> "1..*" FinanceRecordInvoice : allocates
+FinanceRecordInvoice "1..*" --> "1" Invoice : references
+Invoice ..> Transaction : INVOICE
+Disbursement ..> Transaction : FINANCE_DISBURSEMENT
+FinanceRecord ..> Transaction : FINANCE_REPAYMENT
+note bottom of Disbursement
+No separate finance-request class.
+Disbursement carries mode and source.
+end note
+
+@enduml

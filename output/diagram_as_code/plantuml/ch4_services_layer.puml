@@ -1,0 +1,32 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Frontend Services Layer
+
+left to right direction
+package "UI Layer" {
+  rectangle "Components\nforms, tables, wizards" as Components
+  rectangle "Hooks\nuseProgramForm\nuseInvoiceForm" as Hooks
+}
+package "Access Layer" {
+  rectangle "Feature Services\ntyped functions\nendpoint mapping" as Services
+  rectangle "Axios Client\nBearer token" as Client
+  rectangle "Types\nDTO models" as Types
+}
+Components --> Hooks
+Hooks --> Services
+Services --> Client
+Services --> Types
+
+@enduml

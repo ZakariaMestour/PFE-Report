@@ -1,0 +1,34 @@
+@startuml
+<style>
+root {
+  FontName Inter, Roboto, Helvetica, sans-serif
+  FontSize 14
+  FontColor #333333
+}
+document {
+  BackgroundColor white
+}
+</style>
+skinparam shadowing false
+skinparam linetype ortho
+skinparam monochrome true
+title Internship Contribution Streams
+
+left to right direction
+package "Platform Delivery" {
+  rectangle "Jira\ntickets" as Jira
+  rectangle "Bitbucket\nPR review" as Bitbucket
+  rectangle "Tester\nvalidation" as Tester
+}
+package "PFE Module Preparation" {
+  rectangle "PO Sessions\nbusiness rules" as PO
+  rectangle "Diagrams\nflow review" as Diagrams
+  rectangle "Target Design\nfuture merge" as Design
+}
+Jira --> Bitbucket
+Bitbucket --> Tester
+PO --> Diagrams
+Diagrams --> Design
+Tester ..> PO : delivery context feeds module analysis
+
+@enduml

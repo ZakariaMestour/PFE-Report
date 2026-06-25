@@ -1,0 +1,27 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart TB
+    %% Global Architecture of the SCF Platform
+
+    subgraph Channel["Channel Layer"]
+        React["React SPA\nrole views"]
+        Axios["Axios Client\ngateway paths"]
+    end
+    subgraph EdgeBusiness["Business and Edge Layer"]
+        Gateway["adria-gateway\nJWT, filters, routing"]
+        SCF["scf-service\nmodular monolith\nSCF modules"]
+        FDL["FDL / Properties\nreference data\nruntime values"]
+    end
+    subgraph Infrastructure["Infrastructure Layer"]
+        Keycloak["Keycloak\nOIDC"]
+        Postgres[(PostgreSQL\nbusiness data)]
+        MinIO[(MinIO\ndocuments)]
+        Kafka["Kafka\nevents"]
+    end
+
+    React --> Axios --> Gateway
+    Gateway --> SCF
+    Gateway --> FDL
+    Gateway -.-> Keycloak
+    SCF --> Postgres
+    SCF --> MinIO
+    SCF --> Kafka

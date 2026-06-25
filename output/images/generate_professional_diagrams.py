@@ -537,78 +537,89 @@ def ch3_program_activity():
 
 
 def use_case_back_office():
-    d = Diagram("ch4_use_case_back_office", 820, 470, "Use Case Diagram - Back Office")
-    d.actor(80, 145, "Bank\nMaker", TEAL)
-    d.actor(80, 310, "Bank\nChecker", GREEN)
-    d.rect(180, 55, 580, 360, WHITE, NAVY, 1.2, 2)
-    d.text(470, 78, "SCF Back Office Boundary", 8, NAVY, "700", "middle")
+    d = Diagram("ch4_use_case_back_office", 920, 560, "UML Use Case Diagram - Back Office")
+    d.actor(85, 150, "Bank\nMaker", TEAL)
+    d.actor(85, 365, "Bank\nChecker", GREEN)
+    d.rect(210, 70, 650, 440, WHITE, NAVY, 1.2, 2)
+    d.text(535, 94, "SCF Back Office Boundary", 8, NAVY, "700", "middle")
     cases = [
-        (330, 130, "Create / edit\nproduct", TEAL),
-        (565, 130, "Configure\nprogram", TEAL),
-        (330, 220, "Onboard\ncounterparty", TEAL),
-        (565, 220, "Submit\npending change", GOLD),
-        (330, 320, "Review pending\noperation", GREEN),
-        (565, 320, "Approve or\nreject", GREEN),
+        (390, 125, "Create / edit\nproduct", TEAL),
+        (390, 225, "Configure\nprogram", TEAL),
+        (390, 325, "Onboard\ncounterparty", TEAL),
+        (655, 225, "Submit\npending change", GOLD),
+        (390, 445, "Review pending\noperation", GREEN),
+        (655, 445, "Approve or\nreject", GREEN),
     ]
     for cx, cy, label, color in cases:
         d.usecase(cx, cy, 150, 48, label, color)
-    for target in [(255, 130), (255, 220), (490, 130), (490, 220)]:
-        d.line(100, 185, *target, GRAY)
-    d.line(100, 350, 255, 320, GRAY)
-    d.line(100, 350, 490, 320, GRAY)
-    d.line(405, 220, 490, 220, GOLD, dash="5 3", arrow=True)
-    d.text(448, 211, "<<include>>", 6.4, GOLD, anchor="middle")
-    d.line(405, 320, 490, 320, GREEN, dash="5 3", arrow=True)
-    d.text(448, 311, "<<include>>", 6.4, GREEN, anchor="middle")
+    d.line(112, 190, 315, 125, GRAY)
+    d.line(112, 190, 315, 225, GRAY)
+    d.line(112, 190, 315, 325, GRAY)
+    d.line(112, 405, 315, 445, GRAY)
+    d.line(465, 125, 580, 207, GOLD, dash="5 3", arrow=True)
+    d.text(520, 158, "<<include>>", 6.4, GOLD, anchor="middle")
+    d.line(465, 225, 580, 225, GOLD, dash="5 3", arrow=True)
+    d.text(522, 216, "<<include>>", 6.4, GOLD, anchor="middle")
+    d.line(465, 325, 580, 243, GOLD, dash="5 3", arrow=True)
+    d.text(520, 286, "<<include>>", 6.4, GOLD, anchor="middle")
+    d.line(465, 445, 580, 445, GREEN, dash="5 3", arrow=True)
+    d.text(522, 436, "<<include>>", 6.4, GREEN, anchor="middle")
     d.save()
 
 
 def use_case_middle_office():
-    d = Diagram("ch4_use_case_middle_office", 820, 470, "Use Case Diagram - Middle Office")
-    d.actor(80, 170, "Middle Office\nAnalyst", TEAL)
-    d.actor(80, 330, "Compliance /\nAudit", NAVY)
-    d.rect(180, 55, 580, 360, WHITE, NAVY, 1.2, 2)
-    d.text(470, 78, "SCF Middle Office Boundary", 8, NAVY, "700", "middle")
+    d = Diagram("ch4_use_case_middle_office", 920, 670, "UML Use Case Diagram - Middle Office")
+    d.actor(85, 170, "Middle Office\nAnalyst", TEAL)
+    d.actor(85, 500, "Compliance /\nAudit", NAVY)
+    d.rect(210, 70, 650, 550, WHITE, NAVY, 1.2, 2)
+    d.text(535, 94, "SCF Middle Office Boundary", 8, NAVY, "700", "middle")
     cases = [
-        (330, 130, "Monitor\ntransactions", TEAL),
-        (565, 130, "Filter inquiry\nresults", TEAL),
-        (330, 220, "Follow failed\npayments", RED),
-        (565, 220, "Export operational\nreport", GOLD),
-        (330, 320, "Consult audit\ntrail", NAVY),
-        (565, 320, "Analyze portfolio\nexposure", GREEN),
+        (390, 125, "Monitor\ntransactions", TEAL),
+        (655, 125, "Filter inquiry\nresults", TEAL),
+        (390, 245, "Follow failed\npayments", RED),
+        (390, 365, "Export operational\nreport", GOLD),
+        (655, 535, "Consult audit\ntrail", NAVY),
+        (390, 485, "Analyze portfolio\nexposure", GREEN),
     ]
     for cx, cy, label, color in cases:
         d.usecase(cx, cy, 155, 48, label, color)
-    for target in [(255, 130), (490, 130), (255, 220), (490, 220), (490, 320)]:
-        d.line(100, 210, *target, GRAY)
-    d.line(100, 370, 255, 320, GRAY)
-    d.line(405, 130, 490, 130, TEAL, dash="5 3", arrow=True)
-    d.text(448, 121, "<<include>>", 6.4, TEAL, anchor="middle")
+    d.line(112, 210, 312, 125, GRAY)
+    d.line(112, 210, 312, 245, GRAY)
+    d.line(112, 210, 312, 365, GRAY)
+    d.line(112, 210, 312, 485, GRAY)
+    d.line(112, 540, 577, 535, GRAY)
+    d.line(468, 125, 577, 125, TEAL, dash="5 3", arrow=True)
+    d.text(522, 116, "<<include>>", 6.4, TEAL, anchor="middle")
     d.save()
 
 
 def use_case_front_office():
-    d = Diagram("ch4_use_case_front_office", 820, 470, "Use Case Diagram - Front Office")
-    d.rect(180, 55, 580, 360, WHITE, NAVY, 1.2, 2)
-    d.text(470, 78, "SCF Front Office Boundary", 8, NAVY, "700", "middle")
-    d.actor(80, 95, "Buyer", TEAL)
-    d.actor(80, 345, "Supplier", GREEN)
-    d.actor(205, 220, "Front-office\nuser", NAVY)
+    d = Diagram("ch4_use_case_front_office", 900, 520, "UML Use Case Diagram - Front Office")
+    d.rect(190, 60, 545, 410, WHITE, NAVY, 1.2, 2)
+    d.text(462, 84, "SCF Front Office Boundary", 8, NAVY, "700", "middle")
+    d.actor(80, 105, "Buyer", TEAL)
+    d.actor(80, 305, "Supplier", GREEN)
+    d.actor(820, 205, "Bank", NAVY)
     cases = [
-        (330, 125, "Upload or create\ninvoice", TEAL),
-        (565, 125, "Track invoice\nstatus", TEAL),
-        (330, 225, "Request\nfinance", GOLD),
-        (565, 225, "Request early\npayment", GREEN),
-        (330, 325, "Request\npayment", GREEN),
-        (565, 325, "Consult\ntransactions", NAVY),
+        (600, 105, "Request\npayment", GREEN),
+        (360, 170, "Track invoice\nstatus", TEAL),
+        (520, 230, "Consult\ntransactions", NAVY),
+        (360, 285, "Upload or create\ninvoice", TEAL),
+        (600, 330, "Request\nfinance", GOLD),
+        (520, 415, "Request early\npayment", GREEN),
     ]
     for cx, cy, label, color in cases:
-        d.usecase(cx, cy, 155, 48, label, color)
-    d.line(100, 135, 182, 242, GRAY)
-    d.line(100, 385, 182, 242, GRAY)
-    for target in [(255, 125), (490, 125), (255, 225), (490, 225), (255, 325), (490, 325)]:
-        d.line(225, 260, *target, GRAY)
-    d.text(470, 396, "Both buyer and supplier can initiate all three lodged-invoice request types.", 7.2, NAVY, "700", "middle")
+        d.usecase(cx, cy, 150, 48, label, color)
+    # Primary actors are on the left. The bank is the only secondary/supporting actor.
+    d.line(108, 145, 525, 105, GRAY)
+    d.line(108, 145, 285, 170, GRAY)
+    d.line(108, 145, 445, 230, GRAY)
+    d.line(108, 345, 285, 285, GRAY)
+    d.line(108, 345, 525, 330, GRAY)
+    d.line(108, 345, 445, 415, GRAY)
+    d.line(792, 245, 675, 105, GRAY)
+    d.line(792, 245, 675, 330, GRAY)
+    d.line(792, 245, 595, 415, GRAY)
     d.save()
 
 
@@ -683,36 +694,33 @@ def ch4_services():
 
 
 def disbursement_use_case():
-    d = Diagram("ch5_disbursement_use_case", 860, 520, "Use Case Diagram - Disbursement Module")
-    d.rect(180, 45, 540, 420, WHITE, NAVY, 1.2, 2)
-    d.text(450, 68, "Disbursement Module Boundary", 8, NAVY, "700", "middle")
-    d.actor(80, 210, "Buyer or\nSupplier", TEAL)
-    d.actor(790, 105, "Payment\nGateway", NAVY)
-    d.actor(790, 330, "System\nScheduler", GOLD)
+    d = Diagram("ch5_disbursement_use_case", 860, 520, "UML Use Case Diagram - Disbursement Module")
+    d.rect(210, 50, 600, 420, WHITE, NAVY, 1.2, 2)
+    d.text(510, 74, "Disbursement Module Boundary", 8, NAVY, "700", "middle")
+    d.actor(85, 220, "Buyer or\nSupplier", TEAL)
     cases = [
-        (330, 130, "Request\nfinance", GOLD),
-        (330, 235, "Choose mode\nINDIVIDUAL/CLUBBED", TEAL),
-        (555, 180, "Run eligibility\nchecks", TEAL),
-        (555, 300, "Submit payment\ninstruction", NAVY),
-        (555, 405, "Process async\ncallback", GREEN),
-        (330, 345, "Automatic\ndisbursement", GOLD),
+        (365, 130, "Request\nfinance", GOLD),
+        (365, 230, "Choose mode\nINDIVIDUAL/CLUBBED", TEAL),
+        (365, 350, "Automatic\ndisbursement", GOLD),
+        (610, 180, "Run eligibility\nchecks", TEAL),
+        (610, 295, "Submit payment\ninstruction", NAVY),
+        (610, 405, "Process async\ncallback", GREEN),
     ]
     for cx, cy, label, color in cases:
         d.usecase(cx, cy, 160, 50, label, color)
-    d.line(105, 250, 250, 130, GRAY)
-    d.line(105, 250, 250, 235, GRAY)
-    d.line(772, 145, 710, 145, GRAY)
-    d.line(710, 145, 635, 300, GRAY)
-    d.line(772, 370, 710, 370, GRAY)
-    d.path([(710, 370), (700, 370), (700, 455), (330, 455), (330, 370)], GRAY)
-    d.line(410, 130, 475, 180, TEAL, dash="5 3", arrow=True)
-    d.text(448, 148, "<<include>>", 6.4, TEAL, anchor="middle")
-    d.line(410, 345, 475, 180, TEAL, dash="5 3", arrow=True)
-    d.text(430, 278, "<<include>>", 6.4, TEAL, anchor="middle")
-    d.line(555, 205, 555, 275, NAVY, dash="5 3", arrow=True)
-    d.text(592, 244, "<<include>>", 6.4, NAVY, anchor="middle")
-    d.line(555, 325, 555, 380, GREEN, dash="5 3", arrow=True)
-    d.text(592, 358, "webhook result", 6.4, GREEN, anchor="middle")
+    d.line(112, 260, 285, 130, GRAY)
+    d.line(112, 260, 285, 230, GRAY)
+    d.line(365, 155, 365, 204, TEAL, dash="5 3", arrow=True)
+    d.text(405, 184, "<<include>>", 6.4, TEAL, anchor="middle")
+    d.line(445, 230, 530, 180, TEAL, dash="5 3", arrow=True)
+    d.text(490, 197, "<<include>>", 6.4, TEAL, anchor="middle")
+    d.line(445, 350, 530, 180, TEAL, dash="5 3", arrow=True)
+    d.text(488, 278, "<<include>>", 6.4, TEAL, anchor="middle")
+    d.line(610, 205, 610, 269, NAVY, dash="5 3", arrow=True)
+    d.text(648, 243, "<<include>>", 6.4, NAVY, anchor="middle")
+    d.line(610, 320, 610, 379, GREEN, dash="5 3", arrow=True)
+    d.text(650, 357, "<<include>>", 6.4, GREEN, anchor="middle")
+    d.text(510, 452, "Only the primary front-office actor is shown; payment and scheduling are internal collaborators.", 6.8, NAVY, "700", "middle")
     d.save()
 
 
@@ -846,21 +854,22 @@ def ch6_streams():
 
 
 def ch6_skills():
-    d = Diagram("ch6_skills_map", 780, 420, "Skills Acquired During the Internship")
-    d.circle(390, 210, 64, CREAM, NAVY, 1.2)
-    d.text(390, 204, "Internship", 9, NAVY, "700", "middle")
-    d.text(390, 221, "Growth", 9, TEAL, "700", "middle")
+    d = Diagram("ch6_skills_map", 780, 360, "Skills Acquired During the Internship")
+    d.box(285, 72, 210, 56, "Internship Growth", ["technical, domain, and process learning"], NAVY2, NAVY)
     nodes = [
-        (120, 95, "Backend", ["Spring Boot", "JPA/OAuth2"], TEAL),
-        (390, 72, "Frontend", ["React", "TypeScript"], TEAL),
-        (660, 95, "DevOps", ["Docker", "Git / PR"], GOLD),
-        (120, 315, "Banking", ["SCF domain", "program logic"], GREEN),
-        (390, 342, "Collaboration", ["Scrum", "PO refinement"], GOLD),
-        (660, 315, "Quality", ["review", "testing feedback"], GREEN),
+        (75, "Backend", ["Spring Boot", "JPA/OAuth2"], TEAL),
+        (201, "Frontend", ["React", "TypeScript"], TEAL),
+        (327, "DevOps", ["Docker", "Git / PR"], GOLD),
+        (453, "Banking", ["SCF domain", "program logic"], GREEN),
+        (579, "Collaboration", ["Scrum", "PO refinement"], GOLD),
+        (705, "Quality", ["review", "testing feedback"], GREEN),
     ]
-    for x, y, title, lines, color in nodes:
-        d.box(x - 65, y - 35, 130, 70, title, lines, color, color)
-        d.line(390, 210, x, y, color, arrow=True)
+    bus_y = 176
+    d.line(390, 128, 390, bus_y, NAVY, sw=1.2)
+    d.line(75, bus_y, 705, bus_y, NAVY, sw=1.2)
+    for x, title, lines, color in nodes:
+        d.box(x - 56, 220, 112, 76, title, lines, color, color)
+        d.line(x, bus_y, x, 219, color, arrow=True)
     d.save()
 
 

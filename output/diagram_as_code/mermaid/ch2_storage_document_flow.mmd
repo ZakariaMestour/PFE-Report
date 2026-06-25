@@ -1,0 +1,23 @@
+%%{init: { 'theme': 'neutral', 'themeVariables': { 'fontFamily': 'Inter, Roboto, Helvetica, sans-serif', 'fontSize': '16px', 'fontWeight': '500' } } }%%
+flowchart LR
+    %% Document Storage and Conversion Flow
+
+    subgraph Frontend["Frontend"]
+        UploadUI["Upload UI\nmultipart file"]
+    end
+    subgraph Edge["Gateway"]
+        Gateway["Gateway\nClamAV scan"]
+    end
+    subgraph Service["Business Service"]
+        SCF["SCF Service\nmetadata + storage ports"]
+    end
+    subgraph Storage["Storage and Conversion"]
+        MinIO[(MinIO\nobject bytes)]
+        Postgres[(PostgreSQL\ndocument row)]
+        Gotenberg["Gotenberg\nPDF conversion"]
+    end
+
+    UploadUI --> Gateway --> SCF
+    SCF --> MinIO
+    SCF --> Postgres
+    SCF --> Gotenberg
